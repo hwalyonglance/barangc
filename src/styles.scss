@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+
+body {
+	padding: 0 !important;
+	background-color: #fff;
+}
+
+@import '~font-awesome/css/font-awesome.min.css';
+@import '~materialize-css/bin/materialize.min.css';
+@import '~material-design-icons/iconfont/material-icons.css';
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';

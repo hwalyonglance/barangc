@@ -1,0 +1,47 @@
+.mat-toolbar{
+	margin: 0;
+	padding: 0;
+}
+.demo-toolbar {
+	display: inline;
+	margin: 0 !important;
+	padding: 0 !important;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 10000 !important;
+	p {
+		margin: 0 !important;
+	}
+	.btn-ngadmin-menu-nav-icon {
+		background-color: transparent;
+		box-sizing: border-box;
+		border: none;
+		justify-content: center;
+		height: 100%;
+		padding-top: .95%;
+		width: 64px;
+	}
+	.btn-ngadmin-menu-nav-icon:hover,
+	.btn-ngadmin-menu-nav-icon.active {
+		border: 2px solid #90CAF9;
+	}
+	.company-name{
+		margin-left: 20px;
+	}
+	.demo-toolbar-icon:hover {
+		cursor: pointer;
+	}
+	.demo-fill-remaining {
+		flex: 1 1 auto;
+	}
+}
+
+@media (max-width: 600px){
+	.demo-toolbar{
+		.btn-ngadmin-menu-nav-icon{
+			padding-top: 2%;
+			width: 56px;
+		}
+	}
+}

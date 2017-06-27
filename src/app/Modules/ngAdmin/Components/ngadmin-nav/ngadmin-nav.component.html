@@ -1,0 +1,25 @@
+<nav>
+	<div class="demo-toolbar">
+		<md-toolbar color="primary">
+			<button (click)="$ngadminSideNavToggle$.next()" class="btn-ngadmin-menu-nav-icon">
+				<md-icon>menu</md-icon>
+			</button>
+			<span class='company-name'>Rusman Wahab</span>
+
+			<span class="demo-fill-remaining"></span>
+
+			<button md-icon-button title="Home">
+				<md-icon routerLink="/">home</md-icon>
+			</button>
+			<button md-icon-button title="Ngadmin">
+				<md-icon routerLink="/ngadmin">people</md-icon>
+			</button>
+			<button md-icon-button title="Auth">
+				<md-icon routerLink="/auth">security</md-icon>
+			</button>
+			<button md-icon-button title="Font Awesome">
+				<app-fa-icon routerLink="/font-awesome" faIcon='fa-key'></app-fa-icon>
+			</button>
+		</md-toolbar>
+	</div>
+</nav>
