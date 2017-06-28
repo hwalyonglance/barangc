@@ -21,6 +21,11 @@ import { NgadminContainerComponent } from './Modules/ngAdmin/Components/ngadmin-
 import { NgadminSidenavComponent } from './Modules/ngAdmin/Components/ngadmin-sidenav/ngadmin-sidenav.component';
 import { NgadminHomeComponent } from './Modules/ngAdmin/Components/ngadmin-home/ngadmin-home.component';
 import { NgadminKategoriComponent } from './Modules/ngAdmin/Components/ngadmin-kategori/ngadmin-kategori.component';
+import { NgadminKategoriFormComponent } from './Modules/ngAdmin/Components/ngadmin-kategori-form/ngadmin-kategori-form.component';
+import { NgadminKategoriDataTableComponent } from './Modules/ngAdmin/Components/ngadmin-kategori-data-table/ngadmin-kategori-data-table.component';
+import { NgadminBarangComponent } from './Modules/ngAdmin/Components/ngadmin-barang/ngadmin-barang.component';
+import { NgadminBarangFormComponent } from './Modules/ngAdmin/Components/ngadmin-barang-form/ngadmin-barang-form.component';
+import { NgadminBarangDataTableComponent } from './Modules/ngAdmin/Components/ngadmin-barang-data-table/ngadmin-barang-data-table.component';
 
 // ngauth:
 import { NgAuthComponent } from './Modules/ngAuth/ng-auth.component';
@@ -41,6 +46,11 @@ import { NgAuthNavComponent } from './Modules/ngAuth/Components/ng-auth-nav/ng-a
 		NgadminSidenavComponent,
 		NgadminHomeComponent,
 		NgadminKategoriComponent,
+		NgadminKategoriFormComponent,
+		NgadminKategoriDataTableComponent,
+		NgadminBarangComponent,
+		NgadminBarangFormComponent,
+		NgadminBarangDataTableComponent,
 
 		// NgAuth:
 		NgAuthComponent,

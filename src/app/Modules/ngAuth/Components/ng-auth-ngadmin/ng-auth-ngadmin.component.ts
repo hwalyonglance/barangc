@@ -20,6 +20,9 @@ export class NgAuthNgadminComponent implements OnInit {
 	log(_data) {
 		console.log(_data);
 	}
+	onSubmit(controls): void {
+		console.log(controls);
+	}
 	onKeyPress($event: KeyboardEvent): void {
 		const number = ($event.keyCode >= 48) && ($event.keyCode <= 57);
 		const _ = ($event.keyCode === 95);
