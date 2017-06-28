@@ -1,14 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
-	selector: 'app-ngadmin-nguser-form',
-	templateUrl: './ngadmin-nguser-form.component.html',
-	styleUrls: ['./ngadmin-nguser-form.component.scss']
+	selector: 'app-ng-admin-nguser-form',
+	templateUrl: './ng-admin-ng-user-form.component.html',
+	styleUrls: ['./ng-admin-ng-user-form.component.scss']
 })
-export class NgAdminNguserFormComponent implements OnInit {
-
+export class NgAdminNgUserFormComponent {
 	constructor() {}
-
-	ngOnInit() {}
-
 }

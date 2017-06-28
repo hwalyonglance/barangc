@@ -1,11 +1,11 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
-	selector: 'app-ngadmin-sidenav',
-	templateUrl: './ngadmin-sidenav.component.html',
-	styleUrls: ['./ngadmin-sidenav.component.scss']
+	selector: 'app-ng-admin-sidenav',
+	templateUrl: './ng-admin-sidenav.component.html',
+	styleUrls: ['./ng-admin-sidenav.component.scss']
 })
-export class NgAdminSidenavComponent implements OnInit {
+export class NgAdminSidenavComponent {
 	@Output() $ngadminSidenav$ = new EventEmitter();
 	items = [
 		{ text: 'Dashboard', route: 'dashboard' },
@@ -16,7 +16,4 @@ export class NgAdminSidenavComponent implements OnInit {
 		{ text: 'Testimoni', route: 'testimoni' }
 	];
 	constructor() {}
-
-	ngOnInit() {}
-
 }

@@ -1,14 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component } from '@angular/core';
 @Component({
-	selector: 'app-ngadmin-transaksi-data-table',
-	templateUrl: './ngadmin-transaksi-data-table.component.html',
-	styleUrls: ['./ngadmin-transaksi-data-table.component.scss']
+	selector: 'app-ng-admin-transaksi-data-table',
+	templateUrl: './ng-admin-transaksi-data-table.component.html',
+	styleUrls: ['./ng-admin-transaksi-data-table.component.scss']
 })
-export class NgAdminTransaksiDataTableComponent implements OnInit {
-
+export class NgAdminTransaksiDataTableComponent {
 	constructor() {}
-
-	ngOnInit() {}
-
 }

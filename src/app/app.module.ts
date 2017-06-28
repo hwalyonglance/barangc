@@ -24,18 +24,18 @@ import { NgAdminContainerComponent } from './Modules/ngAdmin/Components/ng-admin
 import { NgAdminSidenavComponent } from './Modules/ngAdmin/Components/ng-admin-sidenav/ng-admin-sidenav.component';
 import { NgAdminHomeComponent } from './Modules/ngAdmin/Components/ng-admin-home/ng-admin-home.component';
 import { NgAdminKategoriComponent } from './Modules/ngAdmin/Components/ng-admin-kategori/ng-admin-kategori.component';
-import { NgadminKategoriFormComponent } from './Modules/ngAdmin/Components/ng-admin-kategori-form/ng-admin-kategori-form.component';
+import { NgAdminKategoriFormComponent } from './Modules/ngAdmin/Components/ng-admin-kategori-form/ng-admin-kategori-form.component';
 import { NgAdminKategoriDataTableComponent } from './Modules/ngAdmin/Components/ng-admin-kategori-data-table/ng-admin-kategori-data-table.component';
 import { NgAdminBarangComponent } from './Modules/ngAdmin/Components/ng-admin-barang/ng-admin-barang.component';
 import { NgAdminBarangFormComponent } from './Modules/ngAdmin/Components/ng-admin-barang-form/ng-admin-barang-form.component';
 import { NgAdminBarangDataTableComponent } from './Modules/ngAdmin/Components/ng-admin-barang-data-table/ng-admin-barang-data-table.component';
-import { NgAdminNguserComponent } from './Modules/ngAdmin/Components/ng-admin-ng-user/ng-admin-ng-user.component';
-import { NgAdminNguserFormComponent } from './Modules/ngAdmin/Components/ng-admin-ng-user-form/ng-admin-ng-user-form.component';
-import { NgAdminNguserDataTableComponent } from './Modules/ngAdmin/Components/ng-admin-ng-user-data-table/ng-admin-ng-user-data-table.component';
+import { NgAdminNgUserComponent } from './Modules/ngAdmin/Components/ng-admin-ng-user/ng-admin-ng-user.component';
+import { NgAdminNgUserFormComponent } from './Modules/ngAdmin/Components/ng-admin-ng-user-form/ng-admin-ng-user-form.component';
+import { NgAdminNgUserDataTableComponent } from './Modules/ngAdmin/Components/ng-admin-ng-user-data-table/ng-admin-ng-user-data-table.component';
 import { NgAdminTransaksiComponent } from './Modules/ngAdmin/Components/ng-admin-transaksi/ng-admin-transaksi.component';
 import { NgAdminTransaksiDataTableComponent } from './Modules/ngAdmin/Components/ng-admin-transaksi-data-table/ng-admin-transaksi-data-table.component';
-import { NgadminTestimoniComponent } from './Modules/ngAdmin/Components/ng-admin-testimoni/ng-admin-testimoni.component';
-import { NgadminTestimoniDataTableComponent } from './Modules/ngAdmin/Components/ng-admin-testimoni-data-table/ng-admin-testimoni-data-table.component';
+import { NgAdminTestimoniComponent } from './Modules/ngAdmin/Components/ng-admin-testimoni/ng-admin-testimoni.component';
+import { NgAdminTestimoniDataTableComponent } from './Modules/ngAdmin/Components/ng-admin-testimoni-data-table/ng-admin-testimoni-data-table.component';
 
 
 // ngauth:
@@ -59,14 +59,14 @@ import { NgAuthNavComponent } from './Modules/ngAuth/Components/ng-auth-nav/ng-a
 		NgAdminSidenavComponent,
 		NgAdminHomeComponent,
 		NgAdminKategoriComponent,
-		NgadminKategoriFormComponent,
+		NgAdminKategoriFormComponent,
 		NgAdminKategoriDataTableComponent,
 		NgAdminBarangComponent,
 		NgAdminBarangFormComponent,
 		NgAdminBarangDataTableComponent,
-		NgAdminNguserComponent,
-		NgAdminNguserFormComponent,
-		NgAdminNguserDataTableComponent,
+		NgAdminNgUserComponent,
+		NgAdminNgUserFormComponent,
+		NgAdminNgUserDataTableComponent,
 		NgAdminTransaksiComponent,
 		NgAdminTransaksiDataTableComponent,
 
@@ -75,8 +75,8 @@ import { NgAuthNavComponent } from './Modules/ngAuth/Components/ng-auth-nav/ng-a
 		NgAuthNgadminComponent,
 		NgAuthUserComponent,
 		NgAuthNavComponent,
-		NgadminTestimoniComponent,
-		NgadminTestimoniDataTableComponent
+		NgAdminTestimoniComponent,
+		NgAdminTestimoniDataTableComponent
 
 	],
 	imports: [
