@@ -17,4 +17,4 @@ const ROUTES: Routes = [
 	imports: [RouterModule.forChild(ROUTES)],
 	exports: [RouterModule]
 })
-export class NgadminRoutingModule { }
+export class NgAdminRoutingModule { }

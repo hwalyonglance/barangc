@@ -23,8 +23,10 @@ import { NgadminHomeComponent } from './Modules/ngAdmin/Components/ngadmin-home/
 import { NgadminKategoriComponent } from './Modules/ngAdmin/Components/ngadmin-kategori/ngadmin-kategori.component';
 
 // ngauth:
+import { NgAuthComponent } from './Modules/ngAuth/ng-auth.component';
 import { NgAuthNgadminComponent } from './Modules/ngAuth/Components/ng-auth-ngadmin/ng-auth-ngadmin.component';
 import { NgAuthUserComponent } from './Modules/ngAuth/Components/ng-auth-user/ng-auth-user.component';
+import { NgAuthNavComponent } from './Modules/ngAuth/Components/ng-auth-nav/ng-auth-nav.component';
 
 @NgModule({
 	declarations: [
@@ -41,8 +43,10 @@ import { NgAuthUserComponent } from './Modules/ngAuth/Components/ng-auth-user/ng
 		NgadminKategoriComponent,
 
 		// NgAuth:
+		NgAuthComponent,
 		NgAuthNgadminComponent,
-		NgAuthUserComponent
+		NgAuthUserComponent,
+		NgAuthNavComponent
 	],
 	imports: [
 		AppRoutingModule,

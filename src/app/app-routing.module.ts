@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { NgadminRoutingModule } from './Modules/ngAdmin/ngadmin-routing.module';
+import { NgAuthRoutingModule } from './Modules/ngAuth/ng-auth-routing.module';
+import { NgAdminRoutingModule } from './Modules/ngAdmin/ngadmin-routing.module';
 
 import { HomeComponent } from './Components/home/home.component';
 
@@ -12,7 +13,8 @@ const ROUTES: Routes = [
 
 @NgModule({
 	imports: [
-		NgadminRoutingModule,
+		NgAuthRoutingModule,
+		NgAdminRoutingModule,
 		RouterModule.forRoot(ROUTES),
 	],
 	exports: [

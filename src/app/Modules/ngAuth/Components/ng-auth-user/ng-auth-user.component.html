@@ -1,3 +1,74 @@
-<p>
-  ng-auth-user works!
-</p>
+<div class="form container yellow">
+	<div class="row">
+		<div class="col s12 m8 push-m2 l6 push-l3 xl4 push-xl4">
+			<md-card>
+				<!--<md-card-header #q>ini Header</md-card-header>-->
+				<md-card-title #w>NgAuth</md-card-title>
+				<md-card-subtitle #e>NgUser</md-card-subtitle>
+				<md-card-content #r>
+					<form [formGroup]='authForm' novalidate>
+						<div class="row">
+							<div class="col s12 m12 l12 xl12">
+								<md-input-container class='full-width'>
+									<input mdInput formControlName='username' type="text" placeholder="Username *" [minlength]='_FORM_.RULES.username.minLength' [maxlength]='_FORM_.RULES.username.maxLength'>
+								</md-input-container>
+
+								<!-- VALIDATION MESSAGES -->
+								<!-- =================== -->
+								<!-- if value.length < rules.length -->
+								<span class='form-error' *ngIf='(authForm.controls.username.touched || authForm.controls.username.dirty) && (authForm.controls.username.value.length < _FORM_.RULES.username.minLength)'>
+									{{ _FORM_.VALIDATION_MESSAGES.username.minLength }}
+								</span>
+								<!-- if value.length > rules.length -->
+								<span class='form-error' *ngIf='(authForm.controls.username.touched || authForm.controls.username.dirty) && (authForm.controls.username.value.length > _FORM_.RULES.username.maxLength)'>
+									{{ _FORM_.VALIDATION_MESSAGES.username.maxLength }}
+								</span>
+								<!-- if value is valid -->
+								<span *ngIf='authForm.controls.username.valid'>
+									{{ _FORM_.VALIDATION_MESSAGES.username.valid }}
+								</span>
+
+								<!-- CHARACTER COUNT -->
+								<!-- =============== -->
+								<span class='right small'>{{ authForm.value.username.length + '/' + _FORM_.RULES.username.maxLength}}</span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col s12 m12 l12 xl12">
+								<md-input-container class='full-width'>
+									<input mdInput formControlName='password' type="password" placeholder="Password *" [minlength]='_FORM_.RULES.password.minLength' [maxlength]='_FORM_.RULES.password.maxLength'>
+								</md-input-container>
+
+								<!-- VALIDATION -->
+								<!-- ========== -->
+								<!-- if value.length < rules.length -->
+								<span class='form-error' *ngIf='(authForm.controls.password.touched || authForm.controls.password.dirty) && (authForm.controls.password.value.length < _FORM_.RULES.password.minLength)'>
+									{{ _FORM_.VALIDATION_MESSAGES.password.minLength }}
+								</span>
+								<!-- if value.length > rules.length -->
+								<span class='form-error' *ngIf='(authForm.controls.password.touched || authForm.controls.password.dirty) && (authForm.controls.password.value.length > _FORM_.RULES.password.maxLength)'>
+									{{ _FORM_.VALIDATION_MESSAGES.password.maxLength }}
+								</span>
+								<!-- if value is valid -->
+								<span *ngIf='authForm.controls.password.valid'>
+									{{ _FORM_.VALIDATION_MESSAGES.password.valid }}
+								</span>
+
+								<!-- CHARACTER COUNT -->
+								<!-- =============== -->
+								<span class='right small'>{{ authForm.value.password.length + '/' + _FORM_.RULES.password.maxLength }}</span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col s12 m12 l12 xl12">
+								=> {{ authForm.value | json}}
+							</div>
+						</div>
+					</form>
+				</md-card-content>
+				<md-card-actions #t align='end'><button md-button color='primary' (click)="log(authForm)">Haha</button></md-card-actions>
+				<!--<md-card-footer #y>ini footers</md-card-footer>-->
+			</md-card>
+		</div>
+	</div>
+</div>
