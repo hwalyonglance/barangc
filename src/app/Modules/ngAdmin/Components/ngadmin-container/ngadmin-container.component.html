@@ -1,9 +1,0 @@
-<md-sidenav-container class="ngadmin-container" fullscreen>
-	<md-sidenav #ngadminSidenav [opened]="!isScreenSmall()" [mode]="isScreenSmall() ? 'over' : 'side'">
-		<app-ngadmin-sidenav ($ngadminSidenav$)='onNgadminSidenavToggle()'></app-ngadmin-sidenav>
-	</md-sidenav>
-	<div class="ngadmin-content">
-		<button md-button (click)='onNgadminSidenavToggle()'>Toggle sidenav</button>
-		<app-fa-icon faIcon='fa-key'></app-fa-icon>
-	</div>
-</md-sidenav-container>
