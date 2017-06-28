@@ -12,7 +12,7 @@ export class NgAdminComponent {
 	constructor() { }
 
 	onNgadminSidenavToggle() {
-		// this._ngadminContainer_.onNgadminSidenavToggle();
+		this._ngAdminContainer_.onNgAdminSidenavToggle();
 	}
 
 }

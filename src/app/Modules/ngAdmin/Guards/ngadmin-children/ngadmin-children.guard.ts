@@ -7,16 +7,25 @@ import { Observable } from 'rxjs/Observable';
 export class NgadminChildrenGuard implements CanActivateChild {
 	constructor(private _router: Router) {}
 	canActivateChild( route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-		let ngadmin: any = '';
+		let ___ngadmin: any = '';
 		if ( typeof localStorage.ngadmin === 'string' ) {
 			try {
-				ngadmin = JSON.parse(localStorage.ngadmin);
+				___ngadmin = JSON.parse(localStorage.ngadmin);
 			} catch (e) {
 				this._router.navigate(['ngauth', 'ngadmin']);
 			}
 		}
-		if ( ngadmin.hasOwnProperty('username') && ngadmin.hasOwnProperty('password') ) {
-			return true;
+		const _LIFE_TIME_ = ___ngadmin.timestamp + 3600000;
+		const _TIMESTAMP_ = Date.now();
+		console.log('_TIMESTAMP_ <= _LIFE_TIME_ ::::');
+		console.log(_TIMESTAMP_);
+		console.log(_LIFE_TIME_);
+		console.log(_TIMESTAMP_ - _LIFE_TIME_);
+		console.log( _TIMESTAMP_ <= _LIFE_TIME_ );
+		if ( _TIMESTAMP_ <= _LIFE_TIME_ ) {
+			if ( ___ngadmin.hasOwnProperty('username') && ___ngadmin.hasOwnProperty('password') ) {
+				return true;
+			}
 		}
 		this._router.navigate(['ngauth', 'ngadmin']);
 	}
