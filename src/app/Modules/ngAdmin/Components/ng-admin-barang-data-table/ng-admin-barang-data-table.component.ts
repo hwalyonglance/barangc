@@ -1,14 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
-	selector: 'app-ngadmin-barang-data-table',
-	templateUrl: './ngadmin-barang-data-table.component.html',
-	styleUrls: ['./ngadmin-barang-data-table.component.scss']
+	selector: 'app-ng-admin-barang-data-table',
+	templateUrl: './ng-admin-barang-data-table.component.html',
+	styleUrls: ['./ng-admin-barang-data-table.component.scss']
 })
-export class NgAdminBarangDataTableComponent implements OnInit {
-
+export class NgAdminBarangDataTableComponent {
 	constructor() {}
-
-	ngOnInit() {}
-
 }

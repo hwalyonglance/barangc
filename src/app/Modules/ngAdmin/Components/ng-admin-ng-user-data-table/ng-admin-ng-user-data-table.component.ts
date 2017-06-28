@@ -1,14 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
-	selector: 'app-ngadmin-nguser-data-table',
-	templateUrl: './ngadmin-nguser-data-table.component.html',
-	styleUrls: ['./ngadmin-nguser-data-table.component.scss']
+	selector: 'app-ng-admin-ng-user-data-table',
+	templateUrl: './ng-admin-ng-user-data-table.component.html',
+	styleUrls: ['./ng-admin-ng-user-data-table.component.scss']
 })
-export class NgAdminNguserDataTableComponent implements OnInit {
-
+export class NgAdminNgUserDataTableComponent {
 	constructor() {}
-
-	ngOnInit() {}
-
 }

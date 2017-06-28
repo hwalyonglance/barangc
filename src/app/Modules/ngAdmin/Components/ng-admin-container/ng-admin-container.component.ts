@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MdSidenav } from '@angular/material';
 @Component({
-	selector: 'app-ngadmin-container',
-	templateUrl: './ngadmin-container.component.html',
-	styleUrls: ['./ngadmin-container.component.scss']
+	selector: 'app-ng-admin-container',
+	templateUrl: './ng-admin-container.component.html',
+	styleUrls: ['./ng-admin-container.component.scss']
 })
 export class NgAdminContainerComponent implements OnInit {
 	@ViewChild('ngAdminSidenav') _ngadminSidenav_: MdSidenav;

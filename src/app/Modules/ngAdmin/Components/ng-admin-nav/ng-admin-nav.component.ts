@@ -1,13 +1,11 @@
-import { Component, OnInit, Output, EventEmitter} from '@angular/core';
+import { Component, Output, EventEmitter} from '@angular/core';
 
 @Component({
-	selector: 'app-ngadmin-nav',
-	templateUrl: './ngadmin-nav.component.html',
-	styleUrls: ['./ngadmin-nav.component.scss']
+	selector: 'app-ng-admin-nav',
+	templateUrl: './ng-admin-nav.component.html',
+	styleUrls: ['./ng-admin-nav.component.scss']
 })
-export class NgAdminNavComponent implements OnInit {
+export class NgAdminNavComponent {
 	@Output() $ngadminSideNavToggle$ = new EventEmitter<any>();
 	constructor() {}
-
-	ngOnInit() {}
 }

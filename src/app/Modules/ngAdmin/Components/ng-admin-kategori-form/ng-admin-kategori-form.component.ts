@@ -1,14 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
-	selector: 'app-ngadmin-kategori-form',
-	templateUrl: './ngadmin-kategori-form.component.html',
-	styleUrls: ['./ngadmin-kategori-form.component.scss']
+	selector: 'app-ng-admin-kategori-form',
+	templateUrl: './ng-admin-kategori-form.component.html',
+	styleUrls: ['./ng-admin-kategori-form.component.scss']
 })
-export class NgadminKategoriFormComponent implements OnInit {
-
+export class NgAdminKategoriFormComponent {
 	constructor() {}
-
-	ngOnInit() {}
-
 }

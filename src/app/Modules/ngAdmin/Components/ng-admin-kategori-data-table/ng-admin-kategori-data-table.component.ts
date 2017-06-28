@@ -1,14 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
-	selector: 'app-ngadmin-kategori-data-table',
-	templateUrl: './ngadmin-kategori-data-table.component.html',
-	styleUrls: ['./ngadmin-kategori-data-table.component.scss']
+	selector: 'app-ng-admin-kategori-data-table',
+	templateUrl: './ng-admin-kategori-data-table.component.html',
+	styleUrls: ['./ng-admin-kategori-data-table.component.scss']
 })
-export class NgAdminKategoriDataTableComponent implements OnInit {
-
+export class NgAdminKategoriDataTableComponent {
 	constructor() {}
-
-	ngOnInit() {}
-
 }
