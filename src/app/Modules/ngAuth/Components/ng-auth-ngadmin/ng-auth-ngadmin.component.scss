@@ -17,3 +17,7 @@ span{
 	background-color: #FF8A65;
 	font-size: 13px;
 }
+button[ng-reflect-disabled='true']:hover {
+	// cursor: none;
+	cursor: url(../../../../../assets/Cursors/cursor_click_x.cur) !important;
+}

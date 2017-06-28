@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup} from '@angular/forms';
+import { Router } from '@angular/router';
 import * as _NG_AUTH_NG_ADMIN_FORM_ from './ng-auth-ngadmin.form';
 @Component({
 	selector: 'app-ng-auth-ngadmin',
@@ -9,7 +10,7 @@ import * as _NG_AUTH_NG_ADMIN_FORM_ from './ng-auth-ngadmin.form';
 export class NgAuthNgadminComponent implements OnInit {
 	_FORM_ = _NG_AUTH_NG_ADMIN_FORM_;
 	authForm: FormGroup;
-	constructor(private _formBuilder: FormBuilder) {}
+	constructor(private _formBuilder: FormBuilder, private _router: Router) {}
 	ngOnInit() {
 		this.buildNgauthNgadminForm();
 	}
@@ -17,11 +18,14 @@ export class NgAuthNgadminComponent implements OnInit {
 		this.authForm = this._formBuilder.group(_NG_AUTH_NG_ADMIN_FORM_.FORM_GROUP_OBJECT_PARAM);
 		// this.authForm = _NG_AUTH_NG_ADMIN_FORM_.FORM_GROUP_OBJECT;
 	}
-	log(_data) {
-		console.log(_data);
-	}
 	onSubmit(controls): void {
-		console.log(controls);
+		// console.log(controls);
+		const _store = {
+			username: controls.username.value,
+			password: controls.password.value
+		};
+		window.localStorage.ngadmin = JSON.stringify(_store);
+		this._router.navigate(['ngadmin', 'dashboard']);
 	}
 	onKeyPress($event: KeyboardEvent): void {
 		const number = ($event.keyCode >= 48) && ($event.keyCode <= 57);

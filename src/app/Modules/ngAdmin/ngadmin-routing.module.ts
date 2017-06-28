@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { NgadminChildrenGuard, NgadminPermissions } from './Guards/ngadmin-children/ngadmin-children.guard';
+import { NgadminChildrenGuard } from './Guards/ngadmin-children/ngadmin-children.guard';
 
 import { NgadminComponent } from './ngadmin.component';
 import { NgadminHomeComponent } from './Components/ngadmin-home/ngadmin-home.component';
@@ -17,7 +17,6 @@ const ROUTES: Routes = [
 
 @NgModule({
 	imports: [RouterModule.forChild(ROUTES)],
-	exports: [RouterModule],
-	providers: [NgadminChildrenGuard, NgadminPermissions]
+	exports: [RouterModule]
 })
 export class NgAdminRoutingModule { }
