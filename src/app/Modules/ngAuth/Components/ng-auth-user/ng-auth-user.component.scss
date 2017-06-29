@@ -1,3 +1,11 @@
+.fxContainer {
+	box-sizing: border-box !important;
+}
+.grey{
+	background-color: #EEE !important;
+}
+//
+
 .form.container {
 	margin-top: 10vh;
 }
@@ -5,7 +13,10 @@
 .mat-card {
 	background-color: #EEE;
 }
-
+div{
+	margin:0;
+	padding:0;
+}
 span {
 	display: inline;
 }
@@ -14,10 +25,17 @@ span {
 	width: 100%;
 }
 
-.small {
-	font-size: 10px;
+.small,
+.form-error {
+	font-size: 11px;
 }
 
 .form-error {
-	background-color: #FF8A65;
+	color: #F00;
 }
+
+button[ng-reflect-disabled='true']:hover {
+	// cursor: none;
+	cursor: url(../../../../../assets/Cursors/cursor_click_x.cur) !important;
+}
+

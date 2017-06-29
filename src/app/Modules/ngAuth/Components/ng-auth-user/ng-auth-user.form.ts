@@ -1,4 +1,6 @@
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs/Observable';
+
 export const ERRORS = {
 	username: '',
 	password: ''

@@ -84,7 +84,7 @@ import { NgAuthNavComponent } from './Modules/ngAuth/Components/ng-auth-nav/ng-a
 
 		BrowserModule,
 		BrowserAnimationsModule,
-		// FlexLayoutModule,
+		FlexLayoutModule,
 		FormsModule,
 		// HttpModule,
 		MaterialModule,
