@@ -1,6 +1,6 @@
 <md-sidenav-container class="ngadmin-container" fullscreen>
 	<md-sidenav #ngAdminSidenav [opened]="!isScreenSmall()" [mode]="isScreenSmall() ? 'over' : 'side'">
-		<app-ng-admin-sidenav></app-ng-admin-sidenav>
+		<app-ng-admin-sidenav ($ngadminSidenav$)="NgAdminSidenavClose()"></app-ng-admin-sidenav>
 	</md-sidenav>
 	<div class="ngadmin-content">
 		<router-outlet></router-outlet>

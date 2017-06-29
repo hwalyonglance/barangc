@@ -10,9 +10,7 @@ import { NgAdminNavComponent } from './Components/ng-admin-nav/ng-admin-nav.comp
 export class NgAdminComponent {
 	@ViewChild('ngAdminContainer') _ngAdminContainer_: NgAdminContainerComponent;
 	constructor() { }
-
-	onNgadminSidenavToggle() {
-		this._ngAdminContainer_.onNgAdminSidenavToggle();
+	NgadminSidenavToggle() {
+		this._ngAdminContainer_.NgAdminSidenavToggle();
 	}
-
 }

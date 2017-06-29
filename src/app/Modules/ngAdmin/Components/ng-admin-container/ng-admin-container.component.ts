@@ -10,16 +10,19 @@ export class NgAdminContainerComponent implements OnInit {
 	SMALL_WIDTH_BREAKPOINT = 720;
 	constructor() {}
 	ngOnInit() {
-		setTimeout(() => {
-			if ( !this.isScreenSmall() ) {
-				this._ngAdminSidenav_.open();
-			}
-		}, 10);
+		// setTimeout(() => {
+		// 	if ( !this.isScreenSmall() ) {
+		// 		this._ngAdminSidenav_.open();
+		// 	}
+		// }, 10);
 	}
 	isScreenSmall(): boolean {
 		return window.matchMedia(`(max-width: ${this.SMALL_WIDTH_BREAKPOINT}px)`).matches;
 	}
-	onNgAdminSidenavToggle(): void {
+	NgAdminSidenavToggle(): void {
 		this._ngAdminSidenav_.toggle();
+	}
+	NgAdminSidenavClose() {
+		this._ngAdminSidenav_.close();
 	}
 }

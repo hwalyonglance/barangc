@@ -17,7 +17,6 @@ export class NgadminChildrenGuard implements CanActivateChild {
 		}
 		const _LIFE_TIME_ = ___ngadmin.timestamp + 3600000; // 1 hour
 		const _TIMESTAMP_ = Date.now();
-		console.log( _TIMESTAMP_ <= _LIFE_TIME_ );
 		if ( _TIMESTAMP_ <= _LIFE_TIME_ ) {
 			if ( ___ngadmin.hasOwnProperty('username') && ___ngadmin.hasOwnProperty('password') ) {
 				return true;
