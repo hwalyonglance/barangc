@@ -1,75 +1,70 @@
-<div class="form container yellow">
-	<div class="row">
-		<div class="col s12 m8 push-m2 l6 push-l3 xl4 push-xl4">
-			<md-card>
-				<!--<md-card-header #q>ini Header</md-card-header>-->
-				<md-card-title #w>NgAuth</md-card-title>
-				<md-card-subtitle #e>NgAdmin</md-card-subtitle>
-				<md-card-content #r>
-					<form [formGroup]='authForm' (ngSubmit)='onSubmit(authForm.controls)' novalidate>
-						<div class="row">
-							<div class="col s12 m12 l12 xl12">
-								<md-input-container class='full-width'>
-									<input mdInput formControlName='username' type="text" placeholder="Username *" [minlength]='_FORM_.RULES.username.minLength' [maxlength]='_FORM_.RULES.username.maxLength' (keypress)='onKeyPress($event)' (paste)='onPaste($event)'>
-								</md-input-container>
-
-								<!-- VALIDATION MESSAGES -->
-								<!-- =================== -->
-								<!-- if value.length < rules.length -->
-								<span class='form-error' *ngIf='(authForm.controls.username.touched || authForm.controls.username.dirty) && (authForm.controls.username.value.length < _FORM_.RULES.username.minLength)'>
-									{{ _FORM_.VALIDATION_MESSAGES.username.minLength }}
-								</span>
-								<!-- if value.length > rules.length -->
-								<span class='form-error' *ngIf='(authForm.controls.username.touched || authForm.controls.username.dirty) && (authForm.controls.username.value.length > _FORM_.RULES.username.maxLength)'>
-									{{ _FORM_.VALIDATION_MESSAGES.username.maxLength }}
-								</span>
-								<!-- if value has non char -->
-								<span *ngIf='authForm.controls.username.hasError("nonChars")'>
-									hahaha
-								</span>
-								<!-- if value is valid -->
-								<span *ngIf='authForm.controls.username.valid'>
-									{{ _FORM_.VALIDATION_MESSAGES.username.valid }}
-								</span>
-
-								<!-- CHARACTER COUNT -->
-								<!-- =============== -->
-								<span class='right small'>{{ authForm.value.username.length + '/' + _FORM_.RULES.username.maxLength}}</span>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col s12 m12 l12 xl12">
-								<md-input-container class='full-width'>
-									<input mdInput formControlName='password' type="password" placeholder="Password *" [minlength]='_FORM_.RULES.password.minLength' [maxlength]='_FORM_.RULES.password.maxLength'>
-								</md-input-container>
-
-								<!-- VALIDATION -->
-								<!-- ========== -->
-								<!-- if value.length < rules.length -->
-								<span class='form-error' *ngIf='(authForm.controls.password.touched || authForm.controls.password.dirty) && (authForm.controls.password.value.length < _FORM_.RULES.password.minLength)'>
-									{{ _FORM_.VALIDATION_MESSAGES.password.minLength }}
-								</span>
-								<!-- if value.length > rules.length -->
-								<span class='form-error' *ngIf='(authForm.controls.password.touched || authForm.controls.password.dirty) && (authForm.controls.password.value.length > _FORM_.RULES.password.maxLength)'>
-									{{ _FORM_.VALIDATION_MESSAGES.password.maxLength }}
-								</span>
-								<!-- if value is valid -->
-								<span *ngIf='authForm.controls.password.valid'>
-									{{ _FORM_.VALIDATION_MESSAGES.password.valid }}
-								</span>
-
-								<!-- CHARACTER COUNT -->
-								<!-- =============== -->
-								<span class='right small'>{{ authForm.value.password.length + '/' + _FORM_.RULES.password.maxLength }}</span>
-							</div>
-						</div>
-					</form>
-				</md-card-content>
-				<md-card-actions #t align='end'>
-					<button md-button type='submit' color='primary' [disabled]='!authForm.valid' (click)='onSubmit(authForm.controls)'>Haha</button>
-				</md-card-actions>
-				<!--<md-card-footer #y>ini footers</md-card-footer>-->
-			</md-card>
-		</div>
+<div fxLayout="row">
+	<div fxFlex.xs="5" fxFlex.sm="15" fxFlex.md="25" fxFlex.lg="35"></div>
+	<div fxFlex.xs="90" fxFlex.sm="70" fxFlex.md="50" fxFlex.lg="30" class="grey">
+		<md-card>
+			<!--<md-card-header #q>ini Header</md-card-header>-->
+			<md-card-title #w>NgAuth</md-card-title>
+			<md-card-subtitle #e>NgAdmin</md-card-subtitle>
+			<md-card-content #r class="fxContainer">
+				<form [formGroup]="authForm" fxLayout="column" (ngSubmit)="onSubmit(authForm.controls)" novalidate>
+					<!-- username -->
+					<div fxFlex>
+						<md-input-container class="full-width">
+							<input mdInput formControlName="username" type="text" placeholder="Username *" [minlength]="_FORM_.RULES.username.minLength" [maxlength]="_FORM_.RULES.username.maxLength" (keypress)="onKeyPress($event)"
+							 (paste)="onPaste($event)">
+						</md-input-container>
+					</div>
+					<div fxFlex>
+						<span fxFlex="90" *ngIf="authForm.get('username').untouched && !authForm.get('username').dirty"></span>
+						<ng-container *ngIf="authForm.get('username').touched || authForm.get('username').dirty">
+							<span fxFlex="90" class="form-error" *ngIf="authForm.get('username').value.length === 0">
+								{{ _FORM_.VALIDATION_MESSAGES.username.required }}
+							</span>
+							<span fxFlex="90" class="form-error" *ngIf="(authForm.get('username').value.length != 0) && (authForm.get('username').value.length < _FORM_.RULES.username.minLength)">
+								{{ _FORM_.VALIDATION_MESSAGES.username.minLength }}
+							</span>
+							<span fxFlex="90" class="form-error" *ngIf="authForm.get('username').value.length > _FORM_.RULES.username.maxLength">
+								{{ _FORM_.VALIDATION_MESSAGES.username.maxLength }}
+							</span>
+						</ng-container>
+						<span fxFlex="90" class="small" *ngIf="authForm.get('username').valid">
+							{{ _FORM_.VALIDATION_MESSAGES.username.valid }}
+						</span>
+						<span fxFlex="10" class="right small">{{ authForm.value.username.length + '/' + _FORM_.RULES.username.maxLength}}</span>
+					</div>
+					<!-- password -->
+					<br>
+					<div fxFlex>
+						<md-input-container class="full-width">
+							<input mdInput formControlName="password" type="text" placeholder="Password *" [minlength]="_FORM_.RULES.password.minLength" [maxlength]="_FORM_.RULES.password.maxLength" (keypress)="onKeyPress($event)"
+							 (paste)="onPaste($event)">
+						</md-input-container>
+					</div>
+					<div fxFlex>
+						<span fxFlex="90" *ngIf="authForm.get('password').untouched && !authForm.get('password').dirty"></span>
+						<ng-container *ngIf="authForm.get('password').touched || authForm.get('password').dirty">
+							<span fxFlex="90" class="form-error" *ngIf="authForm.get('password').value.length === 0">
+									{{ _FORM_.VALIDATION_MESSAGES.password.required }}
+							</span>
+							<span fxFlex="90" class="form-error" *ngIf="(authForm.get('password').value.length != 0) && (authForm.get('password').value.length < _FORM_.RULES.password.minLength)">
+								{{ _FORM_.VALIDATION_MESSAGES.password.minLength }}
+							</span>
+							<span fxFlex="90" class="form-error" *ngIf="authForm.get('password').value.length > _FORM_.RULES.password.maxLength">
+								{{ _FORM_.VALIDATION_MESSAGES.password.maxLength }}
+							</span>
+						</ng-container>
+						<span fxFlex="90" class="small" *ngIf="authForm.get('password').valid">
+							{{ _FORM_.VALIDATION_MESSAGES.password.valid }}
+						</span>
+						<span fxFlex="10" class="right small">{{ authForm.value.password.length + '/' + _FORM_.RULES.password.maxLength}}</span>
+					</div>
+				</form>
+			</md-card-content>
+			<md-card-actions #t align='end'>
+				<button md-button type='submit' color='primary' [disabled]='!authForm.valid' (click)='onSubmit(authForm.controls)'>Haha</button>
+			</md-card-actions>
+			<!--<md-card-footer #y>ini footers</md-card-footer>-->
+		</md-card>
 	</div>
+	<div fxFlex.xs="5" fxFlex.sm="15" fxFlex.md="25" fxFlex.lg="35"></div>
 </div>
