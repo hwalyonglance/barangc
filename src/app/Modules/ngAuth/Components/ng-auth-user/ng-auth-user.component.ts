@@ -10,12 +10,12 @@ import * as _NG_AUTH_NG_ADMIN_FORM_ from './ng-auth-user.form';
 export class NgAuthUserComponent implements OnInit {
 	_FORM_ = _NG_AUTH_NG_ADMIN_FORM_;
 	authForm: FormGroup;
-	constructor(private _formBuilder: FormBuilder, private _router: Router) { }
+	constructor(private _formBuilder$$: FormBuilder, private _router: Router) { }
 	ngOnInit() {
 		this.buildNgauthNgadminForm();
 	}
 	buildNgauthNgadminForm(): void {
-		this.authForm = this._formBuilder.group(_NG_AUTH_NG_ADMIN_FORM_.FORM_GROUP_OBJECT_PARAM);
+		this.authForm = this._formBuilder$$.group(_NG_AUTH_NG_ADMIN_FORM_.FORM_GROUP_OBJECT_PARAM);
 		// this.authForm = _NG_AUTH_NG_ADMIN_FORM_.FORM_GROUP_OBJECT;
 	}
 	onSubmit(controls): void {

@@ -1,10 +1,5 @@
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs/Observable';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-export const ERRORS = {
-	username: '',
-	password: ''
-}
 export const RULES = {
 	username: {
 		required: true,
@@ -50,7 +45,3 @@ export const FORM_GROUP_OBJECT_PARAM = {
 	username: ['', VALIDATORS.username],
 	password: ['', VALIDATORS.password]
 };
-export const FORM_GROUP_OBJECT = new FormGroup({
-	username: new FormControl('', VALIDATORS.username),
-	password: new FormControl('', VALIDATORS.password)
-});

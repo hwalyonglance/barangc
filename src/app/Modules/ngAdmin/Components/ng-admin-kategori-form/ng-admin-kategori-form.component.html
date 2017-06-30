@@ -1,12 +1,20 @@
-<div class="row">
-	<div class="col s12 m8 l6 xl6">
-		<md-input-container>
-			<input mdInput type="text" placeholder="UUID" disabled>
-		</md-input-container>
-	</div>
-	<div class="col s12 m8 l6 xl6">
-		<md-input-container>
-			<input mdInput type="text" placeholder="Nama Kategori *">
-		</md-input-container>
-	</div>
+<div id="kategori-form">
+	<md-card class="demo-card demo-basic">
+		<md-toolbar color="primary">Hints</md-toolbar>
+		<md-card-content style="padding: 15px;">
+			<form fxLayout="column" novalidate>
+				<div fxFlex="100">
+					<md-input-container class="full-width">
+						<input mdInput placeholder="UUID" required readonly value="ag8sd8a6d8afd6a8d6a7w">
+					</md-input-container>
+				</div>
+				<div fxFlex="100">
+					<md-input-container class="full-width">
+						<input mdInput placeholder="UUID" #h required value="ag8sd8a6d8afd6a8d6a7w">
+						<md-hint align="end"> {{ h.value }} </md-hint>
+					</md-input-container>
+				</div>
+			</form>
+		</md-card-content>
+	</md-card>
 </div>
