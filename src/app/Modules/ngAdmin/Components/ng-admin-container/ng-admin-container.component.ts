@@ -9,13 +9,7 @@ export class NgAdminContainerComponent implements OnInit {
 	@ViewChild('ngAdminSidenav') _ngAdminSidenav_: MdSidenav;
 	SMALL_WIDTH_BREAKPOINT = 720;
 	constructor() {}
-	ngOnInit() {
-		// setTimeout(() => {
-		// 	if ( !this.isScreenSmall() ) {
-		// 		this._ngAdminSidenav_.open();
-		// 	}
-		// }, 10);
-	}
+	ngOnInit() {}
 	isScreenSmall(): boolean {
 		return window.matchMedia(`(max-width: ${this.SMALL_WIDTH_BREAKPOINT}px)`).matches;
 	}
@@ -23,6 +17,8 @@ export class NgAdminContainerComponent implements OnInit {
 		this._ngAdminSidenav_.toggle();
 	}
 	NgAdminSidenavClose() {
-		this._ngAdminSidenav_.close();
+		if ( this.isScreenSmall() ) {
+			this._ngAdminSidenav_.close();
+		}
 	}
 }

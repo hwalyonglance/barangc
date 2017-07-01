@@ -31,13 +31,16 @@ export const VALIDATORS = {
 	UUID: [
 		isRequired(RULES.UUID.required)
 	],
-	name: [
+	categoryName: [
 		isRequired(RULES.UUID.required),
 		Validators.minLength(RULES.categoryName.minLength),
 		Validators.maxLength(RULES.categoryName.maxLength)
 	]
 };
+export function randomString(): string {
+	return window.btoa((Date.now() * Math.random()).toString());
+}
 export const FORM_GROUP_OBJECT_PARAM = {
-	UUID: ['', VALIDATORS.UUID],
-	name: ['', VALIDATORS.name]
+	UUID: [randomString(), VALIDATORS.UUID],
+	categoryName: ['', VALIDATORS.categoryName]
 };

@@ -15,7 +15,7 @@ export class NgAuthUserComponent implements OnInit {
 		this.buildNgauthNgadminForm();
 	}
 	buildNgauthNgadminForm(): void {
-		this.authForm = this._formBuilder$$.group(_NG_AUTH_NG_ADMIN_FORM_.FORM_GROUP_OBJECT_PARAM);
+		this.authForm = this._formBuilder$$.group(this._FORM_.FORM_GROUP_OBJECT_PARAM);
 		// this.authForm = _NG_AUTH_NG_ADMIN_FORM_.FORM_GROUP_OBJECT;
 	}
 	onSubmit(controls): void {

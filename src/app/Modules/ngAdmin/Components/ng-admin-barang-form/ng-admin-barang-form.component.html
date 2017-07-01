@@ -1,3 +1,61 @@
-<p>
-  ngadmin-barang-form works!
-</p>
+<div id="kategori-form" fxLayout="row">
+	<div fxFlex.xs="0" fxFlex.sm="10" fxFlex.md="15" fxFlex.lg="20"></div>
+	<form [formGroup]="barangForm" fxFlex.xs="100" fxFlex.sm="80" fxFlex.md="70" fxFlex.lg="60" novalidate>
+		<md-card class="demo-card demo-basic">
+			<md-toolbar color="primary">Hints</md-toolbar>
+			<md-card-content fxLayout="column" style="padding: 15px;">
+				<div fxFlex style="padding: 15px;">
+					<md-input-container class="full-width">
+						<input mdInput readonly formControlName="UUID" [type]="_FORM_.RULES.UUID.type" [placeholder]="_FORM_.RULES.UUID.label" [required]="_FORM_.RULES.UUID.required">
+					</md-input-container>
+				</div>
+				<div fxFlex style="padding: 15px;">
+					<md-input-container class="full-width">
+						<input mdInput formControlName="name" [type]="_FORM_.RULES.name.type" [placeholder]="_FORM_.RULES.name.label" required>
+						<md-error *ngIf="barangForm.get('name').hasError('required')">{{ _FORM_.VALIDATION_MESSAGES.name.required }}</md-error>
+						<md-error *ngIf="barangForm.get('name').hasError('minlength')">{{ _FORM_.VALIDATION_MESSAGES.name.minLength }}</md-error>
+						<md-error *ngIf="barangForm.get('name').hasError('maxlength')">{{ _FORM_.VALIDATION_MESSAGES.name.maxLength }}</md-error>
+						<md-hint *ngIf="barangForm.get('name').valid">{{ _FORM_.VALIDATION_MESSAGES.name.valid }}</md-hint>
+						<md-hint align="end">
+							<md-icon>mode_edit</md-icon>
+							<span aria-live="polite"> {{ barangForm.get('name').value.length + '/' + _FORM_.RULES.name.maxLength }} </span>
+						</md-hint>
+					</md-input-container>
+				</div>
+				<div fxFlex style="padding: 15px;">
+					<md-input-container class="full-width">
+						<input mdInput formControlName="harga" [type]="_FORM_.RULES.harga.type" [placeholder]="_FORM_.RULES.harga.label" [min]="_FORM_.RULES.harga.min" [max]="_FORM_.RULES.harga.max" [step]="_FORM_.RULES.harga.step" [required]="_FORM_.RULES.harga.required">
+						<md-error *ngIf="barangForm.get('harga').hasError('required')">{{ _FORM_.VALIDATION_MESSAGES.harga.required }}</md-error>
+						<md-error *ngIf="barangForm.get('harga').hasError('minlength')">{{ _FORM_.VALIDATION_MESSAGES.harga.minLength }}</md-error>
+						<md-error *ngIf="barangForm.get('harga').hasError('maxlength')">{{ _FORM_.VALIDATION_MESSAGES.harga.maxLength }}</md-error>
+						<md-hint *ngIf="barangForm.get('harga').valid">{{ _FORM_.VALIDATION_MESSAGES.harga.valid }}</md-hint>
+						<md-hint align="end">
+							<md-icon>mode_edit</md-icon>
+							<span aria-live="polite"> {{ barangForm.get('harga').value | currency:'IDR' }} / {{ _FORM_.RULES.harga.max | currency:'IDR' }} </span>
+						</md-hint>
+					</md-input-container>
+				</div>
+				<div fxFlex style="padding: 15px;">
+					<md-input-container class="full-width">
+						<input mdInput formControlName="stok" [type]="_FORM_.RULES.stok.type" [placeholder]="_FORM_.RULES.stok.label" [min]="_FORM_.RULES.stok.min" [max]="_FORM_.RULES.stok.max" [step]="_FORM_.RULES.stok.step" [required]="_FORM_.RULES.stok.required">
+						<md-error *ngIf="barangForm.get('stok').hasError('required')">{{ _FORM_.VALIDATION_MESSAGES.stok.required }}</md-error>
+						<md-error *ngIf="barangForm.get('stok').hasError('minlength')">{{ _FORM_.VALIDATION_MESSAGES.stok.minLength }}</md-error>
+						<md-error *ngIf="barangForm.get('stok').hasError('maxlength')">{{ _FORM_.VALIDATION_MESSAGES.stok.maxLength }}</md-error>
+						<md-hint *ngIf="barangForm.get('stok').valid">{{ _FORM_.VALIDATION_MESSAGES.stok.valid }}</md-hint>
+						<md-hint align="end">
+							<md-icon>mode_edit</md-icon>
+							<span aria-live="polite"> {{ barangForm.get('stok').value + '/' + _FORM_.RULES.stok.max }} </span>
+						</md-hint>
+					</md-input-container>
+				</div>
+				<div fxFlex style="padding: 15px;">
+					<textarea mdInput></textarea>
+				</div>
+			</md-card-content>
+			<md-card-actions align="end" style="padding:15px;">
+				<button md-raised-button color="primary" type="submit">Tambah</button>
+			</md-card-actions>
+		</md-card>
+	</form>
+	<div fxFlex.xs="0" fxFlex.sm="10" fxFlex.md="15" fxFlex.lg="20"></div>
+</div>

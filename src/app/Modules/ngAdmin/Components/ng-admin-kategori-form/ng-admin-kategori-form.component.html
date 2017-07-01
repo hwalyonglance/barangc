@@ -1,20 +1,32 @@
-<div id="kategori-form">
-	<md-card class="demo-card demo-basic">
-		<md-toolbar color="primary">Hints</md-toolbar>
-		<md-card-content style="padding: 15px;">
-			<form fxLayout="column" novalidate>
-				<div fxFlex="100">
+<div id="kategori-form" fxLayout="row">
+	<div fxFlex.xs="0" fxFlex.sm="10" fxFlex.md="15" fxFlex.lg="20"></div>
+	<form [formGroup]="categoryForm" (ngSubmit)="onSubmit(categoryForm.controls)" fxFlex.xs="100" fxFlex.sm="80" fxFlex.md="70" fxFlex.lg="60" novalidate>
+		<md-card class="demo-card demo-basic">
+			<md-toolbar color="primary">Hints</md-toolbar>
+			<md-card-content fxLayout="column" fxLayout.gt-sm="row" style="padding: 15px;">
+				<div fxFlex style="padding: 15px;">
 					<md-input-container class="full-width">
-						<input mdInput placeholder="UUID" required readonly value="ag8sd8a6d8afd6a8d6a7w">
+						<input mdInput formControlName="UUID" placeholder="UUID" required readonly>
 					</md-input-container>
 				</div>
-				<div fxFlex="100">
+				<div fxFlex style="padding: 15px;">
 					<md-input-container class="full-width">
-						<input mdInput placeholder="UUID" #h required value="ag8sd8a6d8afd6a8d6a7w">
-						<md-hint align="end"> {{ h.value }} </md-hint>
+						<input mdInput formControlName="categoryName" placeholder="Category name" required>
+						<md-error *ngIf="categoryForm.get('categoryName').hasError('required')">{{ _FORM_.VALIDATION_MESSAGES.categoryName.required }}</md-error>
+						<md-error *ngIf="categoryForm.get('categoryName').hasError('minlength')">{{ _FORM_.VALIDATION_MESSAGES.categoryName.minLength }}</md-error>
+						<md-error *ngIf="categoryForm.get('categoryName').hasError('maxlength')">{{ _FORM_.VALIDATION_MESSAGES.categoryName.maxLength }}</md-error>
+						<md-hint *ngIf="categoryForm.get('categoryName').valid">{{ _FORM_.VALIDATION_MESSAGES.categoryName.valid }}</md-hint>
+						<md-hint align="end">
+							<md-icon>mode_edit</md-icon>
+							<span aria-live="polite"> {{ categoryForm.get('categoryName').value.length + '/' + _FORM_.RULES.categoryName.maxLength }} </span>
+						</md-hint>
 					</md-input-container>
 				</div>
-			</form>
-		</md-card-content>
-	</md-card>
+			</md-card-content>
+			<md-card-actions align="end" style="padding:15px;">
+				<button md-raised-button color="primary" type="submit">Tambah</button>
+			</md-card-actions>
+		</md-card>
+	</form>
+	<div fxFlex.xs="0" fxFlex.sm="10" fxFlex.md="15" fxFlex.lg="20"></div>
 </div>

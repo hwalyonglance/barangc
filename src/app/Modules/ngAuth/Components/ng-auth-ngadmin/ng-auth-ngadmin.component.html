@@ -25,7 +25,7 @@
 					<!-- password: -->
 					<div fxFlex>
 						<md-input-container class="full-width">
-							<input mdInput formControlName="password" type="text" placeholder="Password" [minlength]="_FORM_.RULES.password.minLength" [maxlength]="_FORM_.RULES.password.maxLength" (keypress)="onKeyPress($event)"
+							<input mdInput formControlName="password" type="password" placeholder="Password" [minlength]="_FORM_.RULES.password.minLength" [maxlength]="_FORM_.RULES.password.maxLength" (keypress)="onKeyPress($event)"
 							 (paste)="onPaste($event)" [required]="_FORM_.RULES.password.required">
 							<md-error align="start" *ngIf="authForm.get('password').hasError('required')">{{ _FORM_.VALIDATION_MESSAGES.password.required }}</md-error>
 							<md-error align="start" *ngIf="authForm.get('password').hasError('minlength')">{{ _FORM_.VALIDATION_MESSAGES.password.minLength }}</md-error>
