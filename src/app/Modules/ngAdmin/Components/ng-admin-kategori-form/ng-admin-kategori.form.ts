@@ -37,10 +37,8 @@ export const VALIDATORS = {
 		Validators.maxLength(RULES.categoryName.maxLength)
 	]
 };
-export function randomString(): string {
-	return window.btoa((Date.now() * Math.random()).toString());
-}
+
 export const FORM_GROUP_OBJECT_PARAM = {
-	UUID: [randomString(), VALIDATORS.UUID],
+	UUID: ['', VALIDATORS.UUID],
 	categoryName: ['', VALIDATORS.categoryName]
 };

@@ -28,7 +28,20 @@ export class NgAdminKategoriDataTableComponent {
 	// @ViewChild(MdPaginator) _paginator: MdPaginator;
 	// @ViewChild(MdSort) sort: MdSort;
 	// dataChange: BehaviorSubject<CategoryData[]> = new BehaviorSubject<CategoryData[]>([]); //
-	constructor() {}
+	categories: any;
+	options = [
+		{ text: 'Tambah' },
+		{ text: 'foo' },
+		{ text: 'bar' },
+		{ text: 'baz' },
+	];
+	constructor() {
+		try {
+			this.categories = JSON.parse(String(window.localStorage.kategori));
+		} catch (error) {
+			this.categories = [];
+		}
+	}
 	connect() {
 		this.propertiesToDisplay = ['UUID', 'categoryName', 'createdAt'];
 		// this.data
