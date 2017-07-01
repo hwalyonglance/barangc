@@ -12,6 +12,7 @@
 // export class PersonDataSource extends DataSource<any> {
 // 	/** Data that should be displayed by the table. */
 // 	_displayData = new BehaviorSubject<CategoryData[]>([]);
+
 // 	/** Cached data provided by the display data. */
 // 	_renderedData: any[] = [];
 
@@ -30,38 +31,37 @@
 // 			});
 // 	}
 
-// 	connect(collectionViewer: CollectionViewer): Observable<CategoryData[]> {
+// 	$$connect(collectionViewer: CollectionViewer): Observable<CategoryData[]> {
 // 		this.updateDisplayData();
 
 // 		const streams = [collectionViewer.viewChange, this._displayData];
 // 		return Observable.combineLatest(streams)
-// 			.map(( results ) => {
+// 			.map((results: [{ start: number, end: number }, CategoryData[]]) => {
 // 				const [view, data] = results;
-//
 // 				// Set the rendered rows length to the virtual page size. Fill in the data provided
 // 				// from the index start until the end index or pagination size, whichever is smaller.
 // 				this._renderedData.length = data.length;
-
 // 				const buffer = 20;
 // 				const rangeStart = Math.max(0, view.start - buffer);
 // 				const rangeEnd = Math.min(data.length, view.end + buffer);
-
 // 				for (let i = rangeStart; i < rangeEnd; i++) {
 // 					this._renderedData[i] = data[i];
 // 				}
-
 // 				return this._renderedData;
 // 			});
 // 	}
-//
+
 // 	updateDisplayData() {
 // 		const data = this.getSortedData();
+
 // 		// Grab the page's slice of data.
 // 		const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
 // 		const paginatedData = data.splice(startIndex, this._paginator.pageSize);
 
 // 		this._displayData.next(paginatedData);
 // 	}
+
+// 	/** Returns a sorted copy of the database data. */
 // 	getSortedData(): CategoryData[] {
 // 		const data = this._peopleDatabase.data.slice();
 // 		if (!this._sort.active || this._sort.direction === '') { return data; }
@@ -69,13 +69,16 @@
 // 		return data.sort((a, b) => {
 // 			let propertyA: number | string = '';
 // 			let propertyB: number | string = '';
+
 // 			switch (this._sort.active) {
 // 				case 'UUID': [propertyA, propertyB] = [a.UUID, b.UUID]; break;
 // 				case 'categoryName': [propertyA, propertyB] = [a.categoryName, b.categoryName]; break;
 // 				case 'createdAt': [propertyA, propertyB] = [a.createdAt, b.createdAt]; break;
 // 			}
+
 // 			const valueA = isNaN(+propertyA) ? propertyA : +propertyA;
 // 			const valueB = isNaN(+propertyB) ? propertyB : +propertyB;
+
 // 			return (valueA < valueB ? -1 : 1) * (this._sort.direction === 'asc' ? 1 : -1);
 // 		});
 // 	}

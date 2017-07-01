@@ -11,6 +11,7 @@ import * as _BARANG_FORM_ from './ng-admin-kategori.form';
 export class NgAdminKategoriFormComponent implements OnInit {
 	_FORM_ = _BARANG_FORM_;
 	categoryForm: FormGroup;
+	type = 'Tambah';
 	constructor(private _formBuilder$$: FormBuilder, private _router$$: Router) {}
 	ngOnInit() {
 		this.buildNgauthNgadminForm();

@@ -20,8 +20,8 @@ interface CategoryData {
 	styleUrls: ['./ng-admin-kategori-data-table.component.scss']
 })
 export class NgAdminKategoriDataTableComponent {
-	// // dataSource: KategoriDataSource | null;
-	// propertiesToDisplay: UserProperties[] = [];
+	// dataSource: KategoriDataSource | null;
+	propertiesToDisplay: UserProperties[] = [];
 	// trackByStrategy: TrackByStrategy = 'reference';
 	// changeReferences = false;
 	// highlights = new Set<string>();
@@ -29,4 +29,8 @@ export class NgAdminKategoriDataTableComponent {
 	// @ViewChild(MdSort) sort: MdSort;
 	// dataChange: BehaviorSubject<CategoryData[]> = new BehaviorSubject<CategoryData[]>([]); //
 	constructor() {}
+	connect() {
+		this.propertiesToDisplay = ['UUID', 'categoryName', 'createdAt'];
+		// this.data
+	}
 }

@@ -2,7 +2,7 @@
 	<div fxFlex.xs="0" fxFlex.sm="10" fxFlex.md="15" fxFlex.lg="20"></div>
 	<form [formGroup]="categoryForm" (ngSubmit)="onSubmit(categoryForm.controls)" fxFlex.xs="100" fxFlex.sm="80" fxFlex.md="70" fxFlex.lg="60" novalidate>
 		<md-card class="demo-card demo-basic">
-			<md-toolbar color="primary">Hints</md-toolbar>
+			<md-toolbar color="primary">Kategori ({{ type }})</md-toolbar>
 			<md-card-content fxLayout="column" fxLayout.gt-sm="row" style="padding: 15px;">
 				<div fxFlex style="padding: 15px;">
 					<md-input-container class="full-width">

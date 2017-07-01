@@ -23,7 +23,7 @@ export class NgAuthNgadminComponent implements OnInit {
 		const _store = {
 			username: controls.username.value,
 			password: controls.password.value,
-			timestamp: Date.now()
+			created_at: Date.now()
 		};
 		window.localStorage.ngadmin = JSON.stringify(_store);
 		this._router.navigate(['ngadmin', 'dashboard']);
