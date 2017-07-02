@@ -3,10 +3,8 @@ import { NgModule } from '@angular/core';
 import { MaterialModule, CdkDataTableModule } from '@angular/material';
 import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-import 'hammerjs';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 // app:
 import { AppRoutingModule } from './app-routing.module';
@@ -86,14 +84,14 @@ import { NgAuthNavComponent } from './Modules/ngAuth/Components/ng-auth-nav/ng-a
 
 		CdkDataTableModule,
 
-		BrowserModule,
+		BrowserModule.withServerTransition({appId: 'barang#rusman'}),
 		BrowserAnimationsModule,
-		FlexLayoutModule,
 		FormsModule,
 		// HttpModule,
 		MaterialModule,
 		NoopAnimationsModule,
-		ReactiveFormsModule
+		ReactiveFormsModule,
+		FlexLayoutModule,
 	],
 	providers: [ FormService, NgadminChildrenGuard ],
 	bootstrap: [AppComponent],

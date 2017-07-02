@@ -10,7 +10,9 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "preserver": "ng build --prod && ngc",
-    "server": "ts-node src/server.ts"
+	"cng": "ngc",
+    "server": "ts-node src/server.ts",
+	"serve": "ts-node src/server.ts"
   },
   "private": true,
   "dependencies": {
