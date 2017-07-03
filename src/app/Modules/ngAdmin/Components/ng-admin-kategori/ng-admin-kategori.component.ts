@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { NgAdminKategoriDataTableComponent } from '../ng-admin-kategori-data-table/ng-admin-kategori-data-table.component';
 
 @Component({
 	selector: 'app-ng-admin-kategori',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
 	styleUrls: ['./ng-admin-kategori.component.scss']
 })
 export class NgAdminKategoriComponent {
+	@ViewChild(NgAdminKategoriDataTableComponent) _CategoryDataTable_: NgAdminKategoriDataTableComponent;
 	constructor() {}
+	tambah() {
+		setTimeout(function(add){
+			add.tambah();
+		}, 10, this._CategoryDataTable_);
+	}
 }

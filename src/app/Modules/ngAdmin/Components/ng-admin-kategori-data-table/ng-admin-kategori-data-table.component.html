@@ -11,13 +11,18 @@
 			<th>UUID</th>
 			<th>categoryName</th>
 			<th>createdAt</th>
+			<th></th>
 		</tr>
 	</thead>
 	<tbody>
-		<tr *ngFor="let category of categories">
+		<tr *ngFor="let category of Category_Datas">
 			<td>{{ category.UUID }}</td>
 			<td>{{ category.categoryName }}</td>
 			<td>{{ category.created_at }}</td>
+			<td>
+				<button md-icon-button mdTooltip='Delete' (click)='delete(category.UUID)' class="category-btn"> <md-icon>delete</md-icon> </button>
+				<button md-icon-button mdTooltip='Edit' class="category-btn"> <md-icon>mode_edit</md-icon> </button>
+			</td>
 		</tr>
 	</tbody>
 	<tfoot></tfoot>

@@ -1,9 +1,9 @@
 <div id="kategori-form" fxLayout="row">
-	<div fxFlex.xs="0" fxFlex.sm="10" fxFlex.md="15" fxFlex.lg="20"></div>
-	<form [formGroup]="categoryForm" (ngSubmit)="onSubmit(categoryForm.controls)" fxFlex.xs="100" fxFlex.sm="80" fxFlex.md="70" fxFlex.lg="60" novalidate>
+	<div fxFlex.xs="0" fxFlex.sm="10" fxFlex.md="15" fxFlex.lg="30"></div>
+	<form [formGroup]="categoryForm" (ngSubmit)="onSubmit(categoryForm.controls)" fxFlex.xs="100" fxFlex.sm="80" fxFlex.md="70" fxFlex.lg="40" novalidate>
 		<md-card class="demo-card demo-basic">
 			<md-toolbar color="primary">Kategori ({{ type }})</md-toolbar>
-			<md-card-content fxLayout="column" fxLayout.gt-sm="row" style="padding: 15px;">
+			<md-card-content fxLayout="column" style="padding: 15px;">
 				<div fxFlex style="padding: 15px;">
 					<md-input-container class="full-width">
 						<input mdInput formControlName="UUID" placeholder="UUID" required readonly>
@@ -28,5 +28,5 @@
 			</md-card-actions>
 		</md-card>
 	</form>
-	<div fxFlex.xs="0" fxFlex.sm="10" fxFlex.md="15" fxFlex.lg="20"></div>
+	<div fxFlex.xs="0" fxFlex.sm="10" fxFlex.md="15" fxFlex.lg="30"></div>
 </div>

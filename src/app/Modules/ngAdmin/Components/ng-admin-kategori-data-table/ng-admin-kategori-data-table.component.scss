@@ -1,3 +1,6 @@
+.haha tr td, .haha tr th{
+	border-radius: 0;
+}
 .haha thead tr{
 	background-color: #673AB7;
 }
@@ -9,4 +12,11 @@
 }
 .haha tbody tr:hover{
 	background-color: #2196F3;
+}
+
+.haha tbody tr .category-btn{
+	color: transparent;
+}
+.haha tbody tr:hover .category-btn{
+	color: #FFF;
 }

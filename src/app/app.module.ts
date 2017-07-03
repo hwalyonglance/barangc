@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 // app-service:
 import { FormService } from './Services/form/form.service';
+import { ConfigService } from './Services/config/config.service';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './Components/home/home.component';
@@ -42,6 +43,7 @@ import { NgAuthComponent } from './Modules/ngAuth/ng-auth.component';
 import { NgAuthNgadminComponent } from './Modules/ngAuth/Components/ng-auth-ngadmin/ng-auth-ngadmin.component';
 import { NgAuthUserComponent } from './Modules/ngAuth/Components/ng-auth-user/ng-auth-user.component';
 import { NgAuthNavComponent } from './Modules/ngAuth/Components/ng-auth-nav/ng-auth-nav.component';
+import { SocketComponent } from './Components/socket/socket.component';
 
 
 
@@ -74,6 +76,7 @@ import { NgAuthNavComponent } from './Modules/ngAuth/Components/ng-auth-nav/ng-a
 		NgAuthNgadminComponent,
 		NgAuthUserComponent,
 		NgAuthNavComponent,
+		SocketComponent,
 
 	],
 	imports: [
@@ -90,7 +93,7 @@ import { NgAuthNavComponent } from './Modules/ngAuth/Components/ng-auth-nav/ng-a
 		ReactiveFormsModule,
 		FlexLayoutModule,
 	],
-	providers: [ FormService, NgadminChildrenGuard ],
+	providers: [ FormService, ConfigService, NgadminChildrenGuard ],
 	bootstrap: [AppComponent],
 })
 export class AppModule { }
