@@ -9,6 +9,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 // app:
 import { AppRoutingModule } from './app-routing.module';
 
+// app-service:
 import { FormService } from './Services/form/form.service';
 
 import { AppComponent } from './app.component';
@@ -32,8 +33,6 @@ import { NgAdminBarangDataTableComponent } from './Modules/ngAdmin/Components/ng
 import { NgAdminNgUserComponent } from './Modules/ngAdmin/Components/ng-admin-ng-user/ng-admin-ng-user.component';
 import { NgAdminNgUserFormComponent } from './Modules/ngAdmin/Components/ng-admin-ng-user-form/ng-admin-ng-user-form.component';
 import { NgAdminNgUserDataTableComponent } from './Modules/ngAdmin/Components/ng-admin-ng-user-data-table/ng-admin-ng-user-data-table.component';
-import { NgAdminTransaksiComponent } from './Modules/ngAdmin/Components/ng-admin-transaksi/ng-admin-transaksi.component';
-import { NgAdminTransaksiDataTableComponent } from './Modules/ngAdmin/Components/ng-admin-transaksi-data-table/ng-admin-transaksi-data-table.component';
 import { NgAdminTestimoniComponent } from './Modules/ngAdmin/Components/ng-admin-testimoni/ng-admin-testimoni.component';
 import { NgAdminTestimoniDataTableComponent } from './Modules/ngAdmin/Components/ng-admin-testimoni-data-table/ng-admin-testimoni-data-table.component';
 
@@ -67,16 +66,14 @@ import { NgAuthNavComponent } from './Modules/ngAuth/Components/ng-auth-nav/ng-a
 		NgAdminNgUserComponent,
 		NgAdminNgUserFormComponent,
 		NgAdminNgUserDataTableComponent,
-		NgAdminTransaksiComponent,
-		NgAdminTransaksiDataTableComponent,
+		NgAdminTestimoniComponent,
+		NgAdminTestimoniDataTableComponent,
 
 		// NgAuth:
 		NgAuthComponent,
 		NgAuthNgadminComponent,
 		NgAuthUserComponent,
 		NgAuthNavComponent,
-		NgAdminTestimoniComponent,
-		NgAdminTestimoniDataTableComponent
 
 	],
 	imports: [
@@ -88,8 +85,8 @@ import { NgAuthNavComponent } from './Modules/ngAuth/Components/ng-auth-nav/ng-a
 		BrowserAnimationsModule,
 		FormsModule,
 		// HttpModule,
-		MaterialModule,
 		NoopAnimationsModule,
+		MaterialModule,
 		ReactiveFormsModule,
 		FlexLayoutModule,
 	],

@@ -8,7 +8,6 @@ import { NgAdminHomeComponent } from './Components/ng-admin-home/ng-admin-home.c
 import { NgAdminNgUserComponent } from './Components/ng-admin-ng-user/ng-admin-ng-user.component';
 import { NgAdminKategoriComponent } from './Components/ng-admin-kategori/ng-admin-kategori.component';
 import { NgAdminBarangComponent } from './Components/ng-admin-barang/ng-admin-barang.component';
-import { NgAdminTransaksiComponent } from './Components/ng-admin-transaksi/ng-admin-transaksi.component';
 import { NgAdminTestimoniComponent } from './Components/ng-admin-testimoni/ng-admin-testimoni.component';
 
 const ROUTES: Routes = [
@@ -17,7 +16,6 @@ const ROUTES: Routes = [
 		{ path: 'users', component: NgAdminNgUserComponent },
 		{ path: 'kategori', component: NgAdminKategoriComponent },
 		{ path: 'barang', component: NgAdminBarangComponent },
-		{ path: 'transaksi', component: NgAdminTransaksiComponent },
 		{ path: 'testimoni', component: NgAdminTestimoniComponent },
 		{ path: '**', pathMatch: 'full', redirectTo: '/ngadmin/dashboard' }
 	]}
