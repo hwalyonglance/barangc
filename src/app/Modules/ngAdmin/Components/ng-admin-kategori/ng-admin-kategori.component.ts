@@ -9,9 +9,4 @@ import { NgAdminKategoriDataTableComponent } from '../ng-admin-kategori-data-tab
 export class NgAdminKategoriComponent {
 	@ViewChild(NgAdminKategoriDataTableComponent) _CategoryDataTable_: NgAdminKategoriDataTableComponent;
 	constructor() {}
-	tambah() {
-		setTimeout(function(add){
-			add.tambah();
-		}, 10, this._CategoryDataTable_);
-	}
 }

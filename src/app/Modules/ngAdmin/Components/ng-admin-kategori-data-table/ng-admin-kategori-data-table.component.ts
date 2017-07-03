@@ -19,49 +19,30 @@ export class NgAdminKategoriDataTableComponent {
 		{ text: 'bar' },
 		{ text: 'baz' },
 	];
-	Category_Datas: any[] | null = [];
+	$Categories: any[] | null = [];
 	constructor(private __configService: ConfigService) {
-		this.initialize();
-		this.Socket_Category.on('Category.Data.add', function(data){
-			localStorage.setItem('Category_Data_Last', JSON.stringify(data));
-		});
 		const __p__this = this;
-		this.Socket_Category.on('Category.Data.delete', function (UUID) {
-			const Categories = JSON.parse(localStorage.getItem('Database_Categories'));
+		this.Socket_Category.on('Category.Data.get', ($Categories) => {
+			__p__this.$Categories = $Categories;
+		});
+		this.Socket_Category.on('Category.Data.add', (data) => {
+			__p__this.$Categories = [ data, ...__p__this.$Categories];
+		});
+		this.Socket_Category.on('Category.Data.delete', (UUID) => {
+			const Categories = __p__this.$Categories;
 			const _Categories = [];
-			for (const i in Categories) {
+			for (let i = 0; i < Categories.length ; i++) {
+				console.log(UUID, ' ------------ ', Categories[i]);
 				if (Categories[i].UUID !== UUID) {
 					_Categories.push(Categories[i]);
 				}
 			}
-			localStorage.setItem('Database_Categories', JSON.stringify(_Categories));
-			__p__this.initialize();
+			__p__this.$Categories = _Categories;
 		});
 	}
-	initialize(): void {
-		try {
-			if (localStorage.getItem('Database_Categories') !== null) {
-				this.Category_Datas = JSON.parse(localStorage.getItem('Database_Categories'));
-			}
-		} catch (error) {
-			this.Category_Datas = [];
+	delete(UUID: string): void {
+		if (confirm('Hapus')) {
+			this.Socket_Category.emit('Category.Data.delete', UUID)
 		}
 	}
-	tambah(): void {
-		this.Category_Datas = [ JSON.parse(localStorage.getItem('Category_Data_Last')) , ...this.Category_Datas];
-		localStorage.setItem('Database_Categories', JSON.stringify(this.Category_Datas));
-	}
-	edit(): void {}
-	delete(UUID: string): void {
-		this.Socket_Category.emit('Category.Data.delete', UUID);
-		alert('Delete');
-	}
-	// onDelete
 }
-
-// tambah(): void {
-// 	const lastCategory = JSON.parse(localStorage.getItem('Category_Data_Last'));
-// 	const _Category_Datas = this.Category_Datas;
-// 	this.Category_Datas.push(lastCategory);
-// 	localStorage.setItem('Database_Categories', JSON.stringify(this.Category_Datas));
-// }
