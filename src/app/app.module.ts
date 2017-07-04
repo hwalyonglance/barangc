@@ -12,6 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 // app-service:
 import { FormService } from './Services/form/form.service';
 import { ConfigService } from './Services/config/config.service';
+import { RedirectService } from './Services/redirect/redirect.service';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './Components/home/home.component';
@@ -93,7 +94,10 @@ import { SocketComponent } from './Components/socket/socket.component';
 		ReactiveFormsModule,
 		FlexLayoutModule,
 	],
-	providers: [ FormService, ConfigService, NgadminChildrenGuard ],
+	providers: [FormService, ConfigService, RedirectService, NgadminChildrenGuard ],
 	bootstrap: [AppComponent],
+	entryComponents: [
+		NgAdminKategoriFormComponent
+	]
 })
 export class AppModule { }

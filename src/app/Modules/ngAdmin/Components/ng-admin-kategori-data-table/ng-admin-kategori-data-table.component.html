@@ -20,8 +20,8 @@
 			<td>{{ category.categoryName }}</td>
 			<td>{{ category.created_at }}</td>
 			<td>
-				<button md-icon-button mdTooltip='Delete' (click)='delete(category.UUID)' class="category-btn"> <md-icon>delete</md-icon> </button>
-				<button md-icon-button mdTooltip='Edit' class="category-btn"> <md-icon>mode_edit</md-icon> </button>
+				<md-icon mdTooltip='Delete' (click)='delete(category.UUID)' class="category-btn">delete</md-icon>
+				<md-icon mdTooltip='Edit' class="category-btn">mode_edit</md-icon>
 			</td>
 		</tr>
 	</tbody>
@@ -29,7 +29,7 @@
 </table>
 
 <md-menu #menu="mdMenu">
-	<button md-menu-item *ngFor="let item of options" >
+	<button md-menu-item *ngFor="let item of options" (click)='openForm()'>
 		{{ item.text }}
 	</button>
 </md-menu>

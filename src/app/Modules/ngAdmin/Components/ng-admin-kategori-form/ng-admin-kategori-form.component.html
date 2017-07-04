@@ -1,17 +1,16 @@
 <div id="kategori-form" fxLayout="row">
-	<div fxFlex.xs="0" fxFlex.sm="10" fxFlex.md="15" fxFlex.lg="30"></div>
-	<form [formGroup]="categoryForm" (ngSubmit)="onSubmit(categoryForm.controls)" fxFlex.xs="100" fxFlex.sm="80" fxFlex.md="70" fxFlex.lg="40" novalidate>
+	<form [formGroup]="categoryForm" (ngSubmit)="onSubmit(categoryForm.controls)" fxFlex novalidate>
 		<md-card class="demo-card demo-basic">
 			<md-toolbar color="primary">Kategori ({{ type }})</md-toolbar>
 			<md-card-content fxLayout="column" style="padding: 15px;">
-				<div fxFlex style="padding: 15px;">
+				<div fxFlex style="padding: 15px;" fxHide>
 					<md-input-container class="full-width">
 						<input mdInput formControlName="UUID" placeholder="UUID" required readonly>
 					</md-input-container>
 				</div>
 				<div fxFlex style="padding: 15px;">
 					<md-input-container class="full-width">
-						<input mdInput formControlName="categoryName" placeholder="Category name" required>
+						<input mdInput formControlName="categoryName"  placeholder="Category name" required>
 						<md-error *ngIf="categoryForm.get('categoryName').hasError('required')">{{ _FORM_.VALIDATION_MESSAGES.categoryName.required }}</md-error>
 						<md-error *ngIf="categoryForm.get('categoryName').hasError('minlength')">{{ _FORM_.VALIDATION_MESSAGES.categoryName.minLength }}</md-error>
 						<md-error *ngIf="categoryForm.get('categoryName').hasError('maxlength')">{{ _FORM_.VALIDATION_MESSAGES.categoryName.maxLength }}</md-error>
@@ -28,5 +27,4 @@
 			</md-card-actions>
 		</md-card>
 	</form>
-	<div fxFlex.xs="0" fxFlex.sm="10" fxFlex.md="15" fxFlex.lg="30"></div>
 </div>

@@ -8,18 +8,12 @@
 
 			<span class="demo-fill-remaining"></span>
 
-			<button md-icon-button title="Home">
-				<md-icon routerLink="/">home</md-icon>
-			</button>
-			<button md-icon-button title="Ngadmin">
-				<md-icon routerLink="/ngadmin">people</md-icon>
-			</button>
-			<button md-icon-button title="Auth">
-				<md-icon routerLink="/auth">security</md-icon>
-			</button>
-			<button md-icon-button title="Font Awesome">
-				<app-fa-icon routerLink="/font-awesome" faIcon='fa-key'></app-fa-icon>
-			</button>
+			<span class='nav-icon'>
+				<md-icon title="Home" routerLink="/">home</md-icon>
+				<md-icon title="Ngadmin" routerLink="/ngadmin">dashboard</md-icon>
+				<md-icon title="Auth" routerLink="/auth">security</md-icon>
+				<md-icon title='Sign out' routerLink='/sign/out'>exit_to_app</md-icon>
+			</span>
 		</md-toolbar>
 	</div>
 </nav>
