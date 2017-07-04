@@ -1,4 +1,4 @@
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
 
 /**
  * UUID, nama, harga, foto, stok, keterangan
@@ -6,14 +6,16 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 export const RULES = {
 	UUID: { label: 'UUID', type: 'text', required: true },
+	categoryUUID: { label: 'Kategori', required: true},
 	nama: { label: 'Nama Barang', type: 'text', required: true, minLength: 4, maxLength: 32 },
 	foto: { label: 'Foto', type: 'file', required: true, minLength: 1, maxLength: 32 },
 	harga: { label: 'Harga', type: 'number', min: 500, max: 1000000000, step: 500, required: true, minLength: 1, maxLength: 10 },
 	stok: { label: 'Stok', type: 'number', min: 1, max: 9999999, step: 1, required: true, minLength: 1, maxLength: 7 },
-	keterangan: { label: 'Keterangan', required: false, minLength: 1, maxLength: 256 }
+	keterangan: { label: 'Keterangan', required: false, minLength: 1, maxLength: 1024 }
 };
 export const VALIDATION_MESSAGES = {
 	UUID: { required: 'UUID is required.', valid: 'UUID is valid.' },
+	categoryUUID: { required: 'Category is required', valid: 'Category is valid.' },
 	nama: {
 		valid: RULES.nama.label + ' is valid.', required: RULES.nama.label + ' is required.',
 		minLength: RULES.nama.label + ' must be at least ' + RULES.nama.minLength + ' characters long.',
@@ -24,8 +26,8 @@ export const VALIDATION_MESSAGES = {
 		maxLength: RULES.foto.label + ' cannot be more than ' + RULES.foto.maxLength + ' characters long.'
 	}, harga: {
 		valid: RULES.harga.label + ' is valid.', required: RULES.harga.label + ' is required.',
-		minLength: RULES.harga.label + ' must be at least ' + RULES.harga.minLength + ' characters long.',
-		maxLength: RULES.harga.label + ' cannot be more than ' + RULES.harga.maxLength + ' characters long.'
+		minValue: RULES.harga.label + ' must be at least 500.',
+		maxValue: RULES.harga.label + ' cannot be more than 1,000,000,000.'
 	}, stok: {
 		valid: RULES.stok.label + ' is valid.', required: RULES.stok.label + ' is required.',
 		minLength: RULES.stok.label + ' must be at least ' + RULES.stok.minLength + ' characters long.',
@@ -37,14 +39,16 @@ export const VALIDATION_MESSAGES = {
 };
 export const VALIDATORS = {
 	UUID: [ Validators.required ],
+	categoryUUID: Validators.required,
 	foto: [ Validators.required, Validators.minLength(RULES.foto.minLength), Validators.maxLength(RULES.foto.maxLength)],
-	nama: [ Validators.required, Validators.minLength(RULES.nama.minLength), Validators.maxLength(RULES.nama.maxLength)],
-	harga:  [Validators.required, Validators.minLength(RULES.harga.minLength), Validators.maxLength(RULES.harga.maxLength) ],
-	stok: [ Validators.required, Validators.minLength(RULES.stok.minLength), Validators.maxLength(RULES.stok.maxLength)],
+	nama: [Validators.required, Validators.minLength(RULES.nama.minLength), Validators.maxLength(RULES.nama.maxLength)],
+	harga: [Validators.required],
+	stok: [ Validators.required],
 	keterangan: [ Validators.minLength(RULES.keterangan.minLength), Validators.maxLength(RULES.keterangan.maxLength) ],
 };
 export const FORM_GROUP_OBJECT_PARAM = {
 	UUID: ['', VALIDATORS.UUID],
+	categoryUUID: ['', VALIDATORS.categoryUUID],
 	nama: ['', VALIDATORS.nama],
 	foto: ['', VALIDATORS.foto],
 	harga: [500, VALIDATORS.harga],

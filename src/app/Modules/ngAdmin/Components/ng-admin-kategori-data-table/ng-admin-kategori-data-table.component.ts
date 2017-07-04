@@ -8,15 +8,14 @@ import { DOCUMENT } from '@angular/platform-browser';
 import { Action } from '../../../../Types/actions';
 import { Category } from '../../../../Classes/category';
 
-declare var io: any;
-
+declare var io: SocketIOStatic;
 @Component({
 	selector: 'app-ng-admin-kategori-data-table',
 	templateUrl: './ng-admin-kategori-data-table.component.html',
 	styleUrls: ['./ng-admin-kategori-data-table.component.scss']
 })
 export class NgAdminKategoriDataTableComponent {
-	private $Socket = io(this.__configService.SocketIO.origin);
+	private $Socket: SocketIO.Server = io(this.__configService.SocketIO.origin);
 	options = [
 		{ text: 'Tambah' },
 		{ text: 'foo' },

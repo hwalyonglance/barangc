@@ -9,7 +9,7 @@ import { Action } from '../../../../Types/actions';
 import { Category } from '../../../../Classes/category';
 
 
-declare var io: any;
+declare var io: SocketIOStatic;
 @Component({
 	selector: 'app-ng-admin-kategori-form',
 	templateUrl: './ng-admin-kategori-form.component.html',
@@ -21,7 +21,7 @@ export class NgAdminKategoriFormComponent implements OnInit, OnChanges {
 	categoryForm: FormGroup;
 	action: Action = 'Add';
 	Category: Category | null = new Category();
-	private $Socket = io(this.__configService.SocketIO.origin);
+	private $Socket: SocketIO.Server = io(this.__configService.SocketIO.origin);
 	constructor(
 		private __formBuilder$$: FormBuilder,
 		private __router$$: Router,

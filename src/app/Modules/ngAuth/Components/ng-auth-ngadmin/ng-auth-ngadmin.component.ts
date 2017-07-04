@@ -16,13 +16,11 @@ export class NgAuthNgadminComponent implements OnInit {
 	}
 	buildNgauthNgadminForm(): void {
 		this.authForm = this._formBuilder.group(_NG_AUTH_NG_ADMIN_FORM_.FORM_GROUP_OBJECT_PARAM);
-		// this.authForm = _NG_AUTH_NG_ADMIN_FORM_.FORM_GROUP_OBJECT;
 	}
-	onSubmit(controls): void {
-		// console.log(controls);
+	onSubmit({username, password}): void {
 		const _store = {
-			username: controls.username.value,
-			password: controls.password.value,
+			username: username.value,
+			password: password.value,
 			created_at: Date.now()
 		};
 		window.localStorage.ngadmin = JSON.stringify(_store);
@@ -36,13 +34,12 @@ export class NgAuthNgadminComponent implements OnInit {
 		if ( !( number || _ || alphabet || ALPHABET) ) {
 			$event.preventDefault();
 		}
-		// console.log($event.keyCode);
 	}
 	onPaste( $event: any ): void {
 		setTimeout(() => {
-			const val = this.authForm.controls.username.value;
+			const val = this.authForm.get('username').value;
 			const result = val.replace(/[\s\r\n\`\~\!\@\#\$\%\^\&\*\(\)\-\=\+\[\{\]\}\\\|\;\:\'\"\,\<\.\>\/\?]/gi, '');
-			this.authForm.controls.username.setValue(result);
+			this.authForm.get('username').setValue(result);
 		}, 1);
 	}
 }
