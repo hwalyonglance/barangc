@@ -5,6 +5,8 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { ConfigService } from '../../../../Services/config/config.service';
 import { NgAdminKategoriFormComponent } from '../ng-admin-kategori-form/ng-admin-kategori-form.component';
 import { DOCUMENT } from '@angular/platform-browser';
+import { Action } from '../../../../Types/actions';
+import { Category } from '../../../../Classes/category';
 
 declare var io: any;
 
@@ -21,7 +23,7 @@ export class NgAdminKategoriDataTableComponent {
 		{ text: 'bar' },
 		{ text: 'baz' },
 	];
-	$Categories: any[] | null = [];
+	$Categories: Category[] | null = [];
 	actionsAlignment: string;
 	constructor(public __mdDialog$$: MdDialog, private __configService: ConfigService, @Inject(DOCUMENT) doc: any) {
 		const __p__this = this;
@@ -56,17 +58,9 @@ export class NgAdminKategoriDataTableComponent {
 			this.Socket_Category.emit('Category.Data.delete', UUID)
 		}
 	}
-	openForm(): void {
-		const dialogRef = this.__mdDialog$$.open(NgAdminKategoriFormComponent, {
-			disableClose: false,
-			panelClass: 'custom-overlay-pane-class',
-			hasBackdrop: true,
-			backdropClass: '',
-			width: '',
-			height: '',
-			position: { top: '', bottom: '', left: '', right: '' },
-			data: { message: 'Jazzy jazz jazz' }
-		});
+	openForm(action: Action): void {
+		const dialogRef = this.__mdDialog$$.open(NgAdminKategoriFormComponent);
+		dialogRef.componentInstance.action = action;
 		dialogRef.componentInstance.$KategoriForm$
 			.subscribe(() => {
 				dialogRef.close();

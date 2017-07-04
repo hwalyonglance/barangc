@@ -1,7 +1,7 @@
 <div id="kategori-form" fxLayout="row">
 	<form [formGroup]="categoryForm" (ngSubmit)="onSubmit(categoryForm.controls)" fxFlex novalidate>
 		<md-card class="demo-card demo-basic">
-			<md-toolbar color="primary">Kategori ({{ type }})</md-toolbar>
+			<md-toolbar color="primary">Kategori ({{ action }})</md-toolbar>
 			<md-card-content fxLayout="column" style="padding: 15px;">
 				<div fxFlex style="padding: 15px;" fxHide>
 					<md-input-container class="full-width">
@@ -23,7 +23,7 @@
 				</div>
 			</md-card-content>
 			<md-card-actions align="end" style="padding:15px;">
-				<button md-raised-button color="primary" type="submit">Tambah</button>
+				<button md-raised-button color="primary" type="submit">{{ action }}</button>
 			</md-card-actions>
 		</md-card>
 	</form>

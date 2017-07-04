@@ -5,7 +5,7 @@ import * as _BARANG_FORM_ from './ng-admin-kategori.form';
 import { FormService } from '../../../../Services/form/form.service';
 import { ConfigService } from '../../../../Services/config/config.service';
 import { MdDialog, MdDialogRef } from '@angular/material';
-
+import { Action } from '../../../../Types/actions';
 
 declare var io: any;
 @Component({
@@ -17,8 +17,9 @@ export class NgAdminKategoriFormComponent implements OnInit, OnChanges {
 	@Output() $KategoriForm$ = new EventEmitter();
 	_FORM_ = _BARANG_FORM_;
 	categoryForm: FormGroup;
-	type = 'Tambah';
-	private Socket_Kategori = io(this.__configService.SocketIO.origin);
+	action: Action = 'Add';
+	UUID: string;
+	private $Socket = io(this.__configService.SocketIO.origin);
 	constructor(
 		private __formBuilder$$: FormBuilder,
 		private __router$$: Router,
@@ -33,10 +34,17 @@ export class NgAdminKategoriFormComponent implements OnInit, OnChanges {
 	ngOnInit() {}
 	ngOnChanges() {}
 	onSubmit({ UUID, categoryName}): void {
-		this.Socket_Kategori.emit('Category.Form.add', {
-			UUID: UUID.value,
-			categoryName: categoryName.value.trim()
-		});
+		if (this.action === 'Add') {
+			this.$Socket.emit('Category.Form.add', {
+				UUID: UUID.value,
+				categoryName: categoryName.value.trim()
+			});
+		} else {
+			this.$Socket.emit('Category.Form.update', {
+				UUID: this.UUID,
+				categoryName: categoryName.value.trim()
+			});
+		}
 		this.$KategoriForm$.next();
 	}
 }
