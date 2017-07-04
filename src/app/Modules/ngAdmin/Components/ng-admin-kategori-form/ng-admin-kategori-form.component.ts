@@ -6,6 +6,8 @@ import { FormService } from '../../../../Services/form/form.service';
 import { ConfigService } from '../../../../Services/config/config.service';
 import { MdDialog, MdDialogRef } from '@angular/material';
 import { Action } from '../../../../Types/actions';
+import { Category } from '../../../../Classes/category';
+
 
 declare var io: any;
 @Component({
@@ -15,10 +17,10 @@ declare var io: any;
 })
 export class NgAdminKategoriFormComponent implements OnInit, OnChanges {
 	@Output() $KategoriForm$ = new EventEmitter();
-	_FORM_ = _BARANG_FORM_;
+	FORM = _BARANG_FORM_;
 	categoryForm: FormGroup;
 	action: Action = 'Add';
-	UUID: string;
+	Category: Category | null = new Category();
 	private $Socket = io(this.__configService.SocketIO.origin);
 	constructor(
 		private __formBuilder$$: FormBuilder,
@@ -26,7 +28,7 @@ export class NgAdminKategoriFormComponent implements OnInit, OnChanges {
 		private _formService: FormService,
 		private __configService: ConfigService,
 	) {
-		this.categoryForm = this.__formBuilder$$.group(this._FORM_.FORM_GROUP_OBJECT_PARAM);
+		this.categoryForm = this.__formBuilder$$.group(this.FORM.FORM_GROUP_OBJECT_PARAM);
 		this.categoryForm.patchValue({
 			UUID: this._formService.randomString()
 		});
@@ -41,7 +43,7 @@ export class NgAdminKategoriFormComponent implements OnInit, OnChanges {
 			});
 		} else {
 			this.$Socket.emit('Category.Form.update', {
-				UUID: this.UUID,
+				UUID: this.Category.UUID,
 				categoryName: categoryName.value.trim()
 			});
 		}

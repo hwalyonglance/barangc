@@ -15,6 +15,7 @@
 		<tr>
 			<th>categoryName</th>
 			<th>createdAt</th>
+			<th>updatedAt</th>
 			<th></th>
 		</tr>
 	</thead>
@@ -22,9 +23,10 @@
 		<tr *ngFor="let Category of $Categories">
 			<td>{{ Category.categoryName }}</td>
 			<td>{{ Category.createdAt }}</td>
+			<td>{{ Category.updatedAt }}</td>
 			<td>
 				<md-icon mdTooltip='Delete' (click)='delete(Category.UUID)' class="category-btn">delete</md-icon>
-				<md-icon mdTooltip='Edit' (click)='openForm("Update")' class="category-btn">mode_edit</md-icon>
+				<md-icon mdTooltip='Edit' (click)='openForm("Update", Category)' class="category-btn">mode_edit</md-icon>
 			</td>
 		</tr>
 	</tbody>

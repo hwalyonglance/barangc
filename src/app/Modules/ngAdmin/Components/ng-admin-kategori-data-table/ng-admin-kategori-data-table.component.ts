@@ -16,7 +16,7 @@ declare var io: any;
 	styleUrls: ['./ng-admin-kategori-data-table.component.scss']
 })
 export class NgAdminKategoriDataTableComponent {
-	private Socket_Category = io(this.__configService.SocketIO.origin);
+	private $Socket = io(this.__configService.SocketIO.origin);
 	options = [
 		{ text: 'Tambah' },
 		{ text: 'foo' },
@@ -27,13 +27,13 @@ export class NgAdminKategoriDataTableComponent {
 	actionsAlignment: string;
 	constructor(public __mdDialog$$: MdDialog, private __configService: ConfigService, @Inject(DOCUMENT) doc: any) {
 		const __p__this = this;
-		this.Socket_Category.on('Category.Data.get', ($Categories) => {
+		this.$Socket.on('Category.Data.get', ($Categories) => {
 			__p__this.$Categories = $Categories;
 		});
-		this.Socket_Category.on('Category.Data.add', (data) => {
+		this.$Socket.on('Category.Data.add', (data) => {
 			__p__this.$Categories = [ data, ...__p__this.$Categories];
 		});
-		this.Socket_Category.on('Category.Data.delete', (UUID) => {
+		this.$Socket.on('Category.Data.delete', (UUID) => {
 			const Categories = __p__this.$Categories;
 			const _Categories = [];
 			for (let i = 0; i < Categories.length ; i++) {
@@ -43,24 +43,26 @@ export class NgAdminKategoriDataTableComponent {
 			}
 			__p__this.$Categories = _Categories;
 		});
-		//
-		__mdDialog$$.afterOpen.subscribe(() => {
-			if (!doc.body.classList.contains('no-scroll')) {
-				doc.body.classList.add('no-scroll');
+		this.$Socket.on('Category.Data.update', (Category: Category) => {
+			const _Categories = [];
+			for (let i = 0; i < this.$Categories.length; i++) {
+				if (Category.UUID === this.$Categories[i].UUID) {
+					this.$Categories[i].categoryName = Category.categoryName;
+				}
+				_Categories.push(this.$Categories[i]);
 			}
-		});
-		__mdDialog$$.afterAllClosed.subscribe(() => {
-			doc.body.classList.remove('no-scroll');
+			this.$Categories = _Categories;
 		});
 	}
 	delete(UUID: string): void {
 		if (confirm('Hapus')) {
-			this.Socket_Category.emit('Category.Data.delete', UUID)
+			this.$Socket.emit('Category.Data.delete', UUID)
 		}
 	}
-	openForm(action: Action): void {
+	openForm(action: Action, Category?: Category): void {
 		const dialogRef = this.__mdDialog$$.open(NgAdminKategoriFormComponent);
 		dialogRef.componentInstance.action = action;
+		dialogRef.componentInstance.Category = Category;
 		dialogRef.componentInstance.$KategoriForm$
 			.subscribe(() => {
 				dialogRef.close();
