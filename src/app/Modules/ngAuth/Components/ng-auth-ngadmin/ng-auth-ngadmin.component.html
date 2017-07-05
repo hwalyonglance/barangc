@@ -1,13 +1,12 @@
-<div fxLayout="row">
-	<div fxFlex.xs="5" fxFlex.sm="15" fxFlex.md="25" fxFlex.lg="35"></div>
-	<div fxFlex.xs="90" fxFlex.sm="70" fxFlex.md="50" fxFlex.lg="30" class="grey">
-		<md-card>
-			<!--<md-card-header #q>ini Header</md-card-header>-->
-			<md-card-title #w>NgAuth</md-card-title>
-			<md-card-subtitle #e>NgAdmin</md-card-subtitle>
-			<md-card-content #r class="fxContainer">
-				<form [formGroup]="authForm" fxLayout="column" (ngSubmit)="onSubmit(authForm.controls)" novalidate>
-					<!-- username -->
+<form [formGroup]="authForm" (ngSubmit)="onSubmit(authForm)" novalidate>
+	<div fxLayout="row">
+		<div fxFlex.xs="5" fxFlex.sm="15" fxFlex.md="25" fxFlex.lg="35"></div>
+		<div fxFlex.xs="90" fxFlex.sm="70" fxFlex.md="50" fxFlex.lg="30" class="grey">
+			<md-card>
+				<!--<md-card-header #q>ini Header</md-card-header>-->
+				<md-card-title #w>NgAuth</md-card-title>
+				<md-card-subtitle #e>NgAdmin</md-card-subtitle>
+				<md-card-content #r fxLayout="column" class="fxContainer">
 					<div fxFlex>
 						<md-input-container class="full-width">
 							<input mdInput formControlName="username" type="text" placeholder="Username" [minlength]="_FORM_.RULES.username.minLength" [maxlength]="_FORM_.RULES.username.maxLength" (keypress)="onKeyPress($event)"
@@ -22,7 +21,6 @@
 							</md-hint>
 						</md-input-container>
 					</div>
-					<!-- password: -->
 					<div fxFlex>
 						<md-input-container class="full-width">
 							<input mdInput formControlName="password" type="password" placeholder="Password" [minlength]="_FORM_.RULES.password.minLength" [maxlength]="_FORM_.RULES.password.maxLength" (keypress)="onKeyPress($event)"
@@ -37,13 +35,13 @@
 							</md-hint>
 						</md-input-container>
 					</div>
-				</form>
-			</md-card-content>
-			<md-card-actions #t align='end'>
-				<button md-raised-button type='submit' color='primary' [disabled]='!authForm.valid' (click)='onSubmit(authForm.controls)'>Haha</button>
-			</md-card-actions>
-			<!--<md-card-footer #y>ini footers</md-card-footer>-->
-		</md-card>
+				</md-card-content>
+				<md-card-actions #t align='end'>
+					<button md-raised-button type='submit' color='primary' [disabled]='!authForm.valid' (click)='onSubmit(authForm)'>Haha</button>
+				</md-card-actions>
+				<!--<md-card-footer #y>ini footers</md-card-footer>-->
+			</md-card>
+		</div>
+		<div fxFlex.xs="5" fxFlex.sm="15" fxFlex.md="25" fxFlex.lg="35"></div>
 	</div>
-	<div fxFlex.xs="5" fxFlex.sm="15" fxFlex.md="25" fxFlex.lg="35"></div>
-</div>
+</form>

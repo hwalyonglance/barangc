@@ -1,6 +1,5 @@
-<div id="kategori-form" fxLayout="row">
-	<div fxFlex.xs="0" fxFlex.sm="10" fxFlex.md="15" fxFlex.lg="20"></div>
-	<form [formGroup]="barangForm" (ngSubmit)="onSubmit(barangForm)" fxFlex.xs="100" fxFlex.sm="80" fxFlex.md="70" fxFlex.lg="60" novalidate>
+<div id="kategori-form" fxLayout="row" style='min-width:320px;max-width:400px'>
+	<form [formGroup]="barangForm" (ngSubmit)="onSubmit(barangForm)" novalidate>
 		<md-card class="demo-card demo-basic">
 			<md-toolbar color="primary">Barang ({{ action }})</md-toolbar>
 			<md-card-content fxLayout="column" style="padding: 15px;">
@@ -9,8 +8,13 @@
 						<input mdInput readonly formControlName="UUID" [type]="FORM.RULES.UUID.type" [placeholder]="FORM.RULES.UUID.label" [required]="FORM.RULES.UUID.required">
 					</md-input-container>
 				</div>
-				<div fxFlex style='height: 200px;'>
-					<img [src]="foto" #imgp style='height: 200px'>
+				<div fxFlex fxLayout="row" style='padding: 15px 0 45px 0;'>
+					<button fxFlex md-raised-button type='button' id='btn-file' (change)='file()'>
+						<input formControlName='field' accept='image/*' type="file" #itf style='width:100%; opacity:0;'>
+					</button>
+					<button fxFlex (click)='view()' type='button' id='btn-preview'>
+						View Image.
+					</button>
 				</div>
 				<div fxFlex style='padding-top: 5px'>
 					<md-select class='full-width' formControlName='categoryUUID' [placeholder]="FORM.RULES.categoryUUID.label" [required]="FORM.RULES.categoryUUID.required" floatPlaceholder="floatPlaceholder">
@@ -31,11 +35,6 @@
 							<span aria-live="polite"> {{ barangForm.get('nama').value.length + '/' + FORM.RULES.nama.maxLength }} </span>
 						</md-hint>
 					</md-input-container>
-				</div>
-				<div fxFlex style='background-color: lightgreen;padding: 15px 0 45px 0;'>
-					<button md-raised-button type='button' id='btn-file' (change)='file()'>
-						<input formControlName='field' type="file" #itf style='width:100%; opacity:0;'>
-					</button>
 				</div>
 				<div fxFlex>
 					<md-input-container class="full-width">
@@ -79,5 +78,4 @@
 			</md-card-actions>
 		</md-card>
 	</form>
-	<div fxFlex.xs="0" fxFlex.sm="10" fxFlex.md="15" fxFlex.lg="20"></div>
 </div>

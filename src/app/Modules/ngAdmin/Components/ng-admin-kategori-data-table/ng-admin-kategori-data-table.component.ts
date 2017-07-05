@@ -1,9 +1,7 @@
 import { Component, Inject, ViewChild } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { MdDialog, MdDialogRef } from '@angular/material';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { ConfigService } from '../../../../Services/config/config.service';
 import { NgAdminKategoriFormComponent } from '../ng-admin-kategori-form/ng-admin-kategori-form.component';
+import { MdDialog, MdDialogRef } from '@angular/material';
+import { ConfigService } from '../../../../Services/config/config.service';
 import { DOCUMENT } from '@angular/platform-browser';
 import { Action } from '../../../../Types/actions';
 import { Category } from '../../../../Classes/category';
@@ -24,7 +22,11 @@ export class NgAdminKategoriDataTableComponent {
 	];
 	$Categories: Category[] | null = [];
 	actionsAlignment: string;
-	constructor(public __mdDialog$$: MdDialog, private __configService: ConfigService, @Inject(DOCUMENT) doc: any) {
+	constructor(
+		public __mdDialog$$: MdDialog,
+		private __configService: ConfigService,
+		@Inject(DOCUMENT) doc: any
+	) {
 		const __p__this = this;
 		this.$Socket.on('Category.Data.get', ($Categories) => {
 			__p__this.$Categories = $Categories;

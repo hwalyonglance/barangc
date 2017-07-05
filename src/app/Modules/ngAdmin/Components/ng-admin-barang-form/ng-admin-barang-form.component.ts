@@ -1,10 +1,12 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { MdDialog } from '@angular/material';
 import * as _barangForm_ from './ng-admin-barang.form';
 import { ConfigService } from '../../../../Services/config/config.service';
 import { FormService } from '../../../../Services/form/form.service';
 import { Action } from '../../../../Types/actions';
 import { Category } from '../../../../Classes/category';
+import { ImgpComponent } from '../../../../Components/imgp/imgp.component';
 
 import { foto as _ } from './foto';
 
@@ -23,7 +25,12 @@ export class NgAdminBarangFormComponent {
 	action: Action = 'Add';
 	$Categories: Category[] | null;
 	$Socket: SocketIO.Server = io(this._config.SocketIO.origin);
-	constructor(private __formBuilder$$: FormBuilder, private _formService: FormService, private _config: ConfigService) {
+	constructor(
+		private __formBuilder$$: FormBuilder,
+		public __mdDialog$$: MdDialog,
+		private _formService: FormService,
+		private _config: ConfigService
+	) {
 		const __p__this = this;
 		this.barangForm = this.__formBuilder$$.group(this.FORM.FORM_GROUP_OBJECT_PARAM);
 		this.barangForm.patchValue({
@@ -70,7 +77,7 @@ export class NgAdminBarangFormComponent {
 		};
 		console.log(barangData);
 	}
-	onKeyPress($event: KeyboardEvent) {
+	onKeyPress($event: KeyboardEvent): void {
 		const number = ($event.keyCode >= 48) && ($event.keyCode <= 57);
 		const _ = ($event.keyCode === 95);
 		const alphabet = ($event.keyCode >= 97) && ($event.keyCode <= 122);
@@ -79,17 +86,17 @@ export class NgAdminBarangFormComponent {
 			$event.preventDefault();
 		}
 	}
-	file() {
+	file(): void {
 		const __p__this = this;
 		const itf = this.itf;
-		const imgp = this.imgp;
-		let foto = this.foto;
 		const fr = new FileReader();
 		fr.onload = function ($event) {
 			__p__this.barangForm.get('foto').setValue($event.target['result']);
-			imgp.nativeElement.src = $event.target['result'];
-			foto = $event.target['result']
 		}
 		fr.readAsDataURL(itf.nativeElement.files[0]);
+	}
+	view(): void {
+		const dialogRef = this.__mdDialog$$.open(ImgpComponent);
+		dialogRef.componentInstance.imgp.nativeElement.src = this.barangForm.get('foto').value;
 	}
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 
 @Component({
 	selector: 'app-imgp',
@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
 	styleUrls: ['./imgp.component.scss']
 })
 export class ImgpComponent {
+	@ViewChild('imgp') imgp: any;
 	constructor() {}
-
 }
