@@ -45,6 +45,7 @@ import { NgAuthNgadminComponent } from './Modules/ngAuth/Components/ng-auth-ngad
 import { NgAuthUserComponent } from './Modules/ngAuth/Components/ng-auth-user/ng-auth-user.component';
 import { NgAuthNavComponent } from './Modules/ngAuth/Components/ng-auth-nav/ng-auth-nav.component';
 import { SocketComponent } from './Components/socket/socket.component';
+import { ImgpComponent } from './Components/imgp/imgp.component';
 
 
 
@@ -53,6 +54,8 @@ import { SocketComponent } from './Components/socket/socket.component';
 		AppComponent,
 		HomeComponent,
 		FaIconComponent,
+		SocketComponent,
+		ImgpComponent,
 
 		// NgaAdmin:
 		NgAdminComponent,
@@ -77,7 +80,6 @@ import { SocketComponent } from './Components/socket/socket.component';
 		NgAuthNgadminComponent,
 		NgAuthUserComponent,
 		NgAuthNavComponent,
-		SocketComponent,
 
 	],
 	imports: [
@@ -97,7 +99,9 @@ import { SocketComponent } from './Components/socket/socket.component';
 	providers: [FormService, ConfigService, RedirectService, NgadminChildrenGuard ],
 	bootstrap: [AppComponent],
 	entryComponents: [
-		NgAdminKategoriFormComponent
+		ImgpComponent,
+		NgAdminKategoriFormComponent,
+		NgAdminBarangFormComponent
 	]
 })
 export class AppModule { }

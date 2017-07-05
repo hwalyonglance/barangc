@@ -12,7 +12,6 @@ export class NgAdminTestimoniComponent {
 	}
 	up() {
 		const itf = this.itf;
-		console.log(itf);
 		const txtid = this.txtid;
 		setTimeout(function() {
 			console.log(itf);

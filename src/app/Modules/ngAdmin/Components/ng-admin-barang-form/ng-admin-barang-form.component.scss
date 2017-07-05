@@ -4,12 +4,17 @@
 .full-width{
 	width: 100%;
 }
-.small{
-	display: inline;
-	font-size: 12px;
-	margin: 0;
+#btn-file{
+	position: relative;
+	width: 100%;
+	background-color: #64DD17;
 }
-
+#btn-file:before{
+	content: 'Upload File!!!';
+	position: absolute;
+	width: 50%;
+	right: 25%;
+}
 .keterangan{
 	color: #000;
 	resize: none;

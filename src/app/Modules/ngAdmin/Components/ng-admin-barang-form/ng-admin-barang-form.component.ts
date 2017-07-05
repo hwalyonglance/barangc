@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import * as _barangForm_ from './ng-admin-barang.form';
 import { ConfigService } from '../../../../Services/config/config.service';
 import { FormService } from '../../../../Services/form/form.service';
 import { Action } from '../../../../Types/actions';
 import { Category } from '../../../../Classes/category';
+
+import { foto as _ } from './foto';
 
 declare var io: SocketIOStatic;
 @Component({
@@ -13,8 +15,11 @@ declare var io: SocketIOStatic;
 	styleUrls: ['./ng-admin-barang-form.component.scss']
 })
 export class NgAdminBarangFormComponent {
+	@ViewChild('itf') itf: any;
+	@ViewChild('imgp') imgp: any;
 	FORM = _barangForm_;
 	barangForm: FormGroup;
+	foto = _;
 	action: Action = 'Add';
 	$Categories: Category[] | null;
 	$Socket: SocketIO.Server = io(this._config.SocketIO.origin);
@@ -25,9 +30,7 @@ export class NgAdminBarangFormComponent {
 			UUID: this._formService.randomString().toLowerCase()
 		});
 		this.barangForm.get('harga').valueChanges.subscribe((val) => {
-			if (val < 500) {
-				__p__this.barangForm.get('harga').setValue(500);
-			}
+			if (val < 500) { __p__this.barangForm.get('harga').setValue(500);}
 		});
 		this.$Socket.on('Category.Data.get', (Categories: Category[]) => {
 			__p__this.$Categories = Categories;
@@ -39,21 +42,20 @@ export class NgAdminBarangFormComponent {
 			const Categories = __p__this.$Categories;
 			const _Categories = [];
 			for (let i = 0; i < Categories.length; i++) {
-				if (Categories[i].UUID !== UUID) {
-					_Categories.push(Categories[i]);
-				}
-			}
-			__p__this.$Categories = _Categories;
+				if (Categories[i].UUID !== UUID) { _Categories.push(Categories[i]); }
+			} __p__this.$Categories = _Categories;
 		});
 		this.$Socket.on('Category.Data.update', (Category: Category) => {
 			const _Categories = [];
 			for (let i = 0; i < this.$Categories.length; i++) {
 				if (Category.UUID === this.$Categories[i].UUID) {
 					this.$Categories[i].categoryName = Category.categoryName;
-				}
-				_Categories.push(this.$Categories[i]);
-			}
-			this.$Categories = _Categories;
+				} _Categories.push(this.$Categories[i]);
+			} this.$Categories = _Categories;
+		});
+		this.barangForm.get('field').valueChanges.subscribe(() => {
+			console.log(__p__this.barangForm.get('field').value);
+			alert('hello world');
 		});
 	}
 	onSubmit(_barangForm: FormGroup): void {
@@ -76,5 +78,18 @@ export class NgAdminBarangFormComponent {
 		if (!number) {
 			$event.preventDefault();
 		}
+	}
+	file() {
+		const __p__this = this;
+		const itf = this.itf;
+		const imgp = this.imgp;
+		let foto = this.foto;
+		const fr = new FileReader();
+		fr.onload = function ($event) {
+			__p__this.barangForm.get('foto').setValue($event.target['result']);
+			imgp.nativeElement.src = $event.target['result'];
+			foto = $event.target['result']
+		}
+		fr.readAsDataURL(itf.nativeElement.files[0]);
 	}
 }
