@@ -4,7 +4,7 @@ import { MdDialog, MdDialogRef } from '@angular/material';
 import { ConfigService } from '../../../../Services/config/config.service';
 import { DOCUMENT } from '@angular/platform-browser';
 import { Action } from '../../../../Types/actions';
-import { Category } from '../../../../Classes/category';
+import { Category } from '../../../../Interfaces/category';
 
 declare var io: SocketIOStatic;
 @Component({
@@ -48,7 +48,7 @@ export class NgAdminKategoriDataTableComponent {
 			const _Categories = [];
 			for (let i = 0; i < this.$Categories.length; i++) {
 				if (Category.UUID === this.$Categories[i].UUID) {
-					this.$Categories[i].categoryName = Category.categoryName;
+					this.$Categories[i].name = Category.name;
 				}
 				_Categories.push(this.$Categories[i]);
 			}

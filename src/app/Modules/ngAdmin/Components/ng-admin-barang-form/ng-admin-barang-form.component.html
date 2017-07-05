@@ -1,29 +1,21 @@
-<div id="kategori-form" fxLayout="row" style='min-width:320px;max-width:400px'>
-	<form [formGroup]="barangForm" (ngSubmit)="onSubmit(barangForm)" novalidate>
+<div id="kategori-form" fxLayout="row" style=''>
+	<form [formGroup]="barangForm" fxFlex (ngSubmit)="onSubmit(barangForm)" novalidate>
 		<md-card class="demo-card demo-basic">
 			<md-toolbar color="primary">Barang ({{ action }})</md-toolbar>
-			<md-card-content fxLayout="column" style="padding: 15px;">
+			<md-card-content fxLayout="row" fxLayoutWrap style="padding: 15px;">
 				<div fxFlex fxHide>
 					<md-input-container class="full-width">
 						<input mdInput readonly formControlName="UUID" [type]="FORM.RULES.UUID.type" [placeholder]="FORM.RULES.UUID.label" [required]="FORM.RULES.UUID.required">
 					</md-input-container>
 				</div>
-				<div fxFlex fxLayout="row" style='padding: 15px 0 45px 0;'>
-					<button fxFlex md-raised-button type='button' id='btn-file' (change)='file()'>
-						<input formControlName='field' accept='image/*' type="file" #itf style='width:100%; opacity:0;'>
-					</button>
-					<button fxFlex (click)='view()' type='button' id='btn-preview'>
-						View Image.
-					</button>
-				</div>
-				<div fxFlex style='padding-top: 5px'>
-					<md-select class='full-width' formControlName='categoryUUID' [placeholder]="FORM.RULES.categoryUUID.label" [required]="FORM.RULES.categoryUUID.required" floatPlaceholder="floatPlaceholder">
-						<md-option *ngFor='let _Category of $Categories' [value]='_Category.UUID'>{{ _Category.categoryName }}</md-option>
+				<div fxFlex='100' style='padding-top: 5px'>
+					<md-select class='full-width' formControlName='Category' [placeholder]="FORM.RULES.Category.label" [required]="FORM.RULES.Category.required" floatPlaceholder="floatPlaceholder">
+						<md-option *ngFor='let Category of $Categories' [value]='Category'>{{ Category.name }}</md-option>
 					</md-select>
-					<md-error class='small' *ngIf='barangForm.get("categoryUUID").hasError("required")'>{{ FORM.VALIDATION_MESSAGES.categoryUUID.required }}</md-error>
-					<md-hint class='small' *ngIf='barangForm.get("categoryUUID").valid'>{{ FORM.VALIDATION_MESSAGES.categoryUUID.valid }}</md-hint>
+					<md-error class='small' *ngIf='barangForm.get("Category").hasError("required")'>{{ FORM.VALIDATION_MESSAGES.Category.required }}</md-error>
+					<md-hint class='small' *ngIf='barangForm.get("Category").valid'>{{ FORM.VALIDATION_MESSAGES.Category.valid }}</md-hint>
 				</div>
-				<div fxFlex>
+				<div fxFlex='100'>
 					<md-input-container class="full-width">
 						<input mdInput formControlName="nama" id="kategori-nama" [type]="FORM.RULES.nama.type" [placeholder]="FORM.RULES.nama.label" [required]="FORM.RULES.nama.required" [minlength]='FORM.RULES.nama.minLength' [maxlength]='FORM.RULES.nama.maxLength'>
 						<md-error *ngIf="barangForm.get('nama').hasError('required')">{{ FORM.VALIDATION_MESSAGES.nama.required }}</md-error>
@@ -36,12 +28,19 @@
 						</md-hint>
 					</md-input-container>
 				</div>
-				<div fxFlex>
+				<div fxFlex='33' fxLayout='column' fxLayout.gt-sm="row" style='padding: 15px 0;'>
+					<label fxFlex='50' md-raised-button for="itf" class='file'>
+						Upload Image
+						<input id='itf' formControlName='field' accept='image/*' (change)='file()' type="file" #itf style='width:0; opacity:0;'>
+					</label>
+					<label fxFlex='50' md-raised-button (click)='view()' class='file'>
+						View Image
+					</label>
+				</div>
+				<div fxFlex='33'>
 					<md-input-container class="full-width">
 						<input mdInput formControlName="harga" [type]="FORM.RULES.harga.type" (keypress)='onKeyPress($event)' [placeholder]="FORM.RULES.harga.label" [min]="FORM.RULES.harga.min" [max]="FORM.RULES.harga.max" [step]="FORM.RULES.harga.step" [required]="FORM.RULES.harga.required">
 						<md-error *ngIf="barangForm.get('harga').hasError('required')">{{ FORM.VALIDATION_MESSAGES.harga.required }}</md-error>
-						<md-error *ngIf="barangForm.get('harga').hasError('minlength')">{{ FORM.VALIDATION_MESSAGES.harga.minValue }}</md-error>
-						<md-error *ngIf="barangForm.get('harga').hasError('maxlength')">{{ FORM.VALIDATION_MESSAGES.harga.maxValue }}</md-error>
 						<md-hint *ngIf="barangForm.get('harga').valid">{{ FORM.VALIDATION_MESSAGES.harga.valid }}</md-hint>
 						<md-hint align="end">
 							<md-icon>mode_edit</md-icon>
@@ -49,12 +48,10 @@
 						</md-hint>
 					</md-input-container>
 				</div>
-				<div fxFlex>
-					<md-input-container class="full-width">
+				<div fxFlex='33'>
+					<md-input-container class="full-width pad-15">
 						<input mdInput formControlName="stok" [type]="FORM.RULES.stok.type" (keypress)='onKeyPress($event)' [placeholder]="FORM.RULES.stok.label" [min]="FORM.RULES.stok.min" [max]="FORM.RULES.stok.max" [step]="FORM.RULES.stok.step" [required]="FORM.RULES.stok.required">
 						<md-error *ngIf="barangForm.get('stok').hasError('required')">{{ FORM.VALIDATION_MESSAGES.stok.required }}</md-error>
-						<md-error *ngIf="barangForm.get('stok').hasError('minlength')">{{ FORM.VALIDATION_MESSAGES.stok.minLength }}</md-error>
-						<md-error *ngIf="barangForm.get('stok').hasError('maxlength')">{{ FORM.VALIDATION_MESSAGES.stok.maxLength }}</md-error>
 						<md-hint *ngIf="barangForm.get('stok').valid">{{ FORM.VALIDATION_MESSAGES.stok.valid }}</md-hint>
 						<md-hint align="end">
 							<md-icon>mode_edit</md-icon>

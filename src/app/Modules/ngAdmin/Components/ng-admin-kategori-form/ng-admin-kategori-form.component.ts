@@ -6,7 +6,7 @@ import { FormService } from '../../../../Services/form/form.service';
 import { ConfigService } from '../../../../Services/config/config.service';
 import { MdDialog, MdDialogRef } from '@angular/material';
 import { Action } from '../../../../Types/actions';
-import { Category } from '../../../../Classes/category';
+import { Category } from '../../../../Interfaces/category';
 
 
 declare var io: SocketIOStatic;
@@ -37,7 +37,7 @@ export class NgAdminKategoriFormComponent implements OnInit, OnChanges {
 		if (this.action === 'Add') {
 			this.$Socket.emit('Category.Form.add', {
 				UUID: categoryForm.get('UUID').value,
-				categoryName: categoryForm.get('categoryName').value.trim()
+				name: categoryForm.get('categoryName').value.trim()
 			});
 		} else {
 			this.$Socket.emit('Category.Form.update', {

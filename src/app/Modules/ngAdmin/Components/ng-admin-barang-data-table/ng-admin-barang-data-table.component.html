@@ -16,20 +16,24 @@
 			<th>itemName</th>
 			<th>price</th>
 			<th>stock</th>
-			<th>desc</th>
+			<th style='width: 200px !important;'>description</th>
 			<th></th>
 		</tr>
 	</thead>
 	<tbody>
-		<!--<tr *ngFor="let Category of $Categories">
-			<td>{{ Category.categoryName }}</td>
-			<td>{{ Category.createdAt }}</td>
-			<td>{{ Category.updatedAt }}</td>
+		<tr *ngFor="let Item of $Items">
+			<td> {{ Item.Category.name }} </td>
+			<td> <img [src]='Item.image' style='max-width: 100px; max-height: 100px'> </td>
+			<td> {{ Item.name}} </td>
+			<td> {{ Item.price}} </td>
+			<td> {{ Item.stock}} </td>
+			<td> <p style='width: 200px !important;'>{{ Item.desc }}</p> </td>
+			<!--<td>  {{ Item.}}  </td>-->
 			<td>
-				<md-icon mdTooltip='Delete' (click)='delete(Category.UUID)' class="category-btn">delete</md-icon>
-				<md-icon mdTooltip='Edit' (click)='openForm("Update", Category)' class="category-btn">mode_edit</md-icon>
+				<!--<md-icon mdTooltip='Delete' (click)='delete(Item.UUID)' class="category-btn">delete</md-icon>-->
+				<!--<md-icon mdTooltip='Edit' (click)='openForm("Update", Item)' class="category-btn">mode_edit</md-icon>-->
 			</td>
-		</tr>-->
+		</tr>
 	</tbody>
 	<tfoot></tfoot>
 </table>
