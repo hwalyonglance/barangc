@@ -1,0 +1,12 @@
+.w200 {
+	width: 200px;
+}
+#btn-file{
+	position: relative;
+}
+#btn-file:before{
+	content: 'Upload File!!!';
+	position: absolute;
+	width: 50%;
+	right: 25%;
+}

@@ -5,26 +5,31 @@
 
 	lorem ipsum dolor sit amet
 </md-toolbar>
+<md-menu #menu="mdMenu">
+	<button md-menu-item *ngFor="let item of options" (click)='openForm("Add")'>
+		{{ item.text }}
+	</button>
+</md-menu>
 <table border="1" class="haha">
 	<thead>
 		<tr>
-			<th>UUID</th>
 			<th>categoryName</th>
 			<th>createdAt</th>
+			<th>updatedAt</th>
+			<th></th>
 		</tr>
 	</thead>
 	<tbody>
-		<tr *ngFor="let category of categories">
-			<td>{{ category.UUID }}</td>
-			<td>{{ category.categoryName }}</td>
-			<td>{{ category.created_at }}</td>
+		<tr *ngFor="let Category of $Categories">
+			<td>{{ Category.categoryName }}</td>
+			<td>{{ Category.createdAt }}</td>
+			<td>{{ Category.updatedAt }}</td>
+			<td>
+				<md-icon mdTooltip='Delete' (click)='delete(Category.UUID)' class="category-btn">delete</md-icon>
+				<md-icon mdTooltip='Edit' (click)='openForm("Update", Category)' class="category-btn">mode_edit</md-icon>
+			</td>
 		</tr>
 	</tbody>
 	<tfoot></tfoot>
 </table>
 
-<md-menu #menu="mdMenu">
-	<button md-menu-item *ngFor="let item of options" >
-		{{ item.text }}
-	</button>
-</md-menu>

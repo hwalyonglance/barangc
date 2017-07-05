@@ -1,49 +1,70 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, Inject, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { CollectionViewer, DataSource, MdPaginator, MdSort } from '@angular/material';
+import { MdDialog, MdDialogRef } from '@angular/material';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { ConfigService } from '../../../../Services/config/config.service';
+import { NgAdminKategoriFormComponent } from '../ng-admin-kategori-form/ng-admin-kategori-form.component';
+import { DOCUMENT } from '@angular/platform-browser';
+import { Action } from '../../../../Types/actions';
+import { Category } from '../../../../Classes/category';
 
-// import { KategoriDatabase } from './kategori-database';
-
-type UserProperties = 'UUID' | 'categoryName' | 'createdAt' | undefined;
-type TrackByStrategy = 'id' | 'reference' | 'index';
-
-interface CategoryData {
-	UUID: string;
-	categoryName: string;
-	createdAt: string;
-};
-
+declare var io: SocketIOStatic;
 @Component({
 	selector: 'app-ng-admin-kategori-data-table',
 	templateUrl: './ng-admin-kategori-data-table.component.html',
 	styleUrls: ['./ng-admin-kategori-data-table.component.scss']
 })
 export class NgAdminKategoriDataTableComponent {
-	// dataSource: KategoriDataSource | null;
-	propertiesToDisplay: UserProperties[] = [];
-	// trackByStrategy: TrackByStrategy = 'reference';
-	// changeReferences = false;
-	// highlights = new Set<string>();
-	// @ViewChild(MdPaginator) _paginator: MdPaginator;
-	// @ViewChild(MdSort) sort: MdSort;
-	// dataChange: BehaviorSubject<CategoryData[]> = new BehaviorSubject<CategoryData[]>([]); //
-	categories: any;
+	private $Socket: SocketIO.Server = io(this.__configService.SocketIO.origin);
 	options = [
 		{ text: 'Tambah' },
 		{ text: 'foo' },
 		{ text: 'bar' },
 		{ text: 'baz' },
 	];
-	constructor() {
-		try {
-			this.categories = JSON.parse(String(window.localStorage.kategori));
-		} catch (error) {
-			this.categories = [];
+	$Categories: Category[] | null = [];
+	actionsAlignment: string;
+	constructor(public __mdDialog$$: MdDialog, private __configService: ConfigService, @Inject(DOCUMENT) doc: any) {
+		const __p__this = this;
+		this.$Socket.on('Category.Data.get', ($Categories) => {
+			__p__this.$Categories = $Categories;
+		});
+		this.$Socket.on('Category.Data.add', (data) => {
+			__p__this.$Categories = [ data, ...__p__this.$Categories];
+		});
+		this.$Socket.on('Category.Data.delete', (UUID) => {
+			const Categories = __p__this.$Categories;
+			const _Categories = [];
+			for (let i = 0; i < Categories.length ; i++) {
+				if (Categories[i].UUID !== UUID) {
+					_Categories.push(Categories[i]);
+				}
+			}
+			__p__this.$Categories = _Categories;
+		});
+		this.$Socket.on('Category.Data.update', (Category: Category) => {
+			const _Categories = [];
+			for (let i = 0; i < this.$Categories.length; i++) {
+				if (Category.UUID === this.$Categories[i].UUID) {
+					this.$Categories[i].categoryName = Category.categoryName;
+				}
+				_Categories.push(this.$Categories[i]);
+			}
+			this.$Categories = _Categories;
+		});
+	}
+	delete(UUID: string): void {
+		if (confirm('Hapus')) {
+			this.$Socket.emit('Category.Data.delete', UUID)
 		}
 	}
-	connect() {
-		this.propertiesToDisplay = ['UUID', 'categoryName', 'createdAt'];
-		// this.data
+	openForm(action: Action, Category?: Category): void {
+		const dialogRef = this.__mdDialog$$.open(NgAdminKategoriFormComponent);
+		dialogRef.componentInstance.action = action;
+		dialogRef.componentInstance.Category = Category;
+		dialogRef.componentInstance.$KategoriForm$
+			.subscribe(() => {
+				dialogRef.close();
+			});
 	}
 }

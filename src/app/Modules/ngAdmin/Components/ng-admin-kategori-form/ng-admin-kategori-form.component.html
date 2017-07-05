@@ -1,32 +1,33 @@
-<div id="kategori-form" fxLayout="row">
-	<div fxFlex.xs="0" fxFlex.sm="10" fxFlex.md="15" fxFlex.lg="20"></div>
-	<form [formGroup]="categoryForm" (ngSubmit)="onSubmit(categoryForm.controls)" fxFlex.xs="100" fxFlex.sm="80" fxFlex.md="70" fxFlex.lg="60" novalidate>
+<div id="kategori-form" fxLayout="row" style='min-width: 330px;max-width: 400px'>
+	<form [formGroup]="categoryForm" (ngSubmit)="onSubmit(categoryForm.controls)" fxFlex novalidate>
 		<md-card class="demo-card demo-basic">
-			<md-toolbar color="primary">Kategori ({{ type }})</md-toolbar>
-			<md-card-content fxLayout="column" fxLayout.gt-sm="row" style="padding: 15px;">
-				<div fxFlex style="padding: 15px;">
+			<md-toolbar color="primary">Kategori ({{ action }})</md-toolbar>
+			<md-card-content fxLayout="column" style="padding: 15px;">
+				<div fxFlex fxHide>
 					<md-input-container class="full-width">
 						<input mdInput formControlName="UUID" placeholder="UUID" required readonly>
 					</md-input-container>
 				</div>
-				<div fxFlex style="padding: 15px;">
+				<div fxFlex>
 					<md-input-container class="full-width">
-						<input mdInput formControlName="categoryName" placeholder="Category name" required>
-						<md-error *ngIf="categoryForm.get('categoryName').hasError('required')">{{ _FORM_.VALIDATION_MESSAGES.categoryName.required }}</md-error>
-						<md-error *ngIf="categoryForm.get('categoryName').hasError('minlength')">{{ _FORM_.VALIDATION_MESSAGES.categoryName.minLength }}</md-error>
-						<md-error *ngIf="categoryForm.get('categoryName').hasError('maxlength')">{{ _FORM_.VALIDATION_MESSAGES.categoryName.maxLength }}</md-error>
-						<md-hint *ngIf="categoryForm.get('categoryName').valid">{{ _FORM_.VALIDATION_MESSAGES.categoryName.valid }}</md-hint>
+						<input mdInput formControlName="categoryName"  placeholder="Category name" [required]='FORM.RULES.categoryName.required' [maxlength]='FORM.RULES.categoryName.maxLength'>
+						<md-error *ngIf="categoryForm.get('categoryName').hasError('required')">{{ FORM.VALIDATION_MESSAGES.categoryName.required }}</md-error>
+						<md-error *ngIf="categoryForm.get('categoryName').hasError('minlength')">{{ FORM.VALIDATION_MESSAGES.categoryName.minLength }}</md-error>
+						<md-error *ngIf="categoryForm.get('categoryName').hasError('maxlength')">{{ FORM.VALIDATION_MESSAGES.categoryName.maxLength }}</md-error>
+						<md-hint *ngIf="categoryForm.get('categoryName').valid">{{ FORM.VALIDATION_MESSAGES.categoryName.valid }}</md-hint>
 						<md-hint align="end">
 							<md-icon>mode_edit</md-icon>
-							<span aria-live="polite"> {{ categoryForm.get('categoryName').value.length + '/' + _FORM_.RULES.categoryName.maxLength }} </span>
+							<span aria-live="polite"> {{ categoryForm.get('categoryName').value.length + '/' + FORM.RULES.categoryName.maxLength }} </span>
 						</md-hint>
 					</md-input-container>
+					<span *ngIf='action === "Update"'>
+						{{ Category.categoryName }} to: {{ categoryForm.get('categoryName').value }}
+					</span>
 				</div>
 			</md-card-content>
 			<md-card-actions align="end" style="padding:15px;">
-				<button md-raised-button color="primary" type="submit">Tambah</button>
+				<button md-raised-button color="primary" type="submit">{{ action }}</button>
 			</md-card-actions>
 		</md-card>
 	</form>
-	<div fxFlex.xs="0" fxFlex.sm="10" fxFlex.md="15" fxFlex.lg="20"></div>
 </div>

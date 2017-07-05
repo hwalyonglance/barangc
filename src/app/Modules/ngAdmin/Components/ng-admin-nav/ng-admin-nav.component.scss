@@ -35,6 +35,13 @@
 	.demo-fill-remaining {
 		flex: 1 1 auto;
 	}
+	.nav-icon {
+		margin-right: 20px;
+		.mat-icon{
+			cursor: pointer;
+			margin: 0 10px;
+		}
+	}
 }
 
 @media (max-width: 600px){

@@ -11,6 +11,8 @@ import { AppRoutingModule } from './app-routing.module';
 
 // app-service:
 import { FormService } from './Services/form/form.service';
+import { ConfigService } from './Services/config/config.service';
+import { RedirectService } from './Services/redirect/redirect.service';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './Components/home/home.component';
@@ -42,6 +44,8 @@ import { NgAuthComponent } from './Modules/ngAuth/ng-auth.component';
 import { NgAuthNgadminComponent } from './Modules/ngAuth/Components/ng-auth-ngadmin/ng-auth-ngadmin.component';
 import { NgAuthUserComponent } from './Modules/ngAuth/Components/ng-auth-user/ng-auth-user.component';
 import { NgAuthNavComponent } from './Modules/ngAuth/Components/ng-auth-nav/ng-auth-nav.component';
+import { SocketComponent } from './Components/socket/socket.component';
+import { ImgpComponent } from './Components/imgp/imgp.component';
 
 
 
@@ -50,6 +54,8 @@ import { NgAuthNavComponent } from './Modules/ngAuth/Components/ng-auth-nav/ng-a
 		AppComponent,
 		HomeComponent,
 		FaIconComponent,
+		SocketComponent,
+		ImgpComponent,
 
 		// NgaAdmin:
 		NgAdminComponent,
@@ -90,7 +96,12 @@ import { NgAuthNavComponent } from './Modules/ngAuth/Components/ng-auth-nav/ng-a
 		ReactiveFormsModule,
 		FlexLayoutModule,
 	],
-	providers: [ FormService, NgadminChildrenGuard ],
+	providers: [FormService, ConfigService, RedirectService, NgadminChildrenGuard ],
 	bootstrap: [AppComponent],
+	entryComponents: [
+		ImgpComponent,
+		NgAdminKategoriFormComponent,
+		NgAdminBarangFormComponent
+	]
 })
 export class AppModule { }

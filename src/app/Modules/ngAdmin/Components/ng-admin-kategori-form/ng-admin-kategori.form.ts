@@ -10,11 +10,6 @@ export const RULES = {
 		maxLength: 32
 	}
 };
-
-export function isRequired(cond: boolean) {
-	return cond ? Validators.required : null;
-}
-
 export const VALIDATION_MESSAGES = {
 	UUID: {
 		required: 'UUID is required.',
@@ -29,10 +24,10 @@ export const VALIDATION_MESSAGES = {
 };
 export const VALIDATORS = {
 	UUID: [
-		isRequired(RULES.UUID.required)
+		Validators.required
 	],
 	categoryName: [
-		isRequired(RULES.UUID.required),
+		Validators.required,
 		Validators.minLength(RULES.categoryName.minLength),
 		Validators.maxLength(RULES.categoryName.maxLength)
 	]

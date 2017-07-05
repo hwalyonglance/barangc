@@ -2,65 +2,80 @@
 	<div fxFlex.xs="0" fxFlex.sm="10" fxFlex.md="15" fxFlex.lg="20"></div>
 	<form [formGroup]="barangForm" (ngSubmit)="onSubmit(barangForm)" fxFlex.xs="100" fxFlex.sm="80" fxFlex.md="70" fxFlex.lg="60" novalidate>
 		<md-card class="demo-card demo-basic">
-			<md-toolbar color="primary">Barang ({{ type }})</md-toolbar>
+			<md-toolbar color="primary">Barang ({{ action }})</md-toolbar>
 			<md-card-content fxLayout="column" style="padding: 15px;">
-				<div fxFlex style="padding: 15px;">
+				<div fxFlex fxHide>
 					<md-input-container class="full-width">
-						<input mdInput readonly formControlName="UUID" [type]="_FORM_.RULES.UUID.type" [placeholder]="_FORM_.RULES.UUID.label" [required]="_FORM_.RULES.UUID.required">
+						<input mdInput readonly formControlName="UUID" [type]="FORM.RULES.UUID.type" [placeholder]="FORM.RULES.UUID.label" [required]="FORM.RULES.UUID.required">
 					</md-input-container>
 				</div>
-				<div fxFlex style="padding: 15px;">
+				<div fxFlex style='height: 200px;'>
+					<img [src]="foto" #imgp style='height: 200px'>
+				</div>
+				<div fxFlex style='padding-top: 5px'>
+					<md-select class='full-width' formControlName='categoryUUID' [placeholder]="FORM.RULES.categoryUUID.label" [required]="FORM.RULES.categoryUUID.required" floatPlaceholder="floatPlaceholder">
+						<md-option *ngFor='let _Category of $Categories' [value]='_Category.UUID'>{{ _Category.categoryName }}</md-option>
+					</md-select>
+					<md-error class='small' *ngIf='barangForm.get("categoryUUID").hasError("required")'>{{ FORM.VALIDATION_MESSAGES.categoryUUID.required }}</md-error>
+					<md-hint class='small' *ngIf='barangForm.get("categoryUUID").valid'>{{ FORM.VALIDATION_MESSAGES.categoryUUID.valid }}</md-hint>
+				</div>
+				<div fxFlex>
 					<md-input-container class="full-width">
-						<input mdInput formControlName="nama" id="kategori-nama" [type]="_FORM_.RULES.nama.type" [placeholder]="_FORM_.RULES.nama.label" [required]="_FORM_.RULES.nama.required">
-						<md-error *ngIf="barangForm.get('nama').hasError('required')">{{ _FORM_.VALIDATION_MESSAGES.nama.required }}</md-error>
-						<md-error *ngIf="barangForm.get('nama').hasError('minlength')">{{ _FORM_.VALIDATION_MESSAGES.nama.minLength }}</md-error>
-						<md-error *ngIf="barangForm.get('nama').hasError('maxlength')">{{ _FORM_.VALIDATION_MESSAGES.nama.maxLength }}</md-error>
-						<md-hint *ngIf="barangForm.get('nama').valid">{{ _FORM_.VALIDATION_MESSAGES.nama.valid }}</md-hint>
+						<input mdInput formControlName="nama" id="kategori-nama" [type]="FORM.RULES.nama.type" [placeholder]="FORM.RULES.nama.label" [required]="FORM.RULES.nama.required" [minlength]='FORM.RULES.nama.minLength' [maxlength]='FORM.RULES.nama.maxLength'>
+						<md-error *ngIf="barangForm.get('nama').hasError('required')">{{ FORM.VALIDATION_MESSAGES.nama.required }}</md-error>
+						<md-error *ngIf="barangForm.get('nama').hasError('minlength')">{{ FORM.VALIDATION_MESSAGES.nama.minLength }}</md-error>
+						<md-error *ngIf="barangForm.get('nama').hasError('maxlength')">{{ FORM.VALIDATION_MESSAGES.nama.maxLength }}</md-error>
+						<md-hint *ngIf="barangForm.get('nama').valid">{{ FORM.VALIDATION_MESSAGES.nama.valid }}</md-hint>
 						<md-hint align="end">
 							<md-icon>mode_edit</md-icon>
-							<span aria-live="polite"> {{ barangForm.get('nama').value.length + '/' + _FORM_.RULES.nama.maxLength }} </span>
+							<span aria-live="polite"> {{ barangForm.get('nama').value.length + '/' + FORM.RULES.nama.maxLength }} </span>
 						</md-hint>
 					</md-input-container>
 				</div>
-				<div fxFlex style="padding: 15px;">
+				<div fxFlex style='background-color: lightgreen;padding: 15px 0 45px 0;'>
+					<button md-raised-button type='button' id='btn-file' (change)='file()'>
+						<input formControlName='field' type="file" #itf style='width:100%; opacity:0;'>
+					</button>
+				</div>
+				<div fxFlex>
 					<md-input-container class="full-width">
-						<input mdInput formControlName="harga" [type]="_FORM_.RULES.harga.type" [placeholder]="_FORM_.RULES.harga.label" [min]="_FORM_.RULES.harga.min" [max]="_FORM_.RULES.harga.max" [step]="_FORM_.RULES.harga.step" [required]="_FORM_.RULES.harga.required">
-						<md-error *ngIf="barangForm.get('harga').hasError('required')">{{ _FORM_.VALIDATION_MESSAGES.harga.required }}</md-error>
-						<md-error *ngIf="barangForm.get('harga').hasError('minlength')">{{ _FORM_.VALIDATION_MESSAGES.harga.minLength }}</md-error>
-						<md-error *ngIf="barangForm.get('harga').hasError('maxlength')">{{ _FORM_.VALIDATION_MESSAGES.harga.maxLength }}</md-error>
-						<md-hint *ngIf="barangForm.get('harga').valid">{{ _FORM_.VALIDATION_MESSAGES.harga.valid }}</md-hint>
+						<input mdInput formControlName="harga" [type]="FORM.RULES.harga.type" (keypress)='onKeyPress($event)' [placeholder]="FORM.RULES.harga.label" [min]="FORM.RULES.harga.min" [max]="FORM.RULES.harga.max" [step]="FORM.RULES.harga.step" [required]="FORM.RULES.harga.required">
+						<md-error *ngIf="barangForm.get('harga').hasError('required')">{{ FORM.VALIDATION_MESSAGES.harga.required }}</md-error>
+						<md-error *ngIf="barangForm.get('harga').hasError('minlength')">{{ FORM.VALIDATION_MESSAGES.harga.minValue }}</md-error>
+						<md-error *ngIf="barangForm.get('harga').hasError('maxlength')">{{ FORM.VALIDATION_MESSAGES.harga.maxValue }}</md-error>
+						<md-hint *ngIf="barangForm.get('harga').valid">{{ FORM.VALIDATION_MESSAGES.harga.valid }}</md-hint>
 						<md-hint align="end">
 							<md-icon>mode_edit</md-icon>
-							<span aria-live="polite"> {{ barangForm.get('harga').value | currency:'IDR' }} / {{ _FORM_.RULES.harga.max | currency:'IDR' }} </span>
+							<span aria-live="polite"> {{ barangForm.get('harga').value | currency:'IDR' }} / {{ FORM.RULES.harga.max | currency:'IDR' }} </span>
 						</md-hint>
 					</md-input-container>
 				</div>
-				<div fxFlex style="padding: 15px;">
+				<div fxFlex>
 					<md-input-container class="full-width">
-						<input mdInput formControlName="stok" [type]="_FORM_.RULES.stok.type" [placeholder]="_FORM_.RULES.stok.label" [min]="_FORM_.RULES.stok.min" [max]="_FORM_.RULES.stok.max" [step]="_FORM_.RULES.stok.step" [required]="_FORM_.RULES.stok.required">
-						<md-error *ngIf="barangForm.get('stok').hasError('required')">{{ _FORM_.VALIDATION_MESSAGES.stok.required }}</md-error>
-						<md-error *ngIf="barangForm.get('stok').hasError('minlength')">{{ _FORM_.VALIDATION_MESSAGES.stok.minLength }}</md-error>
-						<md-error *ngIf="barangForm.get('stok').hasError('maxlength')">{{ _FORM_.VALIDATION_MESSAGES.stok.maxLength }}</md-error>
-						<md-hint *ngIf="barangForm.get('stok').valid">{{ _FORM_.VALIDATION_MESSAGES.stok.valid }}</md-hint>
+						<input mdInput formControlName="stok" [type]="FORM.RULES.stok.type" (keypress)='onKeyPress($event)' [placeholder]="FORM.RULES.stok.label" [min]="FORM.RULES.stok.min" [max]="FORM.RULES.stok.max" [step]="FORM.RULES.stok.step" [required]="FORM.RULES.stok.required">
+						<md-error *ngIf="barangForm.get('stok').hasError('required')">{{ FORM.VALIDATION_MESSAGES.stok.required }}</md-error>
+						<md-error *ngIf="barangForm.get('stok').hasError('minlength')">{{ FORM.VALIDATION_MESSAGES.stok.minLength }}</md-error>
+						<md-error *ngIf="barangForm.get('stok').hasError('maxlength')">{{ FORM.VALIDATION_MESSAGES.stok.maxLength }}</md-error>
+						<md-hint *ngIf="barangForm.get('stok').valid">{{ FORM.VALIDATION_MESSAGES.stok.valid }}</md-hint>
 						<md-hint align="end">
 							<md-icon>mode_edit</md-icon>
-							<span aria-live="polite"> {{ barangForm.get('stok').value + '/' + _FORM_.RULES.stok.max }} </span>
+							<span aria-live="polite"> {{ barangForm.get('stok').value + '/' + FORM.RULES.stok.max }} </span>
 						</md-hint>
 					</md-input-container>
 				</div>
-				<div fxFlex style="padding: 15px;">
+				<div fxFlex>
 					<md-input-container class="full-width">
 						<label>
-							 {{ _FORM_.RULES.keterangan.label }}
-							<textarea mdInput mdTextareaAutosize formControlName="keterangan" class="keterangan" [maxlength]="_FORM_.RULES.keterangan.maxLength"></textarea>
+							 {{ FORM.RULES.keterangan.label }}
+							<textarea mdInput mdTextareaAutosize formControlName="keterangan" class="keterangan" [maxlength]="FORM.RULES.keterangan.maxLength"></textarea>
 						</label>
-						<md-hint align="start">{{ _FORM_.VALIDATION_MESSAGES.keterangan.valid }}</md-hint>
-						<md-hint align="end">{{ barangForm.get('keterangan').value.length + '/' + _FORM_.RULES.keterangan.maxLength }}</md-hint>
+						<md-hint align="start">{{ FORM.VALIDATION_MESSAGES.keterangan.valid }}</md-hint>
+						<md-hint align="end">{{ barangForm.get('keterangan').value.length + '/' + FORM.RULES.keterangan.maxLength }}</md-hint>
 					</md-input-container>
 				</div>
 			</md-card-content>
 			<md-card-actions align="end" style="padding:15px;">
-				<button md-button color="primary" type="submit">Tambah</button>
+				<button md-raised-button color="primary" type="submit">{{ action }}</button>
 			</md-card-actions>
 		</md-card>
 	</form>

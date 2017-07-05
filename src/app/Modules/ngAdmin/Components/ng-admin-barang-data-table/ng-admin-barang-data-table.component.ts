@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
 	styleUrls: ['./ng-admin-barang-data-table.component.scss']
 })
 export class NgAdminBarangDataTableComponent {
+	options = [
+		{ text: 'Tambah' },
+		{ text: 'foo' },
+		{ text: 'bar' },
+		{ text: 'baz' },
+	];
 	constructor() {}
 }
