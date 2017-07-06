@@ -4,7 +4,7 @@ import { MdDialog, MdDialogRef } from '@angular/material';
 import { ConfigService } from '../../../../Services/config/config.service';
 import { DOCUMENT } from '@angular/platform-browser';
 import { Action } from '../../../../Types/actions';
-import { Category } from '../../../../Classes/category';
+import { Category } from '../../../../Interfaces/category';
 import { Item } from '../../../../Interfaces/item';
 
 declare var io: SocketIOStatic;
@@ -29,18 +29,30 @@ export class NgAdminBarangDataTableComponent {
 		@Inject(DOCUMENT) doc: any
 	) {
 		const __p__this = this;
-		this.$Socket.on('Item.Data.get', (Items: Item[]) => {
-			__p__this.$Items = Items;
-			__p__this.$Items.map((_Item) => {
-				console.log(_Item.Category);
-			});
-		});
+		this.$Socket.on('Item.Data.get', (Items: Item[]) => __p__this.$Items = Items);
 		this.$Socket.on('Item.Data.add', (Item: Item) => {
 			__p__this.$Items.unshift(Item);
 		});
+		this.$Socket.on('Item.Data.update', (Item: Item) => {
+			__p__this.$Items = __p__this.$Items.map(($Item: Item) => {
+				console.log($Item.UUID, Item.UUID);
+				return $Item.UUID === Item.UUID ? Item : $Item ;
+			});
+		});
+		this.$Socket.on('Item.Data.delete', (UUID: string) => {
+			__p__this.$Items = __p__this.$Items.filter(($Item) => {
+				return $Item.UUID !== UUID;
+			});
+		});
 	}
-	openForm(action: Action, Category?: Category): void {
+	delete(UUID: string) {
+		this.$Socket.emit('Item.Data.delete', UUID);
+	}
+	openForm(action: Action, Item: Item): void {
 		const dialogRef = this.__mdDialog$$.open(NgAdminBarangFormComponent, {width: '70%'});
+		dialogRef.componentInstance.$Item = Item;
+		dialogRef.componentInstance.action = action;
+		dialogRef.componentInstance.$action$.emit(action);
 		dialogRef.componentInstance.$submit$.subscribe(() => { dialogRef.close() });
 	}
 }

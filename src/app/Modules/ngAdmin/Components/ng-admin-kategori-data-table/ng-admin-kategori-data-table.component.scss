@@ -1,23 +1,29 @@
-.haha tr td, .haha tr th{
+.mat-toolbar{
+	background-color: #7E57C2 !important;
+	color: #EEE;
+}
+table tr td, table tr th{
 	border-radius: 0;
 }
-.haha thead tr{
-	background-color: #673AB7;
+table thead tr{
+	background-color: #2962FF;
+	color: #DDD;
 }
-.haha tbody tr:nth-child(odd){
-	background-color: #F44336;
+table tbody{
+	tr:nth-child(odd){
+		background-color: #FF1744;
+	}
+	tr:nth-child(even){
+		background-color: #76FF03;
+	}
+	tr:hover{
+		background-color: #2196F3;
+	}
 }
-.haha tbody tr:nth-child(even){
-	background-color: #76FF03;
-}
-.haha tbody tr:hover{
-	background-color: #2196F3;
-}
-
-.haha tbody tr .category-btn{
+table tbody tr .category-btn{
 	color: transparent;
 }
-.haha tbody tr:hover .category-btn{
+table tbody tr:hover .category-btn{
 	color: #FFF;
 	cursor: pointer;
 }

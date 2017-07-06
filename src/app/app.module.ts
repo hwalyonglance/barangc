@@ -47,6 +47,7 @@ import { NgAuthNavComponent } from './Modules/ngAuth/Components/ng-auth-nav/ng-a
 import { SocketComponent } from './Components/socket/socket.component';
 import { ImgpComponent } from './Components/imgp/imgp.component';
 import { TruncatePipe } from './Modules/ngAdmin/Pipes/truncate.pipe';
+import { ExponentialPipe } from './Pipes/exponential.pipe';
 
 
 
@@ -83,6 +84,7 @@ import { TruncatePipe } from './Modules/ngAdmin/Pipes/truncate.pipe';
 		NgAuthNgadminComponent,
 		NgAuthUserComponent,
 		NgAuthNavComponent,
+		ExponentialPipe,
 
 	],
 	imports: [

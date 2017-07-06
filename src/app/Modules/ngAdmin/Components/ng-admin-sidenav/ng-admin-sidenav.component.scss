@@ -1,4 +1,10 @@
 .mat-list-item{
-	color: #444;
-	border-bottom: #CCC solid 2px;
+	color: #333;
+	border-bottom: #EEE solid 2px;
+}
+.aktif{
+	box-sizing: border-box;
+	border-left: 5px solid #2979FF;
+	background-color: #80DEEA !important;
+	padding-left: 10px;
 }

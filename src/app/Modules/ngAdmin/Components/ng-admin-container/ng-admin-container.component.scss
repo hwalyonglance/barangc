@@ -1,9 +1,9 @@
 .ngadmin-container {
-	background-color: yellow;
+	background-color: #D1C4E9;
 	box-sizing: border-box;
 	padding-top: 64px;
 	height: 100%;
-	width: 100%;
+	max-width: 100% !important;
 	.ngadmin-content{
 		padding: 15px;
 	}
@@ -12,7 +12,7 @@
 .mat-sidenav {
 	min-width: 200px;
 	padding-top: 60px;
-	background-color: #F5F5F5;
+	background-color: #E0E0E0;
 	.mat-button {
 		width: 100%;
 		position: relative;
@@ -21,9 +21,9 @@
 	}
 }
 
-@media (max-width: 600px){
+@media (max-width: 720px){
 	.mat-sidenav{
 		padding-top: 54px;
-		min-width: 80vw;
+		min-width: 70vw;
 	}
 }

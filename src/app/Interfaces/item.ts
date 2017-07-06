@@ -1,5 +1,4 @@
 import { Category } from './category';
-import { Category as C } from '../Classes/category';
 export interface Item {
 	UUID: string;
 	ngadmin: any;

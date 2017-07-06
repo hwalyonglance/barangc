@@ -8,7 +8,7 @@
 		{{ item.text }}
 	</button>
 </md-menu>
-<table border="1" class="haha">
+<table border="1" class="responsive-table">
 	<thead>
 		<tr>
 			<th>categoryName</th>
@@ -24,14 +24,14 @@
 		<tr *ngFor="let Item of $Items">
 			<td> {{ Item.Category.name }} </td>
 			<td> <img [src]='Item.image' style='max-width: 100px; max-height: 100px'> </td>
-			<td> {{ Item.name}} </td>
-			<td> {{ Item.price}} </td>
-			<td> {{ Item.stock}} </td>
-			<td> <p style='width: 200px !important;'>{{ Item.desc }}</p> </td>
+			<td> {{ Item.name }} </td>
+			<td> {{ Item.price | exponential | currency:'IDR' }} </td>
+			<td> {{ Item.stock }} </td>
+			<td class='desc'> {{ Item.desc.substr(0, 32) + '...' }} </td>
 			<!--<td>  {{ Item.}}  </td>-->
 			<td>
-				<!--<md-icon mdTooltip='Delete' (click)='delete(Item.UUID)' class="category-btn">delete</md-icon>-->
-				<!--<md-icon mdTooltip='Edit' (click)='openForm("Update", Item)' class="category-btn">mode_edit</md-icon>-->
+				<md-icon mdTooltip='Delete' (click)='delete(Item.UUID)' class="category-btn">delete</md-icon>
+				<md-icon mdTooltip='Edit' (click)='openForm("Update", Item)' class="category-btn">mode_edit</md-icon>
 			</td>
 		</tr>
 	</tbody>

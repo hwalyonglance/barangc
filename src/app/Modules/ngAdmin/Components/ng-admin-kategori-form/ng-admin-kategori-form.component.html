@@ -21,12 +21,12 @@
 						</md-hint>
 					</md-input-container>
 					<span *ngIf='action === "Update"'>
-						{{ Category.categoryName }} to: {{ categoryForm.get('categoryName').value }}
+						{{ Category.name }} to: {{ categoryForm.get('categoryName').value }}
 					</span>
 				</div>
 			</md-card-content>
 			<md-card-actions align="end" style="padding:15px;">
-				<button md-raised-button color="primary" type="submit">{{ action }}</button>
+				<button md-raised-button [disabled]='categoryForm.get("categoryName").value.length === 0' color="primary" type="submit">{{ action }}</button>
 			</md-card-actions>
 		</md-card>
 	</form>

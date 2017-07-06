@@ -19,6 +19,7 @@ declare var io: SocketIOStatic;
 })
 export class NgAdminBarangFormComponent {
 	@Output() $submit$ = new EventEmitter();
+	@Output() $action$ = new EventEmitter<Action>();
 	@ViewChild('itf') itf: any;
 	@ViewChild('imgp') imgp: any;
 	FORM = _barangForm_;
@@ -26,6 +27,7 @@ export class NgAdminBarangFormComponent {
 	foto = _;
 	action: Action = 'Add';
 	$Categories: Category[] | null;
+	$Item: Item | null;
 	$Socket: SocketIO.Server = io(this._config.SocketIO.origin);
 	constructor(
 		private __formBuilder$$: FormBuilder,
@@ -44,6 +46,17 @@ export class NgAdminBarangFormComponent {
 		this.barangForm.get('stok').valueChanges.subscribe((val) => {
 			if (val < __p__this.FORM.RULES.stok.min) { __p__this.barangForm.get('stok').setValue(__p__this.FORM.RULES.stok.min); }
 			if (val > __p__this.FORM.RULES.stok.max) { __p__this.barangForm.get('stok').setValue(__p__this.FORM.RULES.stok.max); }
+		});
+		this.$action$.subscribe((action: Action) => {
+			if (action === 'Update') {
+				__p__this.barangForm.get('UUID').setValue(__p__this.$Item.UUID);
+				__p__this.barangForm.get('Category').setValue(__p__this.$Item.Category);
+				__p__this.barangForm.get('nama').setValue(__p__this.$Item.name);
+				__p__this.barangForm.get('foto').setValue(__p__this.$Item.image);
+				__p__this.barangForm.get('harga').setValue(__p__this.$Item.price);
+				__p__this.barangForm.get('stok').setValue(__p__this.$Item.stock);
+				__p__this.barangForm.get('keterangan').setValue(__p__this.$Item.desc);
+			}
 		});
 		this.$Socket.on('Category.Data.get', (Categories: Category[]) => {
 			__p__this.$Categories = Categories;
@@ -83,10 +96,11 @@ export class NgAdminBarangFormComponent {
 			stock: _barangForm.get('stok').value,
 			desc: _barangForm.get('keterangan').value
 		};
-		Object.keys(barangData).map((key) => {
-			console.log(barangData[key]);
-		});
-		this.$Socket.emit('Item.Form.add', barangData);
+		if ( this.action === 'Add' ) {
+			this.$Socket.emit('Item.Form.add', barangData);
+		} else {
+			this.$Socket.emit('Item.Form.update', barangData)
+		}
 		this.$submit$.next();
 	}
 	onKeyPress($event: KeyboardEvent): void {
@@ -109,5 +123,8 @@ export class NgAdminBarangFormComponent {
 	view(): void {
 		const dialogRef = this.__mdDialog$$.open(ImgpComponent, {width: '550px'});
 		dialogRef.componentInstance.imgp.nativeElement.src = this.barangForm.get('foto').value;
+		dialogRef.componentInstance.isClosed.subscribe((isClosed) => {
+			if (isClosed) { dialogRef.close() }
+		})
 	}
 }

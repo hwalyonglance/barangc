@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, EventEmitter } from '@angular/core';
 
 @Component({
 	selector: 'app-imgp',
@@ -7,5 +7,9 @@ import { Component, ViewChild } from '@angular/core';
 })
 export class ImgpComponent {
 	@ViewChild('imgp') imgp: any;
+	isClosed = new EventEmitter<boolean>();
 	constructor() {}
+	close() {
+		this.isClosed.emit(true);
+	}
 }

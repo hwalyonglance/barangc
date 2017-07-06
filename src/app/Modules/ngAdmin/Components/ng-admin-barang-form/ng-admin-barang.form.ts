@@ -10,7 +10,7 @@ export const RULES = {
 	nama: { label: 'Nama Barang', type: 'text', required: true, minLength: 4, maxLength: 32 },
 	foto: { label: 'Foto', type: 'file', required: true, maxLength: 1073741824 /* 10 MB  */ },
 	harga: { label: 'Harga', type: 'number', min: 500, max: 1000000, step: 500, required: true },
-	stok: { label: 'Stok', type: 'number', min: 1, max: 9999999, step: 1, required: true },
+	stok: { label: 'Stok', type: 'number', min: 1, max: 9999, step: 1, required: true },
 	keterangan: { label: 'Keterangan', required: false, maxLength: 256 }
 };
 export const VALIDATION_MESSAGES = {

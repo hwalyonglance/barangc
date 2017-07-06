@@ -1,4 +1,4 @@
-<div id="kategori-form" fxLayout="row" style=''>
+<div fxLayout="row" style='min-width: 300px'>
 	<form [formGroup]="barangForm" fxFlex (ngSubmit)="onSubmit(barangForm)" novalidate>
 		<md-card class="demo-card demo-basic">
 			<md-toolbar color="primary">Barang ({{ action }})</md-toolbar>
@@ -28,16 +28,17 @@
 						</md-hint>
 					</md-input-container>
 				</div>
-				<div fxFlex='33' fxLayout='column' fxLayout.gt-sm="row" style='padding: 15px 0;'>
+				<div fxFlex='30' fxLayout='column'>
 					<label fxFlex='50' md-raised-button for="itf" class='file'>
 						Upload Image
 						<input id='itf' formControlName='field' accept='image/*' (change)='file()' type="file" #itf style='width:0; opacity:0;'>
 					</label>
 					<label fxFlex='50' md-raised-button (click)='view()' class='file'>
+						<button type='button' style='width:0; opacity:0;height: 0; margin: 0;'></button>
 						View Image
 					</label>
 				</div>
-				<div fxFlex='33'>
+				<div fxFlex='45'>
 					<md-input-container class="full-width">
 						<input mdInput formControlName="harga" [type]="FORM.RULES.harga.type" (keypress)='onKeyPress($event)' [placeholder]="FORM.RULES.harga.label" [min]="FORM.RULES.harga.min" [max]="FORM.RULES.harga.max" [step]="FORM.RULES.harga.step" [required]="FORM.RULES.harga.required">
 						<md-error *ngIf="barangForm.get('harga').hasError('required')">{{ FORM.VALIDATION_MESSAGES.harga.required }}</md-error>
@@ -48,7 +49,7 @@
 						</md-hint>
 					</md-input-container>
 				</div>
-				<div fxFlex='33'>
+				<div fxFlex='25'>
 					<md-input-container class="full-width pad-15">
 						<input mdInput formControlName="stok" [type]="FORM.RULES.stok.type" (keypress)='onKeyPress($event)' [placeholder]="FORM.RULES.stok.label" [min]="FORM.RULES.stok.min" [max]="FORM.RULES.stok.max" [step]="FORM.RULES.stok.step" [required]="FORM.RULES.stok.required">
 						<md-error *ngIf="barangForm.get('stok').hasError('required')">{{ FORM.VALIDATION_MESSAGES.stok.required }}</md-error>
@@ -59,7 +60,7 @@
 						</md-hint>
 					</md-input-container>
 				</div>
-				<div fxFlex>
+				<div fxFlex='100'>
 					<md-input-container class="full-width">
 						<label>
 							 {{ FORM.RULES.keterangan.label }}
@@ -69,9 +70,14 @@
 						<md-hint align="end">{{ barangForm.get('keterangan').value.length + '/' + FORM.RULES.keterangan.maxLength }}</md-hint>
 					</md-input-container>
 				</div>
+				<div fxFlex='100'>
+					{{ barangForm.get('Category').value | json }}
+				</div>
 			</md-card-content>
 			<md-card-actions align="end" style="padding:15px;">
-				<button md-raised-button color="primary" type="submit">{{ action }}</button>
+				<button [disabled]='barangForm.get("Category").hasError("required") || barangForm.get("nama").hasError("required")' md-raised-button color="primary" type="submit">
+					{{ action }}
+				</button>
 			</md-card-actions>
 		</md-card>
 	</form>

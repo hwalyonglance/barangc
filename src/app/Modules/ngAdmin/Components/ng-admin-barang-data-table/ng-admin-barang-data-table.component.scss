@@ -1,0 +1,35 @@
+table, thead, tbody, tr{
+	max-width: 100% !important;
+}
+thead th{
+	background-color: #7E57C2;
+	border-radius: 0;
+	color: #DDD;
+}
+td{
+	border-radius: 0;
+	color: #000;
+}
+tbody {
+	tr:nth-child(odd){
+		background-color: #9575CD;
+	}
+	tr:nth-child(even){
+		background-color: #B39DDB;
+		border-radius: 0;
+	}
+	tr:hover{
+		background-color: #42A5F5;
+	}
+	tr td:last-of-type{
+		color: #FFF;
+		opacity: 0;
+	}
+	tr:hover td:last-of-type{
+		opacity: 1;
+	}
+}
+.desc{
+	column-count: 1;
+	// column-width: 200px;
+}
