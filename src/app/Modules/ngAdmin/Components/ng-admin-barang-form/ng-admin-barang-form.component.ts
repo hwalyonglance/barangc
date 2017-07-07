@@ -35,41 +35,42 @@ export class NgAdminBarangFormComponent {
 		private _formService: FormService,
 		private _config: ConfigService
 	) {
-		const __p__this = this;
+		const $this = this;
 		this.barangForm = this.__formBuilder$$.group(this.FORM.FORM_GROUP_OBJECT_PARAM);
 		this.barangForm.get('UUID').setValue(this._formService.randomString().toLowerCase());
 		this.barangForm.get('foto').setValue(_);
 		this.barangForm.get('harga').valueChanges.subscribe((val) => {
-			if (val < __p__this.FORM.RULES.harga.min) { __p__this.barangForm.get('harga').setValue(__p__this.FORM.RULES.harga.min); }
-			if (val > __p__this.FORM.RULES.harga.max) { __p__this.barangForm.get('harga').setValue(__p__this.FORM.RULES.harga.max); }
+			if (val < $this.FORM.RULES.harga.min) { $this.barangForm.get('harga').setValue($this.FORM.RULES.harga.min); }
+			if (val > $this.FORM.RULES.harga.max) { $this.barangForm.get('harga').setValue($this.FORM.RULES.harga.max); }
 		});
 		this.barangForm.get('stok').valueChanges.subscribe((val) => {
-			if (val < __p__this.FORM.RULES.stok.min) { __p__this.barangForm.get('stok').setValue(__p__this.FORM.RULES.stok.min); }
-			if (val > __p__this.FORM.RULES.stok.max) { __p__this.barangForm.get('stok').setValue(__p__this.FORM.RULES.stok.max); }
+			if (val < $this.FORM.RULES.stok.min) { $this.barangForm.get('stok').setValue($this.FORM.RULES.stok.min); }
+			if (val > $this.FORM.RULES.stok.max) { $this.barangForm.get('stok').setValue($this.FORM.RULES.stok.max); }
 		});
 		this.$action$.subscribe((action: Action) => {
 			if (action === 'Update') {
-				__p__this.barangForm.get('UUID').setValue(__p__this.$Item.UUID);
-				__p__this.barangForm.get('Category').setValue(__p__this.$Item.Category);
-				__p__this.barangForm.get('nama').setValue(__p__this.$Item.name);
-				__p__this.barangForm.get('foto').setValue(__p__this.$Item.image);
-				__p__this.barangForm.get('harga').setValue(__p__this.$Item.price);
-				__p__this.barangForm.get('stok').setValue(__p__this.$Item.stock);
-				__p__this.barangForm.get('keterangan').setValue(__p__this.$Item.desc);
+				$this.action = action;
+				$this.barangForm.get('UUID').setValue($this.$Item.UUID);
+				$this.barangForm.get('Category').setValue($this.$Item.Category);
+				$this.barangForm.get('nama').setValue($this.$Item.name);
+				$this.barangForm.get('foto').setValue($this.$Item.image);
+				$this.barangForm.get('harga').setValue($this.$Item.price);
+				$this.barangForm.get('stok').setValue($this.$Item.stock);
+				$this.barangForm.get('keterangan').setValue($this.$Item.desc);
 			}
 		});
 		this.$Socket.on('Category.Data.get', (Categories: Category[]) => {
-			__p__this.$Categories = Categories;
+			$this.$Categories = Categories;
 		});
 		this.$Socket.on('Category.Data.add', (Category: Category) => {
-			__p__this.$Categories.unshift(Category);
+			$this.$Categories.unshift(Category);
 		});
 		this.$Socket.on('Category.Data.delete', (UUID) => {
-			const Categories = __p__this.$Categories;
+			const Categories = $this.$Categories;
 			const _Categories = [];
 			for (let i = 0; i < Categories.length; i++) {
 				if (Categories[i].UUID !== UUID) { _Categories.push(Categories[i]); }
-			} __p__this.$Categories = _Categories;
+			} $this.$Categories = _Categories;
 		});
 		this.$Socket.on('Category.Data.update', (Category: Category) => {
 			this.$Categories = this.$Categories.map(($Category: Category) => {

@@ -1,1 +1,12 @@
+<md-toolbar color="primary">
+	<button md-icon-button [mdMenuTriggerFor]="menu" aria-label="Open basic menu">
+		<md-icon>more_vert</md-icon>
+	</button> lorem ipsum dolor sit amet
+</md-toolbar>
+<md-menu #menu="mdMenu">
+	<button md-menu-item *ngFor="let item of options" (click)='openForm("Add")'>
+		{{ item.text }}
+	</button>
+</md-menu>
+
 <app-ng-admin-barang-data-table></app-ng-admin-barang-data-table>

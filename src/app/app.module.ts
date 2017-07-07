@@ -46,15 +46,12 @@ import { NgAuthUserComponent } from './Modules/ngAuth/Components/ng-auth-user/ng
 import { NgAuthNavComponent } from './Modules/ngAuth/Components/ng-auth-nav/ng-auth-nav.component';
 import { SocketComponent } from './Components/socket/socket.component';
 import { ImgpComponent } from './Components/imgp/imgp.component';
-import { TruncatePipe } from './Modules/ngAdmin/Pipes/truncate.pipe';
-import { ExponentialPipe } from './Pipes/exponential.pipe';
 
 
 
 
 @NgModule({
 	declarations: [
-		TruncatePipe,
 		AppComponent,
 		HomeComponent,
 		FaIconComponent,
@@ -84,7 +81,6 @@ import { ExponentialPipe } from './Pipes/exponential.pipe';
 		NgAuthNgadminComponent,
 		NgAuthUserComponent,
 		NgAuthNavComponent,
-		ExponentialPipe,
 
 	],
 	imports: [

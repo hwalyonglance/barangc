@@ -1,13 +1,3 @@
-<md-toolbar color="primary">
-	<button md-icon-button [mdMenuTriggerFor]="menu" aria-label="Open basic menu">
-		<md-icon>more_vert</md-icon>
-	</button> lorem ipsum dolor sit amet
-</md-toolbar>
-<md-menu #menu="mdMenu">
-	<button md-menu-item *ngFor="let item of options" (click)='openForm("Add")'>
-		{{ item.text }}
-	</button>
-</md-menu>
 <table border="1" class="responsive-table">
 	<thead>
 		<tr>
@@ -25,13 +15,13 @@
 			<td> {{ Item.Category.name }} </td>
 			<td> <img [src]='Item.image' style='max-width: 100px; max-height: 100px'> </td>
 			<td> {{ Item.name }} </td>
-			<td> {{ Item.price | exponential | currency:'IDR' }} </td>
+			<td> {{ Item.price | currency:'IDR' }} </td>
 			<td> {{ Item.stock }} </td>
 			<td class='desc'> {{ Item.desc.substr(0, 32) + '...' }} </td>
 			<!--<td>  {{ Item.}}  </td>-->
 			<td>
 				<md-icon mdTooltip='Delete' (click)='delete(Item.UUID)' class="category-btn">delete</md-icon>
-				<md-icon mdTooltip='Edit' (click)='openForm("Update", Item)' class="category-btn">mode_edit</md-icon>
+				<md-icon mdTooltip='Edit' (click)='$update$.emit(Item)' class="category-btn">mode_edit</md-icon>
 			</td>
 		</tr>
 	</tbody>

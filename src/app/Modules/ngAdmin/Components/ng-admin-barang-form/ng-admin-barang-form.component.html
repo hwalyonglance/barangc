@@ -65,9 +65,6 @@
 						<md-hint align="end">{{ barangForm.get('keterangan').value.length + '/' + FORM.RULES.keterangan.maxLength }}</md-hint>
 					</md-input-container>
 				</div>
-				<div fxFlex='100'>
-					{{ barangForm.get('Category').value | json }}
-				</div>
 			</md-card-content>
 			<md-card-actions align="end" style="padding:15px;">
 				<button [disabled]='barangForm.get("Category").hasError("required") || barangForm.get("nama").hasError("required")' md-raised-button color="primary" type="submit">
