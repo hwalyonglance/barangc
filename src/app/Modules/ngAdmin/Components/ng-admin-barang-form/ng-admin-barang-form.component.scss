@@ -4,9 +4,6 @@
 .full-width{
 	width: 100%;
 }
-.pad-15{
-	padding-left: 15px;
-}
 
 label.file{
 	background-color: #64DD17;
@@ -21,4 +18,9 @@ label.file{
 	color: #000;
 	resize: none;
 	overflow: auto;
+}
+@media (min-width: 959){
+	.pad-15{
+		padding-left: 15px;
+	}
 }

@@ -14,21 +14,20 @@ export const RULES = {
 	keterangan: { label: 'Keterangan', required: false, maxLength: 256 }
 };
 export const VALIDATION_MESSAGES = {
-	UUID: { required: 'UUID is required.', valid: 'UUID is valid.' },
-	Category: { required: 'Category is required', valid: 'Category is valid.' },
+	UUID: { required: 'UUID is required.' },
+	Category: { required: 'Category is required' },
 	nama: {
-		valid: 'valid.', required: RULES.nama.label + ' is required.',
+		required: RULES.nama.label + ' is required.',
 		minLength: RULES.nama.label + ' must be at least ' + RULES.nama.minLength + ' characters long.',
 		maxLength: RULES.nama.label + ' cannot be more than ' + RULES.nama.maxLength + ' characters long.'
 	}, foto: {
-		valid: RULES.foto.label + ' is valid.', required: RULES.foto.label + ' is required.',
+		required: RULES.foto.label + ' is required.',
 		maxLength: RULES.foto.label + ' cannot be more than ' + RULES.foto.maxLength + ' characters long.'
 	}, harga: {
-		valid: 'valid', required: RULES.harga.label + ' is required.',
+		required: RULES.harga.label + ' is required.',
 	}, stok: {
-		valid: 'valid.', required: RULES.stok.label + ' is required.',
+		required: RULES.stok.label + ' is required.',
 	}, keterangan: {
-		valid: 'valid.',
 		maxLength: RULES.keterangan.label + ' cannot be more than ' + RULES.keterangan.maxLength + ' characters long.'
 	}
 };

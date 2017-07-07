@@ -1,15 +1,4 @@
-<md-toolbar id='toolbar'>
-	<button md-icon-button [mdMenuTriggerFor]="menu" aria-label="Open basic menu">
-		<md-icon>more_vert</md-icon>
-	</button>
 
-	lorem ipsum dolor sit amet
-</md-toolbar>
-<md-menu #menu="mdMenu">
-	<button md-menu-item *ngFor="let item of options" (click)='openForm("Add")'>
-		{{ item.text }}
-	</button>
-</md-menu>
 <table border="1" class="responsive-table">
 	<thead>
 		<tr>
@@ -26,7 +15,7 @@
 			<td>{{ Category.updatedAt }}</td>
 			<td>
 				<md-icon mdTooltip='Delete' (click)='delete(Category.UUID)' class="category-btn">delete</md-icon>
-				<md-icon mdTooltip='Edit' (click)='openForm("Update", Category)' class="category-btn">mode_edit</md-icon>
+				<md-icon mdTooltip='Edit' (click)='$update$.emit(Category)' class="category-btn">mode_edit</md-icon>
 			</td>
 		</tr>
 	</tbody>

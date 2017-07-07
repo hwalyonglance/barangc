@@ -4,7 +4,7 @@ export const RULES = {
 	UUID: {
 		required: true
 	},
-	categoryName: {
+	name: {
 		required: true,
 		minLength: 1,
 		maxLength: 32
@@ -13,27 +13,25 @@ export const RULES = {
 export const VALIDATION_MESSAGES = {
 	UUID: {
 		required: 'UUID is required.',
-		valid: 'UUID is valid.'
 	},
-	categoryName: {
+	name: {
 		required: 'Category name is required.',
-		minLength: 'Category name must be at least ' + RULES.categoryName.minLength + ' characters long.',
-		maxLength: 'Category name cannot be more than ' + RULES.categoryName.maxLength + ' characters long.',
-		valid: 'Category name is valid.'
+		minLength: 'Category name must be at least ' + RULES.name.minLength + ' characters long.',
+		maxLength: 'Category name cannot be more than ' + RULES.name.maxLength + ' characters long.',
 	}
 };
 export const VALIDATORS = {
 	UUID: [
 		Validators.required
 	],
-	categoryName: [
+	name: [
 		Validators.required,
-		Validators.minLength(RULES.categoryName.minLength),
-		Validators.maxLength(RULES.categoryName.maxLength)
+		Validators.minLength(RULES.name.minLength),
+		Validators.maxLength(RULES.name.maxLength)
 	]
 };
 
 export const FORM_GROUP_OBJECT_PARAM = {
 	UUID: ['', VALIDATORS.UUID],
-	categoryName: ['', VALIDATORS.categoryName]
+	name: ['', VALIDATORS.name]
 };
