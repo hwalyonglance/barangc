@@ -15,7 +15,7 @@ declare var io: SocketIOStatic;
 	styleUrls: ['./ng-admin-kategori-data-table.component.scss']
 })
 export class NgAdminKategoriDataTableComponent {
-	private $Socket: SocketIO.Server = io(this.__configService.SocketIO.origin);
+	$Socket: SocketIO.Server = io(this.__configService.SocketIO.origin);
 	$update$ = new EventEmitter<Category>();
 	$Categories: Category[] | null = [];
 	constructor(

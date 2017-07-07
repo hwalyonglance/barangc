@@ -1,5 +1,6 @@
+import { NgAdminBarangDataTableComponent } from './ng-admin-barang-data-table.component';
 import { Item } from '../../../../Interfaces/item';
-export function $Socket($this) {
+export function $Socket($this: NgAdminBarangDataTableComponent) {
 	$this.$Socket.on('Item.Data.get', (Items: Item[]) => $this.$Items = Items);
 	$this.$Socket.on('Item.Data.add', (Item: Item) => {
 		$this.$Items.unshift(Item);
