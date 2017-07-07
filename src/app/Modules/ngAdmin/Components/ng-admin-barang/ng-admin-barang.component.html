@@ -3,6 +3,9 @@
 		<md-icon>more_vert</md-icon>
 	</button> lorem ipsum dolor sit amet
 </md-toolbar>
+<div id='animasi' (click)='animasikan()'>
+	ini untuk animasi
+</div>
 <md-menu #menu="mdMenu">
 	<button md-menu-item *ngFor="let item of options" (click)='openForm("Add")'>
 		{{ item.text }}

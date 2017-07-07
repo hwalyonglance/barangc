@@ -7,6 +7,8 @@ import { DOCUMENT } from '@angular/platform-browser';
 import { Action } from '../../../../Types/actions';
 import { Item } from '../../../../Interfaces/item';
 
+import { CSSService } from '../../../../Services/css.service';
+
 declare var io: SocketIOStatic;
 @Component({
 	selector: 'app-ng-admin-barang',
@@ -22,7 +24,8 @@ export class NgAdminBarangComponent implements AfterViewInit {
 		{ text: 'baz' },
 	];
 	constructor(
-		public __mdDialog$$: MdDialog
+		public __mdDialog$$: MdDialog,
+		private _css: CSSService
 	) {}
 	ngAfterViewInit() {
 		const __p__this = this;
@@ -35,5 +38,8 @@ export class NgAdminBarangComponent implements AfterViewInit {
 		dialogRef.componentInstance.$Item = Item;
 		dialogRef.componentInstance.$action$.emit(action);
 		dialogRef.componentInstance.$submit$.subscribe(() => { dialogRef.close() });
+	}
+	animasikan(): void {
+		this._css.animate({ selector: '#animasi', className: 'bounce', duration: 5000});
 	}
 }

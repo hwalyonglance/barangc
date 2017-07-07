@@ -13,6 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormService } from './Services/form/form.service';
 import { ConfigService } from './Services/config/config.service';
 import { RedirectService } from './Services/redirect/redirect.service';
+import { CSSService } from './Services/css.service';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './Components/home/home.component';
@@ -97,7 +98,13 @@ import { ImgpComponent } from './Components/imgp/imgp.component';
 		ReactiveFormsModule,
 		FlexLayoutModule,
 	],
-	providers: [FormService, ConfigService, RedirectService, NgadminChildrenGuard ],
+	providers: [
+		FormService,
+		ConfigService,
+		CSSService,
+		RedirectService,
+		NgadminChildrenGuard
+	],
 	bootstrap: [AppComponent],
 	entryComponents: [
 		ImgpComponent,

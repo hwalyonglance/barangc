@@ -1,10 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 /* You can add global styles to this file, and also import other style files */
 
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import '~font-awesome/css/font-awesome.min.css';
 @import '~materialize-css/bin/materialize.min.css';
 @import '~material-design-icons/iconfont/material-icons.css';
-@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '~animate.css/animate.min.css';
 
 body {
 	padding: 0 !important;
