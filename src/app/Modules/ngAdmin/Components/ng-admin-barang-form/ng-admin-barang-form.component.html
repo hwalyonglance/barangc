@@ -1,5 +1,5 @@
 <div fxLayout="row" style='min-width: 300px'>
-	<form [formGroup]="barangForm" fxFlex (ngSubmit)="onSubmit(barangForm)" novalidate>
+	<form [formGroup]="barangForm" fxFlex (ngSubmit)="onSubmit(barangForm.value)" novalidate>
 		<md-card class="demo-card demo-basic">
 			<md-toolbar color="primary">Barang ({{ action }})</md-toolbar>
 			<md-card-content fxLayout="row" fxLayoutWrap style="padding: 15px;">

@@ -16,13 +16,11 @@ export class NgAuthUserComponent implements OnInit {
 	}
 	buildNgauthNgadminForm(): void {
 		this.authForm = this._formBuilder$$.group(this._FORM_.FORM_GROUP_OBJECT_PARAM);
-		// this.authForm = _NG_AUTH_NG_ADMIN_FORM_.FORM_GROUP_OBJECT;
 	}
-	onSubmit(controls): void {
-		// console.log(controls);
+	onSubmit(authForm): void {
 		const _store = {
-			username: controls.username.value,
-			password: controls.password.value,
+			username: authForm.username,
+			password: authForm.password,
 			timestamp: Date.now()
 		};
 		window.localStorage.ngadmin = JSON.stringify(_store);
@@ -40,8 +38,7 @@ export class NgAuthUserComponent implements OnInit {
 	}
 	onPaste($event: any): void {
 		setTimeout(() => {
-			const val = this.authForm.controls.username.value;
-			const result = val.replace(/[\s\r\n\`\~\!\@\#\$\%\^\&\*\(\)\-\=\+\[\{\]\}\\\|\;\:\'\"\,\<\.\>\/\?]/gi, '');
+			const result = this.authForm.controls.username.value.replace(/[\s\r\n\`\~\!\@\#\$\%\^\&\*\(\)\-\=\+\[\{\]\}\\\|\;\:\'\"\,\<\.\>\/\?]/gi, '');
 			this.authForm.controls.username.setValue(result);
 		}, 1);
 	}

@@ -33,17 +33,15 @@ export class NgAdminKategoriFormComponent implements OnInit, OnChanges {
 	}
 	ngOnInit() {}
 	ngOnChanges() {}
-	onSubmit(categoryForm: FormGroup): void {
+	onSubmit(categoryForm): void {
+		const Category = {
+			UUID: categoryForm.UUID,
+			name: categoryForm.name.trim()
+		};
 		if (this.action === 'Add') {
-			this.$Socket.emit('Category.Form.add', {
-				UUID: categoryForm.get('UUID').value,
-				name: categoryForm.get('name').value.trim()
-			});
+			this.$Socket.emit('Category.Form.add', Category);
 		} else {
-			this.$Socket.emit('Category.Form.update', {
-				UUID: this.Category.UUID,
-				name: categoryForm.get('name').value.trim()
-			});
+			this.$Socket.emit('Category.Form.update', Category);
 		}
 		this.$KategoriForm$.next();
 	}

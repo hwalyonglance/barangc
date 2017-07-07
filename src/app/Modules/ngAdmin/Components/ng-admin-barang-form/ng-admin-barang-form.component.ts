@@ -80,10 +80,11 @@ export class NgAdminBarangFormComponent {
 			});
 		});
 	}
-	onSubmit(_barangForm: FormGroup): void {
-		const $Category: Category = _barangForm.get('Category').value
+	onSubmit(barangForm): void {
+		const $Category: Category = barangForm.Category;
+		console.log($Category);
 		const barangData: Item = {
-			UUID: _barangForm.get('UUID').value,
+			UUID: barangForm.UUID,
 			ngadmin: window.localStorage.ngadmin,
 			Category: {
 				UUID: $Category.UUID,
@@ -91,11 +92,11 @@ export class NgAdminBarangFormComponent {
 				createdAt: $Category.createdAt,
 				updatedAt: $Category.updatedAt
 			},
-			name: _barangForm.get('nama').value,
-			image: _barangForm.get('foto').value,
-			price: _barangForm.get('harga').value,
-			stock: _barangForm.get('stok').value,
-			desc: _barangForm.get('keterangan').value
+			name: barangForm.nama,
+			image: barangForm.foto,
+			price: barangForm.harga,
+			stock: barangForm.stok,
+			desc: barangForm.keterangan
 		};
 		if ( this.action === 'Add' ) {
 			this.$Socket.emit('Item.Form.add', barangData);

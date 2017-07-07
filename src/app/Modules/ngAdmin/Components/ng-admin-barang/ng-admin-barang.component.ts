@@ -39,7 +39,4 @@ export class NgAdminBarangComponent implements AfterViewInit {
 		dialogRef.componentInstance.$action$.emit(action);
 		dialogRef.componentInstance.$submit$.subscribe(() => { dialogRef.close() });
 	}
-	animasikan(): void {
-		this._css.animate({ selector: '#animasi', className: 'bounce', duration: 5000});
-	}
 }

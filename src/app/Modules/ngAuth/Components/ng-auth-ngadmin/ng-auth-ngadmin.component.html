@@ -1,7 +1,7 @@
 <div fxLayout="row">
 	<div fxFlex.xs="5" fxFlex.sm="15" fxFlex.md="25" fxFlex.lg="35"></div>
 		<div fxFlex.xs="90" fxFlex.sm="70" fxFlex.md="50" fxFlex.lg="30" class="grey">
-			<form [formGroup]="authForm" (ngSubmit)="onSubmit(authForm)" novalidate>
+			<form [formGroup]="authForm" (ngSubmit)="onSubmit(authForm.value)" novalidate>
 				<md-card>
 					<!--<md-card-header #q>ini Header</md-card-header>-->
 					<md-card-title #w>NgAuth</md-card-title>

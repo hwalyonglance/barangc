@@ -17,12 +17,13 @@ export class NgAuthNgadminComponent implements OnInit {
 	buildNgauthNgadminForm(): void {
 		this.authForm = this._formBuilder.group(_NG_AUTH_NG_ADMIN_FORM_.FORM_GROUP_OBJECT_PARAM);
 	}
-	onSubmit(authForm: FormGroup): void {
+	onSubmit(authForm): void {
 		window.localStorage.ngadmin = JSON.stringify({
-			username: authForm.get('username').value,
-			password: authForm.get('password').value,
+			username: authForm.username,
+			password: authForm.password,
 			created_at: Date.now()
 		});
+		console.log(authForm.value);
 		this._router.navigate(['ngadmin', 'dashboard']);
 	}
 	onKeyPress($event: KeyboardEvent): void {
