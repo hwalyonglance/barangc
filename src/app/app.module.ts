@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MaterialModule, CdkDataTableModule } from '@angular/material';
-import { HttpModule } from '@angular/http';
+import { MaterialModule } from '@angular/material';
+import { A11yModule, BidiModule, CdkTableModule, ObserveContentModule, PlatformModule, PortalModule } from '@angular/cdk';
+// import { HttpModule, JsonpModule } from '@angular/http';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -87,8 +88,6 @@ import { ImgpComponent } from './Components/imgp/imgp.component';
 	imports: [
 		AppRoutingModule,
 
-		CdkDataTableModule,
-
 		BrowserModule.withServerTransition({appId: 'barang#rusman'}),
 		BrowserAnimationsModule,
 		FormsModule,
@@ -97,6 +96,7 @@ import { ImgpComponent } from './Components/imgp/imgp.component';
 		MaterialModule,
 		ReactiveFormsModule,
 		FlexLayoutModule,
+		A11yModule, BidiModule, CdkTableModule, ObserveContentModule, PlatformModule, PortalModule
 	],
 	providers: [
 		FormService,

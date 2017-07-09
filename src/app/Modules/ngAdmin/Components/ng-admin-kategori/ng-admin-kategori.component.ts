@@ -8,7 +8,8 @@ import { Action } from '../../../../Types/actions';
 import { Category } from '../../../../Interfaces/category';
 
 
-declare var io: SocketIOStatic;
+// declare var io: SocketIOStatic;
+declare var io: any;
 @Component({
 	selector: 'app-ng-admin-kategori',
 	templateUrl: './ng-admin-kategori.component.html',

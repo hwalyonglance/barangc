@@ -8,7 +8,8 @@ import { Category } from '../../../../Interfaces/category';
 import { $Socket } from './ng-admin-kategori-data-table.socketio';
 
 
-declare var io: SocketIOStatic;
+// declare var io: SocketIOStatic;
+declare var io: any;
 @Component({
 	selector: 'app-ng-admin-kategori-data-table',
 	templateUrl: './ng-admin-kategori-data-table.component.html',

@@ -11,7 +11,8 @@ import { ImgpComponent } from '../../../../Components/imgp/imgp.component';
 
 import { foto as _ } from './foto';
 
-declare var io: SocketIOStatic;
+// declare var io: SocketIOStatic;
+declare var io: any;
 @Component({
 	selector: 'app-ng-admin-barang-form',
 	templateUrl: './ng-admin-barang-form.component.html',

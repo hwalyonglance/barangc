@@ -8,6 +8,7 @@ dist
 
 # dependencies
 /node_modules
+node_modules -b
 
 # IDEs and editors
 /.idea

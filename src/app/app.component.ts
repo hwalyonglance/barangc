@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-declare var io: SocketIOStatic;
+// declare var io: SocketIOStatic;
 
 @Component({
 	selector: 'app-root',

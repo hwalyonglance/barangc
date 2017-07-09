@@ -9,7 +9,8 @@ import { Action } from '../../../../Types/actions';
 import { Category } from '../../../../Interfaces/category';
 
 
-declare var io: SocketIOStatic;
+// declare var io: SocketIOStatic;
+declare var io: any;
 @Component({
 	selector: 'app-ng-admin-kategori-form',
 	templateUrl: './ng-admin-kategori-form.component.html',

@@ -7,7 +7,8 @@ import { Action } from '../../../../Types/actions';
 import { Category } from '../../../../Interfaces/category';
 import { Item } from '../../../../Interfaces/item';
 import { $Socket } from './ng-admin-barang-data-table.socketio';
-declare var io: SocketIOStatic;
+// declare var io: SocketIOStatic;
+declare var io: any;
 
 @Component({
 	selector: 'app-ng-admin-barang-data-table',

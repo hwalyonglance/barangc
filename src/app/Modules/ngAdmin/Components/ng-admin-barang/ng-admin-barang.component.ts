@@ -9,7 +9,8 @@ import { Item } from '../../../../Interfaces/item';
 
 import { CSSService } from '../../../../Services/css.service';
 
-declare var io: SocketIOStatic;
+// declare var io: SocketIOStatic;
+declare var io: any;
 @Component({
 	selector: 'app-ng-admin-barang',
 	templateUrl: './ng-admin-barang.component.html',
