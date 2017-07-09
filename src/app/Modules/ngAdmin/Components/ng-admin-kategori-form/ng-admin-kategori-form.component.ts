@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnChanges, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import * as _BARANG_FORM_ from './ng-admin-kategori.form';
@@ -16,13 +16,13 @@ declare var io: any;
 	templateUrl: './ng-admin-kategori-form.component.html',
 	styleUrls: ['./ng-admin-kategori-form.component.scss']
 })
-export class NgAdminKategoriFormComponent implements OnInit, OnChanges {
+export class NgAdminKategoriFormComponent implements OnInit, OnChanges, OnDestroy {
 	@Output() $KategoriForm$ = new EventEmitter();
 	FORM = _BARANG_FORM_;
 	categoryForm: FormGroup;
 	action: Action = 'Add';
 	Category: Category | null = new Category();
-	private $Socket: SocketIO.Server = io(this.__configService.SocketIO.origin);
+	$Socket: SocketIO.Server | null = io(this.__configService.SocketIO.origin);
 	constructor(
 		private __formBuilder$$: FormBuilder,
 		private __router$$: Router,
@@ -34,6 +34,9 @@ export class NgAdminKategoriFormComponent implements OnInit, OnChanges {
 	}
 	ngOnInit() {}
 	ngOnChanges() {}
+	ngOnDestroy() {
+		this.$Socket = null;
+	}
 	onSubmit(categoryForm): void {
 		const Category = {
 			UUID: categoryForm.UUID,

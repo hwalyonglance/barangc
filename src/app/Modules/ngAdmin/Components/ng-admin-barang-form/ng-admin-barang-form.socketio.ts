@@ -3,7 +3,7 @@ import { Category } from '../../../../Interfaces/category';
 declare var io: SocketIOStatic;
 
 export function $Socket($this: NgAdminBarangFormComponent, origin: string) {
-	$this.$Socket.on('Category.Data.get', (Categories: Category[]) => {
+	$this.$Socket.emit('Category.Data.get', (Categories: Category[]) => {
 		$this.$Categories = Categories;
 	});
 	$this.$Socket.on('Category.Data.add', (Category: Category) => {
