@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Inject, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Inject, OnDestroy, ViewChild } from '@angular/core';
 import { MdDialog, MdDialogRef } from '@angular/material';
 import { ConfigService } from '../../../../Services/config/config.service';
 import { DOCUMENT } from '@angular/platform-browser';
@@ -8,15 +8,14 @@ import { Category } from '../../../../Interfaces/category';
 import { $Socket } from './ng-admin-kategori-data-table.socketio';
 
 
-// declare var io: SocketIOStatic;
-declare var io: any;
+
 @Component({
 	selector: 'app-ng-admin-kategori-data-table',
 	templateUrl: './ng-admin-kategori-data-table.component.html',
 	styleUrls: ['./ng-admin-kategori-data-table.component.scss']
 })
-export class NgAdminKategoriDataTableComponent {
-	$Socket: SocketIO.Server = io(this.__configService.SocketIO.origin);
+export class NgAdminKategoriDataTableComponent implements OnDestroy {
+	$Socket: SocketIO.Server | null;
 	$update$ = new EventEmitter<Category>();
 	$Categories: Category[] | null = [];
 	constructor(
@@ -24,7 +23,10 @@ export class NgAdminKategoriDataTableComponent {
 		private __configService: ConfigService,
 		@Inject(DOCUMENT) doc: any
 	) {
-		$Socket(this);
+		$Socket(this, this.__configService.SocketIO.origin);
+	}
+	ngOnDestroy() {
+		this.$Socket = null;
 	}
 	delete(UUID: string): void {
 		if (confirm('Hapus')) {

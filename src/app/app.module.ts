@@ -14,8 +14,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormService } from './Services/form/form.service';
 import { ConfigService } from './Services/config/config.service';
 import { RedirectService } from './Services/redirect/redirect.service';
-import { CSSService } from './Services/css.service';
+import { CssService } from './Services/css.service';
 
+// app-pipe:
+import { ExponentialPipe } from './Pipes/exponential.pipe';
+import { TruncatePipe } from './Pipes/truncate.pipe';
+
+// app-component:
 import { AppComponent } from './app.component';
 import { HomeComponent } from './Components/home/home.component';
 import { FaIconComponent } from './Components/fa-icon/fa-icon.component';
@@ -54,6 +59,8 @@ import { ImgpComponent } from './Components/imgp/imgp.component';
 
 @NgModule({
 	declarations: [
+		ExponentialPipe,
+		TruncatePipe,
 		AppComponent,
 		HomeComponent,
 		FaIconComponent,
@@ -101,7 +108,7 @@ import { ImgpComponent } from './Components/imgp/imgp.component';
 	providers: [
 		FormService,
 		ConfigService,
-		CSSService,
+		CssService,
 		RedirectService,
 		NgadminChildrenGuard
 	],

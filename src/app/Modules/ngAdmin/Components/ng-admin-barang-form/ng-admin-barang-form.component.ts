@@ -1,4 +1,4 @@
-import { Component, ViewChild, Output, EventEmitter } from '@angular/core';
+import { Component, ViewChild, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { MdDialog } from '@angular/material';
 import * as _barangForm_ from './ng-admin-barang.form';
@@ -8,6 +8,7 @@ import { Action } from '../../../../Types/actions';
 import { Category } from '../../../../Interfaces/category';
 import { Item } from '../../../../Interfaces/item';
 import { ImgpComponent } from '../../../../Components/imgp/imgp.component';
+import { $Socket } from './ng-admin-barang-form.socketio';
 
 import { foto as _ } from './foto';
 
@@ -18,7 +19,7 @@ declare var io: any;
 	templateUrl: './ng-admin-barang-form.component.html',
 	styleUrls: ['./ng-admin-barang-form.component.scss']
 })
-export class NgAdminBarangFormComponent {
+export class NgAdminBarangFormComponent implements OnDestroy {
 	@Output() $submit$ = new EventEmitter();
 	@Output() $action$ = new EventEmitter<Action>();
 	@ViewChild('itf') itf: any;
@@ -29,7 +30,7 @@ export class NgAdminBarangFormComponent {
 	action: Action = 'Add';
 	$Categories: Category[] | null;
 	$Item: Item | null;
-	$Socket: SocketIO.Server = io(this._config.SocketIO.origin);
+	$Socket: SocketIO.Server | null = io(this._config.SocketIO.origin);
 	constructor(
 		private __formBuilder$$: FormBuilder,
 		public __mdDialog$$: MdDialog,
@@ -60,26 +61,10 @@ export class NgAdminBarangFormComponent {
 				$this.barangForm.get('keterangan').setValue($this.$Item.desc);
 			}
 		});
-		this.$Socket.on('Category.Data.get', (Categories: Category[]) => {
-			$this.$Categories = Categories;
-		});
-		this.$Socket.on('Category.Data.add', (Category: Category) => {
-			$this.$Categories.unshift(Category);
-		});
-		this.$Socket.on('Category.Data.delete', (UUID) => {
-			const Categories = $this.$Categories;
-			const _Categories = [];
-			for (let i = 0; i < Categories.length; i++) {
-				if (Categories[i].UUID !== UUID) { _Categories.push(Categories[i]); }
-			} $this.$Categories = _Categories;
-		});
-		this.$Socket.on('Category.Data.update', (Category: Category) => {
-			this.$Categories = this.$Categories.map(($Category: Category) => {
-				if ($Category.UUID === Category.UUID) {
-					$Category = Category;
-				}return $Category
-			});
-		});
+		$Socket(this, this._config.SocketIO.origin);
+	}
+	ngOnDestroy() {
+		this.$Socket = null;
 	}
 	onSubmit(barangForm): void {
 		const $Category: Category = barangForm.Category;

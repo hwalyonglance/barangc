@@ -7,7 +7,7 @@ import { DOCUMENT } from '@angular/platform-browser';
 import { Action } from '../../../../Types/actions';
 import { Item } from '../../../../Interfaces/item';
 
-import { CSSService } from '../../../../Services/css.service';
+import { CssService } from '../../../../Services/css.service';
 
 // declare var io: SocketIOStatic;
 declare var io: any;
@@ -26,7 +26,7 @@ export class NgAdminBarangComponent implements AfterViewInit {
 	];
 	constructor(
 		public __mdDialog$$: MdDialog,
-		private _css: CSSService
+		private _css: CssService
 	) {}
 	ngAfterViewInit() {
 		const __p__this = this;

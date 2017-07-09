@@ -9,7 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "preserver": "ng build --prod && ngc",
+    "preserver": "ng build && ngc",
     "cng": "ngc",
     "server": "ts-node src/server.ts",
     "serve": "ts-node src/server.ts"

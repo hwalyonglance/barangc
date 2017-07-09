@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AnimateCss } from '../Interfaces/animate-css';
 
 @Injectable()
-export class CSSService {
+export class CssService {
 	constructor() { }
 	animate(config: AnimateCss): void {
 		const el = document.querySelector(config.selector);

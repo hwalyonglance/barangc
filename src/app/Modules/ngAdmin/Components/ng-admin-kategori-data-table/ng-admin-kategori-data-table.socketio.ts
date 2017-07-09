@@ -1,7 +1,9 @@
 import { NgAdminKategoriDataTableComponent } from './ng-admin-kategori-data-table.component';
 import { Category } from '../../../../Interfaces/category';
+declare var io: SocketIOStatic;
 
-export function $Socket( $this: NgAdminKategoriDataTableComponent ) {
+export function $Socket( $this: NgAdminKategoriDataTableComponent, origin: string ) {
+	$this.$Socket = io(origin);
 	$this.$Socket.on('Category.Data.get', ($Categories) => {
 		$this.$Categories = $Categories;
 	});
