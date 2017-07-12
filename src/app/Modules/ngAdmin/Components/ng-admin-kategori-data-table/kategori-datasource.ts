@@ -13,6 +13,9 @@ import { Category } from '../../../../Interfaces/category';
 
 
 export class CategoryDataSource extends DataSource<any> {
+	_filterChange = new BehaviorSubject('');
+	get filter(): string { return this._filterChange.value; }
+	set filter(filter: string) { this._filterChange.next(filter); }
 	constructor(
 		private _categoryDatabase: CategoryDatabase,
 		private __paginator: MdPaginator,
@@ -25,15 +28,22 @@ export class CategoryDataSource extends DataSource<any> {
 		const displayDataChanges = [
 			this._categoryDatabase.dataChange,
 			this.__paginator.page,
-			this.__sort.mdSortChange
+			this.__sort.mdSortChange,
+			this._filterChange
 		];
 		return Observable.merge(...displayDataChanges).map(() => {
-			const data = this._categoryDatabase.data.slice();
 			// Grab the page's slice of data.
 			const startIndex = this.__paginator.pageIndex * this.__paginator.pageSize;
-			return this.getSortedData().splice(startIndex, this.__paginator.pageSize);
+			// MdSort
+			return this.getSortedData()
+				// Filtering
+				.filter((Category: Category) => {
+					const searchStr = Category.type.toLowerCase();
+					return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
+				})
+				// MdPaginator
+				.splice(startIndex, this.__paginator.pageSize)
 		});
-		// return this._categoryDatabase.dataChange;
 	}
 	disconnect() { }
 	getSortedData(): Category[] {

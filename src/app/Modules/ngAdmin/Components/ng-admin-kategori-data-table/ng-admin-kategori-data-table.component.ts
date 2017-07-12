@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Inject, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Inject, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { MdDialog, MdDialogRef, MdPaginator, MdSort } from '@angular/material';
 import { ConfigService } from '../../../../Services/config/config.service';
 import { DOCUMENT } from '@angular/platform-browser';
@@ -10,6 +10,11 @@ import { $Socket } from './ng-admin-kategori-data-table.socketio';
 import { CategoryDatabase } from './kategori-database';
 import { CategoryDataSource } from './kategori-datasource';
 
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/observable/fromEvent';
+
 declare var io: SocketIOStatic; //
 
 @Component({
@@ -20,6 +25,7 @@ declare var io: SocketIOStatic; //
 export class NgAdminKategoriDataTableComponent implements OnDestroy, OnInit {
 	@ViewChild(MdPaginator) _paginator_; MdPaginator;
 	@ViewChild(MdSort) _sort_: MdSort;
+	@ViewChild('filter') filter: ElementRef;
 	$Socket: SocketIO.Server | null = io(this.__configService.SocketIO.origin + '/data/category');
 	$update$ = new EventEmitter<Category>();
 	$Categories: Category[] | null = [];
@@ -31,11 +37,17 @@ export class NgAdminKategoriDataTableComponent implements OnDestroy, OnInit {
 		private __configService: ConfigService,
 		@Inject(DOCUMENT) doc: any
 	) {}
-	ngOnDestroy() {
-		this.$Socket = null;
-	}
 	ngOnInit() {
 		this.dataSource = new CategoryDataSource(this.database, this._paginator_, this._sort_);
+		Observable.fromEvent(this.filter.nativeElement, 'keyup')
+			.debounceTime(150).distinctUntilChanged()
+			.subscribe(() => {
+				if (!this.dataSource) { return; }
+				this.dataSource.filter = this.filter.nativeElement.value;
+			});
+	}
+	ngOnDestroy() {
+		this.$Socket = null;
 	}
 	delete(_id: string): void {
 		if (confirm('Hapus')) {

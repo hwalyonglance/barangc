@@ -1,7 +1,8 @@
 <md-toolbar id='toolbar'>
 	<button md-icon-button [mdMenuTriggerFor]="menu" aria-label="Open basic menu">
 		<md-icon>more_vert</md-icon>
-	</button> lorem ipsum dolor sit amet
+	</button>
+	Category
 </md-toolbar>
 <md-menu #menu="mdMenu">
 	<button md-menu-item *ngFor="let item of options" (click)='openForm("Add")'>
