@@ -1,6 +1,7 @@
 export class Category {
-	UUID: string;
-	name: string;
-	createdAt: number;
-	updatedAt: number;
+	_id?: string;
+	type: string;
+	createdAt?: any;
+	updatedAt?: any;
+	__v?: number;
 }

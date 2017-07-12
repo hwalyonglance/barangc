@@ -1,16 +1,14 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, ViewChild } from '@angular/core';
 import { MdDialog, MdDialogRef } from '@angular/material';
+import { DOCUMENT } from '@angular/platform-browser';
 import { NgAdminBarangDataTableComponent } from '../ng-admin-barang-data-table/ng-admin-barang-data-table.component';
 import { NgAdminBarangFormComponent } from '../ng-admin-barang-form/ng-admin-barang-form.component';
 import { ConfigService } from '../../../../Services/config/config.service';
-import { DOCUMENT } from '@angular/platform-browser';
-import { Action } from '../../../../Types/actions';
-import { Item } from '../../../../Interfaces/item';
-
 import { CssService } from '../../../../Services/css.service';
-
-// declare var io: SocketIOStatic;
-declare var io: any;
+import { Action } from '../../../../Types/actions';
+import { Category } from '../../../../Interfaces/category';
+import { Item } from '../../../../Interfaces/item';
+import { $Socket } from './ng-admin-barang.socketio';
 @Component({
 	selector: 'app-ng-admin-barang',
 	templateUrl: './ng-admin-barang.component.html',
@@ -18,6 +16,8 @@ declare var io: any;
 })
 export class NgAdminBarangComponent implements AfterViewInit {
 	@ViewChild(NgAdminBarangDataTableComponent) _ItemDataTable_: NgAdminBarangDataTableComponent;
+	$Categories$ = new EventEmitter();
+	$Categories: Category[] | null;
 	options = [
 		{ text: 'Tambah' },
 		{ text: 'foo' },
@@ -26,18 +26,26 @@ export class NgAdminBarangComponent implements AfterViewInit {
 	];
 	constructor(
 		public __mdDialog$$: MdDialog,
+		public _config: ConfigService,
 		private _css: CssService
-	) {}
+	) {
+		$Socket(this);
+	}
 	ngAfterViewInit() {
-		const __p__this = this;
+		const $this = this;
 		this._ItemDataTable_.$update$.subscribe(($Item: Item) => {
-			__p__this.openForm('Update', $Item);
+			$this.openForm('Update', $Item);
 		});
 	}
 	openForm(action: Action, Item: Item): void {
-		const dialogRef = this.__mdDialog$$.open(NgAdminBarangFormComponent, { width: '70%' });
+		const dialogRef = this.__mdDialog$$.open(NgAdminBarangFormComponent);
+		this.$Categories$.subscribe(() => {
+			dialogRef.componentInstance.$Categories = this.$Categories;
+		});
+		dialogRef.componentInstance.$Categories = this.$Categories;
 		dialogRef.componentInstance.$Item = Item;
 		dialogRef.componentInstance.$action$.emit(action);
 		dialogRef.componentInstance.$submit$.subscribe(() => { dialogRef.close() });
+		console.log('this ----> ', this.$Categories$);
 	}
 }

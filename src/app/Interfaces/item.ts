@@ -1,11 +1,13 @@
 import { Category } from './category';
 export interface Item {
-	UUID: string;
-	ngadmin: any;
+	_id?: string;
 	Category: Category;
 	name: string;
-	image: string;
+	image?: string;
 	price: number;
 	stock: number;
-	desc: string;
+	desc?: string;
+	createdAt?: any;
+	updatedAt?: any;
+	__v?: number;
 }

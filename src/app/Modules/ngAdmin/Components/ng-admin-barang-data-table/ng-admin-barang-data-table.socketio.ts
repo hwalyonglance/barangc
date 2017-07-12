@@ -1,25 +1,29 @@
 import { NgAdminBarangDataTableComponent } from './ng-admin-barang-data-table.component';
+import { Category } from '../../../../Interfaces/category';
 import { Item } from '../../../../Interfaces/item';
 declare var io: SocketIOStatic;
-export function $Socket($this: NgAdminBarangDataTableComponent, origin: string) {
-	$this.$Socket = io(origin);
-	$this.$Socket.on('connect', () => {
-		$this.$Socket.emit('Item.Data.get', (Items: Item[]) => {
-			$this.$Items = Items
+export function $Socket($this: NgAdminBarangDataTableComponent) {
+	const $Item$: SocketIO.Server = io($this.__configService.SocketIO.origin + '/data/item');
+	$Item$.on('connect', () => {
+		$Item$.emit('get', (Items: Item[]) => {
+			$this.$Items = Items.reverse();
+			console.log('emit get item => ', Items);
 		})
 	});
-	$this.$Socket.on('Item.Data.add', (Item: Item) => {
+	$Item$.on('add', (Item: Item) => {
 		$this.$Items.unshift(Item);
+		console.log('on add => ', Item);
 	});
-	$this.$Socket.on('Item.Data.update', (Item: Item) => {
+	$Item$.on('update', (Item: Item) => {
 		$this.$Items = $this.$Items.map(($Item: Item) => {
-			console.log($Item.UUID, Item.UUID);
-			return $Item.UUID === Item.UUID ? Item : $Item;
+			return $Item._id === Item._id ? Item : $Item;
 		});
+		console.log('on update => ', Item);
 	});
-	$this.$Socket.on('Item.Data.delete', (UUID: string) => {
+	$Item$.on('delete', (_id: string) => {
 		$this.$Items = $this.$Items.filter(($Item) => {
-			return $Item.UUID !== UUID;
+			return $Item._id !== _id;
 		});
+		console.log('on delete => ', _id);
 	});
 }

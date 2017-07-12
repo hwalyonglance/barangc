@@ -7,8 +7,6 @@ import { Action } from '../../../../Types/actions';
 import { Category } from '../../../../Interfaces/category';
 import { $Socket } from './ng-admin-kategori-data-table.socketio';
 
-
-
 @Component({
 	selector: 'app-ng-admin-kategori-data-table',
 	templateUrl: './ng-admin-kategori-data-table.component.html',
@@ -28,9 +26,9 @@ export class NgAdminKategoriDataTableComponent implements OnDestroy {
 	ngOnDestroy() {
 		this.$Socket = null;
 	}
-	delete(UUID: string): void {
+	delete(_id: string): void {
 		if (confirm('Hapus')) {
-			this.$Socket.emit('Category.Data.delete', UUID)
+			this.$Socket.emit('delete', _id)
 		}
 	}
 }

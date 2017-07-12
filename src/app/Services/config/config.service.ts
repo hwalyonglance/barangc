@@ -6,5 +6,8 @@ export class ConfigService {
 		host: 'localhost:3000',
 		origin: 'http://localhost:3000',
 	};
+	img = {
+		item: 'htt[://localhost:3000/uploads/items/'
+	}
 	constructor() { }
 }

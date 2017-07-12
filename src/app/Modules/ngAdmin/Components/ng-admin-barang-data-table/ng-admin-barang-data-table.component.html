@@ -1,7 +1,7 @@
 <table border="1" class="responsive-table">
 	<thead>
 		<tr>
-			<th>categoryName</th>
+			<th>categoryType</th>
 			<th>image</th>
 			<th>itemName</th>
 			<th>price</th>
@@ -12,15 +12,15 @@
 	</thead>
 	<tbody>
 		<tr *ngFor="let Item of $Items">
-			<td> {{ Item.Category.name }} </td>
-			<td> <img [src]='Item.image' style='max-width: 100px; max-height: 100px'> </td>
+			<td> {{ Item.Category.type }} </td>
+			<td> <img [src]=' "http://localhost:3000/uploads/items/" + Item.image' style='max-width: 100px; max-height: 100px'> </td>
 			<td> {{ Item.name }} </td>
 			<td> {{ Item.price | currency:'IDR' }} </td>
 			<td> {{ Item.stock }} </td>
 			<td class='desc'> {{ Item.desc.substr(0, 32) + '...' }} </td>
 			<!--<td>  {{ Item.}}  </td>-->
 			<td>
-				<md-icon mdTooltip='Delete' (click)='delete(Item.UUID)' class="category-btn">delete</md-icon>
+				<md-icon mdTooltip='Delete' (click)='delete(Item._id)' class="category-btn">delete</md-icon>
 				<md-icon mdTooltip='Edit' (click)='$update$.emit(Item)' class="category-btn">mode_edit</md-icon>
 			</td>
 		</tr>

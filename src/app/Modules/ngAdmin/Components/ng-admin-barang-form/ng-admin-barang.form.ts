@@ -1,11 +1,11 @@
 import { FormControl, FormGroup, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
 
 /**
- * UUID, nama, harga, foto, stok, keterangan
+ * _id, nama, harga, foto, stok, keterangan
  */
 
 export const RULES = {
-	UUID: { label: 'UUID', type: 'text', required: true },
+	_id: { label: '_id', type: 'text', required: true },
 	Category: { label: 'Kategori', required: true},
 	nama: { label: 'Nama Barang', type: 'text', required: true, minLength: 4, maxLength: 32 },
 	foto: { label: 'Foto', type: 'file', required: true, maxLength: 1073741824 /* 10 MB  */ },
@@ -14,7 +14,7 @@ export const RULES = {
 	keterangan: { label: 'Keterangan', required: false, maxLength: 256 }
 };
 export const VALIDATION_MESSAGES = {
-	UUID: { required: 'UUID is required.' },
+	_id: { required: '_id is required.' },
 	Category: { required: 'Category is required' },
 	nama: {
 		required: RULES.nama.label + ' is required.',
@@ -32,7 +32,7 @@ export const VALIDATION_MESSAGES = {
 	}
 };
 export const VALIDATORS = {
-	UUID: [ Validators.required ],
+	_id: [ Validators.required ],
 	Category: Validators.required,
 	foto: [ Validators.required, Validators.maxLength(RULES.foto.maxLength)],
 	nama: [Validators.required, Validators.minLength(RULES.nama.minLength), Validators.maxLength(RULES.nama.maxLength)],
@@ -41,7 +41,7 @@ export const VALIDATORS = {
 	keterangan: Validators.maxLength(RULES.keterangan.maxLength) ,
 };
 export const FORM_GROUP_OBJECT_PARAM = {
-	UUID: ['', VALIDATORS.UUID],
+	_id: ['', VALIDATORS._id],
 	Category: ['', VALIDATORS.Category],
 	nama: ['', VALIDATORS.nama],
 	foto: ['', VALIDATORS.foto],

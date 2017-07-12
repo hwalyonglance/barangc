@@ -1,16 +1,16 @@
-<div fxLayout="row" style='min-width: 300px'>
+<div fxLayout="row" style='min-width: 300px;max-width: 700px; max-height: 65vh;'>
 	<form [formGroup]="barangForm" fxFlex (ngSubmit)="onSubmit(barangForm.value)" novalidate>
 		<md-card class="demo-card demo-basic">
 			<md-toolbar color="primary">Barang ({{ action }})</md-toolbar>
 			<md-card-content fxLayout="row" fxLayoutWrap style="padding: 15px;">
 				<div fxFlex fxHide>
 					<md-input-container class="full-width">
-						<input mdInput readonly formControlName="UUID" [type]="FORM.RULES.UUID.type" [placeholder]="FORM.RULES.UUID.label" [required]="FORM.RULES.UUID.required">
+						<input mdInput readonly formControlName="_id" [type]="FORM.RULES._id.type" [placeholder]="FORM.RULES._id.label" [required]="FORM.RULES._id.required">
 					</md-input-container>
 				</div>
 				<div fxFlex='100' style='padding-top: 5px'>
 					<md-select class='full-width' formControlName='Category' [placeholder]="FORM.RULES.Category.label" [required]="FORM.RULES.Category.required" floatPlaceholder="floatPlaceholder">
-						<md-option *ngFor='let Category of $Categories' [value]='Category'>{{ Category.name }}</md-option>
+						<md-option *ngFor='let Category of $Categories' [value]='Category'>{{ Category.type }}</md-option>
 					</md-select>
 					<md-error class='small' *ngIf='barangForm.get("Category").hasError("required")'>{{ FORM.VALIDATION_MESSAGES.Category.required }}</md-error>
 				</div>
@@ -26,15 +26,14 @@
 						</md-hint>
 					</md-input-container>
 				</div>
-				<div fxFlex='100' fxFlex.gt-sm="30" fxLayout='column' style='font-size:.9em'>
-					<label fxFlex='50' md-raised-button for="itf" class='file'>
-						<input id='itf' formControlName='field' accept='image/*' (change)='file()' type="file" #itf style='width:0; opacity:0;'>
-						Upload Image
-					</label>
-					<label fxFlex='50' md-raised-button (click)='view()' class='file'>
-						View Image
-						<button type='button' style='width: 0; opacity:0;height: 0; margin: 0;'></button>
-					</label>
+				<div fxFlex='100' fxFlex.gt-sm="30" fxLayout='column' style='font-size:.9em;'>
+					<button fxFlex='50' type='button' class='file' md-raised-button (click)='simulate()'>
+						upload proto
+						<input type="file" accept='image/*' class='hide' id="itf" (change)='file()' #itf>
+					</button>
+					<button fxFlex='50' type='button' md-raised-button (click)='view()' class='file'>
+						View Proto
+					</button>
 				</div>
 				<div fxFlex='100' fxFlex.gt-sm="45">
 					<md-input-container class="full-width">
@@ -70,6 +69,7 @@
 				<button [disabled]='barangForm.get("Category").hasError("required") || barangForm.get("nama").hasError("required")' md-raised-button color="primary" type="submit">
 					{{ action }}
 				</button>
+				<button fxFlex fxHide id='btn-item'>SIOFU</button>
 			</md-card-actions>
 		</md-card>
 	</form>

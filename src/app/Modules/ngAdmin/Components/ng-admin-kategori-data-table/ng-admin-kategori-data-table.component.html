@@ -2,19 +2,15 @@
 <table border="1" class="responsive-table">
 	<thead>
 		<tr>
-			<th>name</th>
-			<th>createdAt</th>
-			<th>updatedAt</th>
+			<th>Type</th>
 			<th></th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr *ngFor="let Category of $Categories">
-			<td>{{ Category.name }}</td>
-			<td>{{ Category.createdAt }}</td>
-			<td>{{ Category.updatedAt }}</td>
+			<td>{{ Category.type }}</td>
 			<td>
-				<md-icon mdTooltip='Delete' (click)='delete(Category.UUID)' class="category-btn">delete</md-icon>
+				<md-icon mdTooltip='Delete' (click)='delete(Category._id)' class="category-btn">delete</md-icon>
 				<md-icon mdTooltip='Edit' (click)='$update$.emit(Category)' class="category-btn">mode_edit</md-icon>
 			</td>
 		</tr>

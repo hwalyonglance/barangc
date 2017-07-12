@@ -8,6 +8,8 @@ import { Category } from '../../../../Interfaces/category';
 import { Item } from '../../../../Interfaces/item';
 import { $Socket } from './ng-admin-barang-data-table.socketio';
 
+declare var io: SocketIOStatic;
+
 @Component({
 	selector: 'app-ng-admin-barang-data-table',
 	templateUrl: './ng-admin-barang-data-table.component.html',
@@ -16,18 +18,22 @@ import { $Socket } from './ng-admin-barang-data-table.socketio';
 export class NgAdminBarangDataTableComponent implements OnDestroy {
 	$update$ = new EventEmitter<Item>();
 	$Items: Item[] | null;
-	$Socket: SocketIO.Server | null;
+	$Socket: SocketIO.Server;
 	constructor(
 		public __mdDialog$$: MdDialog,
-		private __configService: ConfigService,
+		public __configService: ConfigService,
 		@Inject(DOCUMENT) doc: any
 	) {
-		$Socket(this, this.__configService.SocketIO.origin);
+		this.$Socket = io(this.__configService.SocketIO.origin + '/data/item');
+		$Socket(this);
 	}
 	ngOnDestroy() {
 		this.$Socket = null;
 	}
-	delete(UUID: string) {
-		this.$Socket.emit('Item.Data.delete', UUID);
+	delete(_id: string) {
+		if (confirm('Hapus?')) {
+			this.$Socket.emit('delete', _id);
+		}
+		alert(_id);
 	}
 }

@@ -4,30 +4,32 @@ declare var io: SocketIOStatic;
 
 export function $Socket( $this: NgAdminKategoriDataTableComponent, origin: string ) {
 	$this.$Socket = io(origin);
-	$this.$Socket.on('Category.Data.get', ($Categories) => {
-		$this.$Categories = $Categories;
+	const $Socket: SocketIO.Server = $this.$Socket;
+	$Socket.nsp = '/data/category';
+	$Socket.emit('get', ($Categories) => {
+		$this.$Categories = $Categories.reverse();
 	});
-	$this.$Socket.on('Category.Data.add', (data) => {
-		$this.$Categories = [data, ...$this.$Categories];
+	$Socket.on('add', (data) => {
+		$this.$Categories.unshift({ _id: data._id, type: data.type });
 	});
-	$this.$Socket.on('Category.Data.delete', (UUID) => {
+	$Socket.on('delete', (_id) => {
 		const Categories = $this.$Categories;
 		const _Categories = [];
 		for (let i = 0; i < Categories.length; i++) {
-			if (Categories[i].UUID !== UUID) {
+			if (Categories[i]._id !== _id) {
 				_Categories.push(Categories[i]);
 			}
 		}
 		$this.$Categories = _Categories;
 	});
-	$this.$Socket.on('Category.Data.update', (Category: Category) => {
-		const _Categories = [];
-		for (let i = 0; i < $this.$Categories.length; i++) {
-			if (Category.UUID === $this.$Categories[i].UUID) {
-				$this.$Categories[i].name = Category.name;
+	$Socket.on('update', (Category: Category | any) => {
+		Object.keys($this.$Categories).map($key => {
+			if (Category._id === $this.$Categories[$key]._id) {
+				Object.assign($this.$Categories[$key], {
+					type: Category.type,
+					updatedAt: Date.now()
+				});
 			}
-			_Categories.push($this.$Categories[i]);
-		}
-		$this.$Categories = _Categories;
+		});
 	});
 }

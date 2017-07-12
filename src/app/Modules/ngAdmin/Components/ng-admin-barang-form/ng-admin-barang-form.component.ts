@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnDestroy, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, ViewChild, OnDestroy, Output } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { MdDialog } from '@angular/material';
 import * as _barangForm_ from './ng-admin-barang.form';
@@ -8,12 +8,11 @@ import { Action } from '../../../../Types/actions';
 import { Category } from '../../../../Interfaces/category';
 import { Item } from '../../../../Interfaces/item';
 import { ImgpComponent } from '../../../../Components/imgp/imgp.component';
-import { $Socket } from './ng-admin-barang-form.socketio';
 
 import { foto as _ } from './foto';
 
-// declare var io: SocketIOStatic;
-declare var io: any;
+declare var io: SocketIOStatic;
+declare var SocketIOFileUpload: any;
 @Component({
 	selector: 'app-ng-admin-barang-form',
 	templateUrl: './ng-admin-barang-form.component.html',
@@ -30,16 +29,17 @@ export class NgAdminBarangFormComponent implements OnDestroy {
 	action: Action = 'Add';
 	$Categories: Category[] | null;
 	$Item: Item | null;
-	$Socket: SocketIO.Server | null = io(this._config.SocketIO.origin);
+	$Socket: SocketIO.Server;
 	constructor(
 		private __formBuilder$$: FormBuilder,
 		public __mdDialog$$: MdDialog,
 		private _formService: FormService,
-		private _config: ConfigService
+		public _config: ConfigService
 	) {
+		// this.$Socket = io(this._config.SocketIO.origin + 'data/item');
 		const $this = this;
 		this.barangForm = this.__formBuilder$$.group(this.FORM.FORM_GROUP_OBJECT_PARAM);
-		this.barangForm.get('UUID').setValue(this._formService.randomString().toLowerCase());
+		this.barangForm.get('_id').setValue(this._formService.randomString().toLowerCase());
 		this.barangForm.get('foto').setValue(_);
 		this.barangForm.get('harga').valueChanges.subscribe((val) => {
 			if (val < $this.FORM.RULES.harga.min) { $this.barangForm.get('harga').setValue($this.FORM.RULES.harga.min); }
@@ -52,7 +52,7 @@ export class NgAdminBarangFormComponent implements OnDestroy {
 		this.$action$.subscribe((action: Action) => {
 			if (action === 'Update') {
 				$this.action = action;
-				$this.barangForm.get('UUID').setValue($this.$Item.UUID);
+				$this.barangForm.get('_id').setValue($this.$Item._id);
 				$this.barangForm.get('Category').setValue($this.$Item.Category);
 				$this.barangForm.get('nama').setValue($this.$Item.name);
 				$this.barangForm.get('foto').setValue($this.$Item.image);
@@ -61,34 +61,38 @@ export class NgAdminBarangFormComponent implements OnDestroy {
 				$this.barangForm.get('keterangan').setValue($this.$Item.desc);
 			}
 		});
-		$Socket(this, this._config.SocketIO.origin);
 	}
 	ngOnDestroy() {
-		this.$Socket = null;
+		// this.$Socket = null;
 	}
 	onSubmit(barangForm): void {
 		const $Category: Category = barangForm.Category;
-		console.log($Category);
+		let type: Action;
 		const barangData: Item = {
-			UUID: barangForm.UUID,
-			ngadmin: window.localStorage.ngadmin,
 			Category: {
-				UUID: $Category.UUID,
-				name: $Category.name,
-				createdAt: $Category.createdAt,
-				updatedAt: $Category.updatedAt
+				_id: $Category._id ,
+				type: $Category.type,
 			},
 			name: barangForm.nama,
-			image: barangForm.foto,
 			price: barangForm.harga,
 			stock: barangForm.stok,
 			desc: barangForm.keterangan
 		};
+		this.$Socket = io(this._config.SocketIO.origin + '/data/item');
 		if ( this.action === 'Add' ) {
-			this.$Socket.emit('Item.Form.add', barangData);
+			type = 'Add';
 		} else {
-			this.$Socket.emit('Item.Form.update', barangData)
+			type = 'Update';
+			barangData._id = barangForm._id
 		}
+		const btn = document.getElementById('btn-item');
+		const SIOFU = new SocketIOFileUpload(this.$Socket);
+		SIOFU.listenOnSubmit(btn, document.getElementById('itf'));
+		SIOFU.addEventListener('start', function (event) {
+			event.file.meta = { type: type, data: barangData };
+		});
+		btn.dispatchEvent(new MouseEvent('click'));
+		this.$Socket = null;
 		this.$submit$.next();
 	}
 	onKeyPress($event: KeyboardEvent): void {
@@ -98,21 +102,24 @@ export class NgAdminBarangFormComponent implements OnDestroy {
 		}
 	}
 	file(): void {
-		const __p__this = this;
+		const $this = this;
 		const files = this.itf.nativeElement.files;
 		const fr = new FileReader();
 		fr.onload = function ($event) {
-			__p__this.barangForm.get('foto').setValue($event.target['result']);
+			$this.foto = $event.target['result'];
 		}
 		if (files[0]) {
 			fr.readAsDataURL(files[0]);
 		}
 	}
 	view(): void {
-		const dialogRef = this.__mdDialog$$.open(ImgpComponent, {width: '550px'});
-		dialogRef.componentInstance.imgp.nativeElement.src = this.barangForm.get('foto').value;
+		const dialogRef = this.__mdDialog$$.open(ImgpComponent, {width: '400px'});
+		dialogRef.componentInstance.imgp.nativeElement.src = this.foto;
 		dialogRef.componentInstance.isClosed.subscribe((isClosed) => {
 			if (isClosed) { dialogRef.close() }
 		})
+	}
+	simulate() {
+		document.getElementById('itf').dispatchEvent(new MouseEvent('click'))
 	}
 }

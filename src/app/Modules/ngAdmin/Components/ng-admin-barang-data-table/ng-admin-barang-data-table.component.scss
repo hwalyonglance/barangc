@@ -28,6 +28,9 @@ tbody {
 	tr:hover td:last-of-type{
 		opacity: 1;
 	}
+	.category-btn{
+		cursor: pointer;
+	}
 }
 .desc{
 	column-count: 1;

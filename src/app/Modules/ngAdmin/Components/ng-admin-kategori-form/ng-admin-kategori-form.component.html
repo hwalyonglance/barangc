@@ -5,27 +5,27 @@
 			<md-card-content fxLayout="column" style="padding: 15px;">
 				<div fxFlex fxHide>
 					<md-input-container class="full-width">
-						<input mdInput formControlName="UUID" placeholder="UUID" required readonly>
+						<input mdInput formControltype="_id" placeholder="_id" required readonly>
 					</md-input-container>
 				</div>
 				<div fxFlex>
 					<md-input-container class="full-width">
-						<input mdInput formControlName="name"  placeholder="Category name" [required]='FORM.RULES.name.required' [maxlength]='FORM.RULES.name.maxLength'>
-						<md-error *ngIf="categoryForm.get('name').hasError('required')">{{ FORM.VALIDATION_MESSAGES.name.required }}</md-error>
-						<md-error *ngIf="categoryForm.get('name').hasError('minlength')">{{ FORM.VALIDATION_MESSAGES.name.minLength }}</md-error>
-						<md-error *ngIf="categoryForm.get('name').hasError('maxlength')">{{ FORM.VALIDATION_MESSAGES.name.maxLength }}</md-error>
+						<input mdInput formControlName="type" type='text' placeholder="Category" [required]='FORM.RULES.type.required' [maxlength]="FORM.RULES.type.maxLength">
+						<md-error *ngIf="categoryForm.get('type').hasError('required')">{{ FORM.VALIDATION_MESSAGES.type.required }}</md-error>
+						<md-error *ngIf="categoryForm.get('type').hasError('minlength')">{{ FORM.VALIDATION_MESSAGES.type.minLength }}</md-error>
+						<md-error *ngIf="categoryForm.get('type').hasError('maxlength')">{{ FORM.VALIDATION_MESSAGES.type.maxLength }}</md-error>
 						<md-hint align="end">
 							<md-icon>mode_edit</md-icon>
-							<span aria-live="polite"> {{ categoryForm.get('name').value.length + '/' + FORM.RULES.name.maxLength }} </span>
+							<span aria-live="polite"> {{ categoryForm.get('type').value.length + '/' + FORM.RULES.type.maxLength }} </span>
 						</md-hint>
 					</md-input-container>
 					<span *ngIf='action === "Update"'>
-						{{ Category.name }} to: {{ categoryForm.get('name').value }}
+						{{ Category.type }} to: {{ categoryForm.get('type').value }}
 					</span>
 				</div>
 			</md-card-content>
 			<md-card-actions align="end" style="padding:15px;">
-				<button md-raised-button [disabled]='categoryForm.get("name").value.length === 0' color="primary" type="submit">{{ action }}</button>
+				<button md-raised-button [disabled]='categoryForm.get("type").value.length === 0' color="primary" type="submit">{{ action }}</button>
 			</md-card-actions>
 		</md-card>
 	</form>

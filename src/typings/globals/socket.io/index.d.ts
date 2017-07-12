@@ -48,6 +48,7 @@ declare namespace SocketIO {
 		 * A dictionary of all the namespaces currently on this Server
 		 */
 		nsps: {[namespace: string]: Namespace};
+		nsp: string;
 
 		/**
 		 * The default '/' Namespace

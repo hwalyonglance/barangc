@@ -7,9 +7,6 @@ import { NgAdminKategoriFormComponent } from '../ng-admin-kategori-form/ng-admin
 import { Action } from '../../../../Types/actions';
 import { Category } from '../../../../Interfaces/category';
 
-
-// declare var io: SocketIOStatic;
-declare var io: any;
 @Component({
 	selector: 'app-ng-admin-kategori',
 	templateUrl: './ng-admin-kategori.component.html',
@@ -17,7 +14,6 @@ declare var io: any;
 })
 export class NgAdminKategoriComponent implements AfterViewInit {
 	@ViewChild(NgAdminKategoriDataTableComponent) _CategoryDataTable_: NgAdminKategoriDataTableComponent;
-	private $Socket: SocketIO.Server = io(this.__configService.SocketIO.origin);
 	options = [
 		{ text: 'Tambah' },
 		{ text: 'foo' },
@@ -30,9 +26,9 @@ export class NgAdminKategoriComponent implements AfterViewInit {
 		@Inject(DOCUMENT) doc: any
 	) {}
 	ngAfterViewInit() {
-		const __p__this = this;
+		const $this = this;
 		this._CategoryDataTable_.$update$.subscribe(($Category: Category) => {
-			__p__this.openForm('Update', $Category);
+			$this.openForm('Update', $Category);
 		});
 	}
 	openForm(action: Action, Category?: Category): void {

@@ -8,9 +8,7 @@ import { MdDialog, MdDialogRef } from '@angular/material';
 import { Action } from '../../../../Types/actions';
 import { Category } from '../../../../Interfaces/category';
 
-
-// declare var io: SocketIOStatic;
-declare var io: any;
+declare var io: SocketIOStatic;
 @Component({
 	selector: 'app-ng-admin-kategori-form',
 	templateUrl: './ng-admin-kategori-form.component.html',
@@ -21,16 +19,17 @@ export class NgAdminKategoriFormComponent implements OnInit, OnChanges, OnDestro
 	FORM = _BARANG_FORM_;
 	categoryForm: FormGroup;
 	action: Action = 'Add';
-	Category: Category | null = new Category();
+	Category: Category | null;
 	$Socket: SocketIO.Server | null = io(this.__configService.SocketIO.origin);
+	nsp = '/data/category';
 	constructor(
 		private __formBuilder$$: FormBuilder,
 		private __router$$: Router,
 		private _formService: FormService,
 		private __configService: ConfigService,
 	) {
+		this.$Socket = io(this.__configService.SocketIO.origin + this.nsp);
 		this.categoryForm = this.__formBuilder$$.group(this.FORM.FORM_GROUP_OBJECT_PARAM);
-		this.categoryForm.get('UUID').setValue(this._formService.randomString());
 	}
 	ngOnInit() {}
 	ngOnChanges() {}
@@ -38,14 +37,14 @@ export class NgAdminKategoriFormComponent implements OnInit, OnChanges, OnDestro
 		this.$Socket = null;
 	}
 	onSubmit(categoryForm): void {
-		const Category = {
-			UUID: categoryForm.UUID,
-			name: categoryForm.name.trim()
+		const Category: Category = {
+			type: categoryForm.type.trim()
 		};
 		if (this.action === 'Add') {
-			this.$Socket.emit('Category.Form.add', Category);
+			this.$Socket.emit('add', Category);
 		} else {
-			this.$Socket.emit('Category.Form.update', Category);
+			Category._id = this.Category._id;
+			this.$Socket.emit('update', Category);
 		}
 		this.$KategoriForm$.next();
 	}
