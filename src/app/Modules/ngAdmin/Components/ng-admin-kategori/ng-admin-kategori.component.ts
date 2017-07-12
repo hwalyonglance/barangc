@@ -28,11 +28,8 @@ export class NgAdminKategoriComponent implements AfterViewInit {
 	) {}
 	ngAfterViewInit() {
 		const $this = this;
-		this._CategoryDataTable_.$update$.subscribe((_id: string) => {
-			const $Socket: SocketIO.Server = io('http://localhost:3000/data/category');
-			$Socket.emit('get', _id, (Category: Category) => {
+		this._CategoryDataTable_.$update$.subscribe((Category: Category) => {
 				$this.openForm('Update', Category);
-			})
 		});
 	}
 	openForm(action: Action, Category?: Category): void {

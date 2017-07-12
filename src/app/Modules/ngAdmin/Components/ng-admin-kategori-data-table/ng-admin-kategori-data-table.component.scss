@@ -30,7 +30,9 @@
 .mat-table {
 	overflow: auto;
 }
-
+.mat-header-cell .mat-sort-header-sorted {
+  color: black;
+}
 .mat-header-row{
 	background-color: #9575CD;
 	color: #EEE;

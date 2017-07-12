@@ -1,24 +1,24 @@
 <div class="example-container mat-elevation-z8">
-	<md-table #table [dataSource]="dataSource">
-		<md-header-row *cdkHeaderRowDef="displayedColumns" (click)='headerClick()'></md-header-row>
-		<md-row *cdkRowDef="let row; columns: displayedColumns;" (click)='rowClick()'></md-row>
+	<md-table #table [dataSource]="dataSource" mdSort>
+		<md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
+		<md-row *cdkRowDef="let Category; columns: displayedColumns;"></md-row>
 		<!--- Note that these columns can be defined in any order.
 			The actual rendered columns are set as a property on the row definition" -->
 
 		<!-- type Column -->
 		<ng-container cdkColumnDef="type">
-			<md-header-cell *cdkHeaderCellDef> Type </md-header-cell>
-			<md-cell *cdkCellDef="let row" (click)='cellClick()'> {{row.type}} </md-cell>
+			<md-header-cell *cdkHeaderCellDef md-sort-header> Type </md-header-cell>
+			<md-cell *cdkCellDef="let Category"> {{Category.type}} </md-cell>
 		</ng-container>
 
 		<!-- _id Column -->
 		<ng-container cdkColumnDef="_id">
-			<md-header-cell *cdkHeaderCellDef>  </md-header-cell>
-			<md-cell *cdkCellDef="let row" style='text-align: right'>
-				<md-icon mdTooltip='Delete' (click)='delete(row._id)'>delete</md-icon>
-				<md-icon mdTooltip='Edit' (click)='$update$.emit(row._id)'>mode_edit</md-icon>
+			<md-header-cell *cdkHeaderCellDef md-sort-header>  </md-header-cell>
+			<md-cell *cdkCellDef="let Category" style='text-align: right'>
+				<md-icon mdTooltip='Delete' (click)='delete(Category._id)'>delete</md-icon>
+				<md-icon mdTooltip='Edit' (click)='$update$.emit(Category)'>mode_edit</md-icon>
 			</md-cell>
 		</ng-container>
 	</md-table>
-	<md-paginator #paginator [length]="database.data.length" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 20, 40, 80, 160, 320]"></md-paginator>
+	<md-paginator #paginator [length]="database.data.length" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 50, 100, 150, 200]"></md-paginator>
 </div>
