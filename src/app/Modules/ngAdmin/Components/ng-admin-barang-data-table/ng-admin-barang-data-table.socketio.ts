@@ -5,7 +5,7 @@ declare var io: SocketIOStatic;
 export function $Socket($this: NgAdminBarangDataTableComponent) {
 	const $Item$: SocketIO.Server = io($this.__configService.SocketIO.origin + '/data/item');
 	$Item$.on('connect', () => {
-		$Item$.emit('get', (Items: Item[]) => {
+		$Item$.emit('gets', (Items: Item[]) => {
 			$this.$Items = Items.reverse();
 			console.log('emit get item => ', Items);
 		})

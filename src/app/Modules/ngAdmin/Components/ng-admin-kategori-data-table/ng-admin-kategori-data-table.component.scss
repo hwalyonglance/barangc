@@ -2,37 +2,65 @@
 	background-color: #7E57C2 !important;
 	color: #EEE;
 }
-table tr td, table tr th{
-	border-radius: 0;
-}
-table thead tr{
-	background-color: #2962FF;
-	color: #DDD;
-}
-table tbody{
-	tr:nth-child(odd){
-		background-color: #FF1744;
-	}
-	tr:nth-child(even){
-		background-color: #76FF03;
-	}
-	tr:hover{
-		background-color: #2196F3;
-	}
-}
-table tbody tr .category-btn{
-	color: transparent;
-}
-table tbody tr:hover .category-btn{
-	color: #FFF;
-	cursor: pointer;
-}
 .demo-dialog {
-  color: rebeccapurple;
+	color: rebeccapurple;
 }
 
 .demo-dialog-card {
-  max-width: 750px;
-  margin: 20px 0;
+	max-width: 750px;
+	margin: 20px 0;
+}
+
+/* Structure */
+.example-container {
+	display: flex;
+	flex-direction: column;
+	max-height: 600px;
+	min-width: 300px;
+}
+
+.example-header {
+	min-height: 64px;
+	display: flex;
+	align-items: center;
+	padding-left: 24px;
+	font-size: 20px;
+}
+
+.mat-table {
+	overflow: auto;
+}
+
+.mat-header-row{
+	background-color: #9575CD;
+	color: #EEE;
+}
+.mat-row {
+	&:nth-child(odd) {
+		background-color: #B39DDB;
+	}
+	&:nth-child(even) {
+		background-color: #B388FF;
+	}
+	&:hover {
+		background-color: #18FFFF;
+		.mat-icon {
+			display: initial;
+		}
+	}
+}
+
+.mat-column-_id .mat-icon {
+	color: orangered;
+	cursor: pointer;
+	display: none;
+}
+
+.mat-cell.cdk-column-_id.mat-column-_id{
+	width: 40px !important;
+}
+
+.mat-paginator {
+	background-color: #9575CD;
 }
 

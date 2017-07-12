@@ -9,16 +9,16 @@ export function $Socket($this: NgAdminBarangFormComponent, origin: string) {
 	$this.$Socket.on('Category.Data.add', (Category: Category) => {
 		$this.$Categories.unshift(Category);
 	});
-	$this.$Socket.on('Category.Data.delete', (UUID) => {
+	$this.$Socket.on('Category.Data.delete', (_id) => {
 		const Categories = $this.$Categories;
 		const _Categories = [];
 		for (let i = 0; i < Categories.length; i++) {
-			if (Categories[i].UUID !== UUID) { _Categories.push(Categories[i]); }
+			if (Categories[i]._id !== _id) { _Categories.push(Categories[i]); }
 		} $this.$Categories = _Categories;
 	});
 	$this.$Socket.on('Category.Data.update', (Category: Category) => {
 		$this.$Categories = $this.$Categories.map(($Category: Category) => {
-			if ($Category.UUID === Category.UUID) {
+			if ($Category._id === Category._id) {
 				$Category = Category;
 			} return $Category
 		});
