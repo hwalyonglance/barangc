@@ -29,7 +29,7 @@
 				<div fxFlex='100' fxFlex.gt-sm="30" fxLayout='column' style='font-size:.9em;'>
 					<button fxFlex='50' type='button' class='file' md-raised-button (click)='simulate()'>
 						upload proto
-						<input type="file" accept='image/*' class='hide' id="itf" (change)='file()' #itf>
+						<input type="file" accept='image/*' fxHide id="itf" (change)='file()' #itf>
 					</button>
 					<button fxFlex='50' type='button' md-raised-button (click)='view()' class='file'>
 						View Proto

@@ -1,29 +1,50 @@
-<table border="1" class="responsive-table">
-	<thead>
-		<tr>
-			<th>categoryType</th>
-			<th>image</th>
-			<th>itemName</th>
-			<th>price</th>
-			<th>stock</th>
-			<th style='width: 200px !important;'>description</th>
-			<th></th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr *ngFor="let Item of $Items">
-			<td> {{ Item.Category.type }} </td>
-			<td> <img [src]=' "http://localhost:3000/uploads/items/" + Item.image' style='max-width: 100px; max-height: 100px'> </td>
-			<td> {{ Item.name }} </td>
-			<td> {{ Item.price | currency:'IDR' }} </td>
-			<td> {{ Item.stock }} </td>
-			<td class='desc'> {{ Item.desc.substr(0, 32) + '...' }} </td>
-			<!--<td>  {{ Item.}}  </td>-->
-			<td>
-				<md-icon mdTooltip='Delete' (click)='delete(Item._id)' class="category-btn">delete</md-icon>
-				<md-icon mdTooltip='Edit' (click)='$update$.emit(Item)' class="category-btn">mode_edit</md-icon>
-			</td>
-		</tr>
-	</tbody>
-	<tfoot></tfoot>
-</table>
+<div class='example-container mat-elevation-z8'>
+	<div class='example-header'>
+		<md-input-container floatPlaceholder="never">
+			<input mdInput #filter placeholder="Filter Items">
+		</md-input-container>
+	</div>
+	<md-table #table [dataSource]='dataSource' mdSort>
+		<md-header-row *cdkHeaderRowDef='displayedColumns'></md-header-row>
+		<md-row *cdkRowDef='let Item, columns: displayedColumns'></md-row>
+
+		<ng-container cdkColumnDef='Type'>
+			<md-header-cell *cdkHeaderCellDef class='w-120px' md-sort-header> Type </md-header-cell>
+			<md-cell *cdkCellDef='let Item' class='w-120px'> <p class='item-overflow' [innerHTML]='wbr(Item.Category.type)'></p> </md-cell>
+		</ng-container>
+
+		<ng-container cdkColumnDef='Image'>
+			<md-header-cell *cdkHeaderCellDef class='w-120px' md-sort-header> Image </md-header-cell>
+			<md-cell *cdkCellDef='let Item' class='w-120px'> <img src='http://localhost:3000/uploads/items/{{ Item.image }}' class='item-img'>  </md-cell>
+		</ng-container>
+
+		<ng-container cdkColumnDef='Name'>
+			<md-header-cell *cdkHeaderCellDef md-sort-header> Name </md-header-cell>
+			<md-cell *cdkCellDef='let Item'> <p class='item-overflow' [innerHTML]='wbr(Item.name)'></p> </md-cell>
+		</ng-container>
+
+		<ng-container cdkColumnDef='Price'>
+			<md-header-cell *cdkHeaderCellDef class='w-120px' md-sort-header> Price </md-header-cell>
+			<md-cell *cdkCellDef='let Item' class='w-120px'> {{ Item.price | currency:'IDR' }} </md-cell>
+		</ng-container>
+
+		<ng-container cdkColumnDef='Stock'>
+			<md-header-cell *cdkHeaderCellDef class='w-50px' md-sort-header> Stock </md-header-cell>
+			<md-cell *cdkCellDef='let Item' class='w-50px'> {{ Item.stock }} </md-cell>
+		</ng-container>
+
+		<ng-container cdkColumnDef='Description'>
+			<md-header-cell *cdkHeaderCellDef md-sort-header> Description </md-header-cell>
+			<md-cell *cdkCellDef='let Item'> <p class='item-overflow' [innerHTML]='wbr(Item.desc)'></p> </md-cell>
+		</ng-container>
+
+		<ng-container cdkColumnDef='_id'>
+			<md-header-cell *cdkHeaderCellDef class='w-70px' md-sort-header> </md-header-cell>
+			<md-cell *cdkCellDef='let Item' class='w-70px' style='text-align: right'>
+				<md-icon mdTooltip='Delete' (click)='delete(Item._id)'>delete</md-icon>
+				<md-icon mdTooltip='Edit' (click)='$update$.emit(Item)'>mode_edit</md-icon>
+			</md-cell>
+		</ng-container>
+	</md-table>
+	<md-paginator #paginator [length]='database.data.length' [pageIndex]='0' [pageSize]='10' [pageSizeOptions]='[10, 25, 50, 100]' ></md-paginator>
+</div>

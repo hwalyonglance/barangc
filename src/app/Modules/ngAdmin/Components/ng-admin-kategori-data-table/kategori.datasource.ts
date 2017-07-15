@@ -1,13 +1,11 @@
-import {Component} from '@angular/core';
 import { MdPaginator, MdSort } from '@angular/material';
 import {DataSource} from '@angular/cdk';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/operator/startWith';
 import 'rxjs/add/observable/merge';
 import 'rxjs/add/operator/map';
 
-import { CategoryDatabase } from './kategori-database';
+import { CategoryDatabase } from './kategori.database';
 
 import { Category } from '../../../../Interfaces/category';
 
@@ -23,7 +21,6 @@ export class CategoryDataSource extends DataSource<any> {
 	) {
 		super();
 	}
-	/** Connect function called by the table to retrieve one stream containing the data to render. */
 	connect(): Observable< Category[] > {
 		const displayDataChanges = [
 			this._categoryDatabase.dataChange,
