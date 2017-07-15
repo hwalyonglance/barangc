@@ -1,5 +1,5 @@
 import { ItemDatabase } from './barang.database';
-import { Item } from '../../../../Interfaces/item';
+import { Item } from '../../Interfaces/item';
 declare var io: SocketIOStatic;
 export function $Socket($this: ItemDatabase) {
 	const $Socket: SocketIO.Server = io('http://localhost:3000/data/item');

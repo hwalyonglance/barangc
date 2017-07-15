@@ -12,8 +12,6 @@ import { AppRoutingModule } from './app-routing.module';
 
 // app-service:
 import { FormService } from './Services/form/form.service';
-import { ConfigService } from './Services/config/config.service';
-import { RedirectService } from './Services/redirect/redirect.service';
 import { CssService } from './Services/css.service';
 
 // app-pipe:
@@ -109,9 +107,7 @@ import { WbrPipe } from './Pipes/wbr.pipe';
 	],
 	providers: [
 		FormService,
-		ConfigService,
 		CssService,
-		RedirectService,
 		NgadminChildrenGuard
 	],
 	bootstrap: [AppComponent],

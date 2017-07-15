@@ -1,13 +1,11 @@
 import { AfterViewInit, Component, ElementRef, EventEmitter, OnInit, ViewChild } from '@angular/core';
 import { MdDialog, MdDialogRef, MdPaginator, MdSort } from '@angular/material';
-import { DOCUMENT } from '@angular/platform-browser';
 import { NgAdminBarangDataTableComponent } from '../ng-admin-barang-data-table/ng-admin-barang-data-table.component';
 import { NgAdminBarangFormComponent } from '../ng-admin-barang-form/ng-admin-barang-form.component';
-import { ConfigService } from '../../../../Services/config/config.service';
 import { CssService } from '../../../../Services/css.service';
 import { Action } from '../../../../Types/actions';
-import { Category } from '../../../../Interfaces/category';
-import { Item } from '../../../../Interfaces/item';
+import { Category } from '../../Interfaces/category';
+import { Item } from '../../Interfaces/item';
 import { $Socket } from './ng-admin-barang.socketio';
 
 
@@ -28,7 +26,6 @@ export class NgAdminBarangComponent implements AfterViewInit, OnInit {
 	];
 	constructor(
 		public __mdDialog$$: MdDialog,
-		public _config: ConfigService,
 		private _css: CssService
 	) {
 		$Socket(this);

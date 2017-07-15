@@ -1,5 +1,5 @@
 import { CategoryDatabase } from './kategori.database';
-import { Category } from '../../../../Interfaces/category';
+import { Category } from '../../Interfaces/category';
 declare var io: SocketIOStatic;
 
 export function $Socket( $this: CategoryDatabase ) {

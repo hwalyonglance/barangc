@@ -7,7 +7,7 @@ import 'rxjs/add/observable/merge';
 import 'rxjs/add/operator/map';
 
 import { ItemDatabase } from './barang.database';
-import { Item } from '../../../../Interfaces/item';
+import { Item } from '../../Interfaces/item';
 
 export class ItemDataSource extends DataSource<any> {
 	_filterChange = new BehaviorSubject('');

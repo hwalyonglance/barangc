@@ -2,11 +2,10 @@ import { Component, EventEmitter, ViewChild, OnDestroy, Output } from '@angular/
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { MdDialog } from '@angular/material';
 import * as _barangForm_ from './ng-admin-barang.form';
-import { ConfigService } from '../../../../Services/config/config.service';
 import { FormService } from '../../../../Services/form/form.service';
 import { Action } from '../../../../Types/actions';
-import { Category } from '../../../../Interfaces/category';
-import { Item } from '../../../../Interfaces/item';
+import { Category } from '../../Interfaces/category';
+import { Item } from '../../Interfaces/item';
 import { ImgpComponent } from '../../../../Components/imgp/imgp.component';
 
 import { foto as _ } from './foto';
@@ -34,7 +33,6 @@ export class NgAdminBarangFormComponent implements OnDestroy {
 		private __formBuilder$$: FormBuilder,
 		public __mdDialog$$: MdDialog,
 		private _formService: FormService,
-		public _config: ConfigService
 	) {
 		// this.$Socket = io(this._config.SocketIO.origin + 'data/item');
 		const $this = this;
@@ -78,7 +76,7 @@ export class NgAdminBarangFormComponent implements OnDestroy {
 			stock: barangForm.stok,
 			desc: barangForm.keterangan
 		};
-		this.$Socket = io(this._config.SocketIO.origin + '/data/item');
+		this.$Socket = io('http://localhost:3000/data/item');
 		if ( this.action === 'Add' ) {
 			type = 'Add';
 		} else {

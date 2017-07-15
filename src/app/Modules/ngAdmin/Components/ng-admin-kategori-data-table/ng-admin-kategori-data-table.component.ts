@@ -1,10 +1,9 @@
 import { Component, ElementRef, EventEmitter, Inject, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { MdDialog, MdDialogRef, MdPaginator, MdSort } from '@angular/material';
-import { ConfigService } from '../../../../Services/config/config.service';
 import { DOCUMENT } from '@angular/platform-browser';
 import { NgAdminKategoriFormComponent } from '../ng-admin-kategori-form/ng-admin-kategori-form.component';
 import { Action } from '../../../../Types/actions';
-import { Category } from '../../../../Interfaces/category';
+import { Category } from '../../Interfaces/category';
 import { $Socket } from './ng-admin-kategori-data-table.socketio';
 
 import { CategoryDatabase } from './kategori.database';
@@ -26,15 +25,15 @@ export class NgAdminKategoriDataTableComponent implements OnDestroy, OnInit {
 	@ViewChild(MdPaginator) _paginator_: MdPaginator;
 	@ViewChild(MdSort) _sort_: MdSort;
 	@ViewChild('filter') filter: ElementRef;
-	$Socket: SocketIO.Server | null = io(this.__configService.SocketIO.origin + '/data/category');
+	$Socket: SocketIO.Server | null = io('http://localhost:3000/data/category');
 	$update$ = new EventEmitter<Category>();
 	$Categories: Category[] | null = [];
 	displayedColumns = ['type', '_id'];
 	dataSource: CategoryDataSource | null;
 	database = new CategoryDatabase();
+	anima = 'haha';
 	constructor(
-		public __mdDialog$$: MdDialog,
-		private __configService: ConfigService
+		public __mdDialog$$: MdDialog
 	) {}
 	ngOnInit() {
 		this.dataSource = new CategoryDataSource(this.database, this._paginator_, this._sort_);
@@ -52,14 +51,5 @@ export class NgAdminKategoriDataTableComponent implements OnDestroy, OnInit {
 		if (confirm('Hapus')) {
 			this.$Socket.emit('delete', _id)
 		}
-	}
-	rowClick() {
-		alert('row clicked')
-	}
-	cellClick() {
-		alert('cell clicked')
-	}
-	headerClick() {
-		alert('header clicked')
 	}
 }

@@ -3,7 +3,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
-import { Category } from '../../../../Interfaces/category';
+import { Category } from '../../Interfaces/category';
 import { $Socket } from './ng-admin-kategori-data-table.socketio';
 
 export class CategoryDatabase {

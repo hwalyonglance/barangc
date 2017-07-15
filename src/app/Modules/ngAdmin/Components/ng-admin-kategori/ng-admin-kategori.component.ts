@@ -1,11 +1,9 @@
 import { AfterViewInit, Component, Inject, ViewChild, EventEmitter } from '@angular/core';
 import { MdDialog, MdDialogRef } from '@angular/material';
-import { ConfigService } from '../../../../Services/config/config.service';
-import { DOCUMENT } from '@angular/platform-browser';
 import { NgAdminKategoriDataTableComponent } from '../ng-admin-kategori-data-table/ng-admin-kategori-data-table.component';
 import { NgAdminKategoriFormComponent } from '../ng-admin-kategori-form/ng-admin-kategori-form.component';
 import { Action } from '../../../../Types/actions';
-import { Category } from '../../../../Interfaces/category';
+import { Category } from '../../Interfaces/category';
 
 declare var io: SocketIOStatic;
 @Component({
@@ -23,8 +21,6 @@ export class NgAdminKategoriComponent implements AfterViewInit {
 	];
 	constructor(
 		public __mdDialog$$: MdDialog,
-		private __configService: ConfigService,
-		@Inject(DOCUMENT) doc: any
 	) {}
 	ngAfterViewInit() {
 		const $this = this;

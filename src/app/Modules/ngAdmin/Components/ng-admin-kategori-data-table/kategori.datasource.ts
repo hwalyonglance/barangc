@@ -7,7 +7,7 @@ import 'rxjs/add/operator/map';
 
 import { CategoryDatabase } from './kategori.database';
 
-import { Category } from '../../../../Interfaces/category';
+import { Category } from '../../Interfaces/category';
 
 
 export class CategoryDataSource extends DataSource<any> {

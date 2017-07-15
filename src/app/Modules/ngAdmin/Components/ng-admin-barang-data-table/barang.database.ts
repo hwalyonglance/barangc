@@ -5,7 +5,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
-import { Item } from '../../../../Interfaces/item';
+import { Item } from '../../Interfaces/item';
 
 export class ItemDatabase {
 	dataChange: BehaviorSubject<Item[]> = new BehaviorSubject<Item[]>([]);
