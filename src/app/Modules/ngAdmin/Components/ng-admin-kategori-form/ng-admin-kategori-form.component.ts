@@ -2,7 +2,7 @@ import { Component, OnInit, OnChanges, OnDestroy, Output, EventEmitter } from '@
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import * as _BARANG_FORM_ from './ng-admin-kategori.form';
-import { FormService } from '../../../../Services/form/form.service';
+import { CONFIG } from '../../../../../environments/config';
 import { MdDialog, MdDialogRef } from '@angular/material';
 import { Action } from '../../../../Types/actions';
 import { Category } from '../../Interfaces/category';
@@ -22,10 +22,9 @@ export class NgAdminKategoriFormComponent implements OnInit, OnChanges, OnDestro
 	$Socket: SocketIO.Server | null;
 	constructor(
 		private __formBuilder$$: FormBuilder,
-		private __router$$: Router,
-		private _formService: FormService,
+		private __router$$: Router
 	) {
-		this.$Socket = io('http://localhost:3000/data/category');
+		this.$Socket = io(CONFIG.SocketIO.origin + '/data/category');
 		this.categoryForm = this.__formBuilder$$.group(this.FORM.FORM_GROUP_OBJECT_PARAM);
 	}
 	ngOnInit() {}

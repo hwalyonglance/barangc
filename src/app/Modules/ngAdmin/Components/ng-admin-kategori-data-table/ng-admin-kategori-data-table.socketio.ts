@@ -1,9 +1,10 @@
+import { CONFIG } from '../../../../../environments/config';
 import { CategoryDatabase } from './kategori.database';
 import { Category } from '../../Interfaces/category';
 declare var io: SocketIOStatic;
 
 export function $Socket( $this: CategoryDatabase ) {
-	const $Socket: SocketIO.Server = io('http://localhost:3000/data/category');
+	const $Socket: SocketIO.Server = io(CONFIG.SocketIO.origin + '/data/category');
 	$Socket.emit('gets', ($Categories) => {
 		$Categories.map((_Category) => {
 			$this.add(_Category);

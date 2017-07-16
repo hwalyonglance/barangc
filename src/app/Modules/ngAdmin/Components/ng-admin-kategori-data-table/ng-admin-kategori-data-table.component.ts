@@ -1,11 +1,11 @@
 import { Component, ElementRef, EventEmitter, Inject, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { MdDialog, MdDialogRef, MdPaginator, MdSort } from '@angular/material';
-import { DOCUMENT } from '@angular/platform-browser';
 import { NgAdminKategoriFormComponent } from '../ng-admin-kategori-form/ng-admin-kategori-form.component';
 import { Action } from '../../../../Types/actions';
 import { Category } from '../../Interfaces/category';
 import { $Socket } from './ng-admin-kategori-data-table.socketio';
 
+import { CONFIG } from '../../../../../environments/config';
 import { CategoryDatabase } from './kategori.database';
 import { CategoryDataSource } from './kategori.datasource';
 
@@ -25,13 +25,12 @@ export class NgAdminKategoriDataTableComponent implements OnDestroy, OnInit {
 	@ViewChild(MdPaginator) _paginator_: MdPaginator;
 	@ViewChild(MdSort) _sort_: MdSort;
 	@ViewChild('filter') filter: ElementRef;
-	$Socket: SocketIO.Server | null = io('http://localhost:3000/data/category');
+	$Socket: SocketIO.Server | null = io( CONFIG.SocketIO.origin + '/data/category');
 	$update$ = new EventEmitter<Category>();
 	$Categories: Category[] | null = [];
 	displayedColumns = ['type', '_id'];
 	dataSource: CategoryDataSource | null;
 	database = new CategoryDatabase();
-	anima = 'haha';
 	constructor(
 		public __mdDialog$$: MdDialog
 	) {}

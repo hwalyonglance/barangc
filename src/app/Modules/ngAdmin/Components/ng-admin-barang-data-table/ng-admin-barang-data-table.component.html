@@ -15,7 +15,7 @@
 
 		<ng-container cdkColumnDef='Image'>
 			<md-header-cell *cdkHeaderCellDef class='w-120px' md-sort-header> Image </md-header-cell>
-			<md-cell *cdkCellDef='let Item' class='w-120px'> <img src='http://localhost:3000/uploads/items/{{ Item.image }}' class='item-img'>  </md-cell>
+			<md-cell *cdkCellDef='let Item' class='w-120px'> <img src='{{ CONFIG.SocketIO.origin + "/uploads/items/" + Item.image }}' class='item-img'>  </md-cell>
 		</ng-container>
 
 		<ng-container cdkColumnDef='Name'>

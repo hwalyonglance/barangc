@@ -1,8 +1,8 @@
 import { Component, EventEmitter, ViewChild, OnDestroy, Output } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { MdDialog } from '@angular/material';
+import { CONFIG } from '../../../../../environments/config';
 import * as _barangForm_ from './ng-admin-barang.form';
-import { FormService } from '../../../../Services/form/form.service';
 import { Action } from '../../../../Types/actions';
 import { Category } from '../../Interfaces/category';
 import { Item } from '../../Interfaces/item';
@@ -32,12 +32,10 @@ export class NgAdminBarangFormComponent implements OnDestroy {
 	constructor(
 		private __formBuilder$$: FormBuilder,
 		public __mdDialog$$: MdDialog,
-		private _formService: FormService,
 	) {
 		// this.$Socket = io(this._config.SocketIO.origin + 'data/item');
 		const $this = this;
 		this.barangForm = this.__formBuilder$$.group(this.FORM.FORM_GROUP_OBJECT_PARAM);
-		this.barangForm.get('_id').setValue(this._formService.randomString().toLowerCase());
 		this.barangForm.get('foto').setValue(_);
 		this.barangForm.get('harga').valueChanges.subscribe((val) => {
 			if (val < $this.FORM.RULES.harga.min) { $this.barangForm.get('harga').setValue($this.FORM.RULES.harga.min); }
@@ -61,7 +59,7 @@ export class NgAdminBarangFormComponent implements OnDestroy {
 		});
 	}
 	ngOnDestroy() {
-		// this.$Socket = null;
+		this.$Socket = null;
 	}
 	onSubmit(barangForm): void {
 		const $Category: Category = barangForm.Category;
@@ -76,7 +74,7 @@ export class NgAdminBarangFormComponent implements OnDestroy {
 			stock: barangForm.stok,
 			desc: barangForm.keterangan
 		};
-		this.$Socket = io('http://localhost:3000/data/item');
+		this.$Socket = io(CONFIG.SocketIO.origin + '/data/item');
 		if ( this.action === 'Add' ) {
 			type = 'Add';
 		} else {
@@ -111,7 +109,7 @@ export class NgAdminBarangFormComponent implements OnDestroy {
 		}
 	}
 	view(): void {
-		const dialogRef = this.__mdDialog$$.open(ImgpComponent, {width: '400px'});
+		const dialogRef = this.__mdDialog$$.open(ImgpComponent);
 		dialogRef.componentInstance.imgp.nativeElement.src = this.foto;
 		dialogRef.componentInstance.isClosed.subscribe((isClosed) => {
 			if (isClosed) { dialogRef.close() }

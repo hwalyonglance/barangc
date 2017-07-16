@@ -1,7 +1,7 @@
 import { Component, ElementRef, EventEmitter, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NgAdminBarangFormComponent } from '../ng-admin-barang-form/ng-admin-barang-form.component';
 import { MdDialog, MdDialogRef, MdPaginator, MdSort } from '@angular/material';
-import { DOCUMENT } from '@angular/platform-browser';
+import { CONFIG } from '../../../../../environments/config';
 import { Action } from '../../../../Types/actions';
 import { Category } from '../../Interfaces/category';
 import { Item } from '../../Interfaces/item';
@@ -28,13 +28,14 @@ export class NgAdminBarangDataTableComponent implements OnDestroy, OnInit {
 	displayedColumns = ['Type', 'Image', 'Name', 'Price' , 'Stock', 'Description', '_id'];
 	$update$ = new EventEmitter<Item>();
 	$Items: Item[] | null;
+	CONFIG = CONFIG;
 	$Socket: SocketIO.Server;
 	dataSource: ItemDataSource | null;
 	database = new ItemDatabase();
 	constructor(
 		public __mdDialog$$: MdDialog,
 	) {
-		this.$Socket = io('http://localhost:3000/data/item');
+		this.$Socket = io(this.CONFIG.SocketIO.origin + '/data/item');
 	}
 	ngOnDestroy() {
 		this.$Socket = null;

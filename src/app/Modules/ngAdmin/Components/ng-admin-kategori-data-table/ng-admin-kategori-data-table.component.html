@@ -4,7 +4,7 @@
 			<input mdInput #filter placeholder="Filter types">
 		</md-input-container>
 	</div>
-	<md-table #table [dataSource]="dataSource" mdSort [@animaref]='anima'>
+	<md-table #table [dataSource]="dataSource" mdSort>
 		<md-header-row *cdkHeaderRowDef="displayedColumns"> asd </md-header-row>
 		<md-row *cdkRowDef="let Category; columns: displayedColumns;"></md-row>
 		<!--- Note that these columns can be defined in any order.
