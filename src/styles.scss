@@ -26,3 +26,26 @@ button:focus{
 button[disabled]{
 	cursor: url(./assets/Cursors/cursor_click_x.cur);
 }
+.mat-card{
+	border-radius: 0 !important;
+	box-sizing: border-box !important;
+	.mat-card-content{
+		border-radius: 0 !important;
+		box-sizing: border-box !important;
+	}
+}
+.mat-toolbar{
+	border-radius: 0 !important;
+}
+.mat-dialog-container {
+	padding: 0 !important;
+	overflow-x: hidden !important;
+	.mat-card{
+		margin: 0 !important;
+		padding: 0 !important;
+		// overflow: none !important;
+		// .mat-card-content{
+		// 	overflow: none !important;
+		// }
+	}
+}

@@ -1,7 +1,14 @@
-#kategori-form{}
+#kategori-form{
+	min-width: 300px;
+	max-width: 400px;
+}
 .full-width {
 	width: 100%;
 }
 span{
 	font-size: 12px;
+}
+
+.mat-card{
+	overflow: hidden !important;
 }

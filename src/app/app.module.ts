@@ -5,7 +5,7 @@ import { A11yModule, BidiModule, CdkTableModule, ObserveContentModule, PlatformM
 // import { HttpModule, JsonpModule } from '@angular/http';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FlexLayoutModule } from '@angular/flex-layout';
+import { FlexLayoutModule } from '../fx/flexbox/_module';
 
 // app:
 import { AppRoutingModule } from './app-routing.module';
