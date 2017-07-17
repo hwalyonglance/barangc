@@ -16,6 +16,9 @@ body {
 .small{
 	font-size: 10px;
 }
+.pointer {
+	cursor: pointer;
+}
 button{
 	box-sizing: border-box;
 }
@@ -39,13 +42,9 @@ button[disabled]{
 }
 .mat-dialog-container {
 	padding: 0 !important;
-	overflow-x: hidden !important;
+	overflow: unset !important;
+	max-width: 85vw !important;
 	.mat-card{
-		margin: 0 !important;
-		padding: 0 !important;
-		// overflow: none !important;
-		// .mat-card-content{
-		// 	overflow: none !important;
-		// }
+		padding: 0;
 	}
 }

@@ -64,7 +64,7 @@ export class NgAdminBarangFormComponent implements OnDestroy {
 	onSubmit(barangForm): void {
 		const $Category: Category = barangForm.Category;
 		let type: Action;
-		const barangData: Item = {
+		const data: Item = {
 			Category: {
 				_id: $Category._id ,
 				type: $Category.type,
@@ -79,15 +79,23 @@ export class NgAdminBarangFormComponent implements OnDestroy {
 			type = 'Add';
 		} else {
 			type = 'Update';
-			barangData._id = barangForm._id
+			data._id = barangForm._id
+			alert(barangForm._id);
 		}
-		const btn = document.getElementById('btn-item');
-		const SIOFU = new SocketIOFileUpload(this.$Socket);
-		SIOFU.listenOnSubmit(btn, document.getElementById('itf'));
-		SIOFU.addEventListener('start', function (event) {
-			event.file.meta = { type: type, data: barangData };
-		});
-		btn.dispatchEvent(new MouseEvent('click'));
+		const btn = document.createElement('button');
+		const itf: any = document.getElementById('itf');
+		const sentData = { type, data };
+		console.log(sentData)
+		if ( itf.files[0] ) {
+			const SIOFU = new SocketIOFileUpload(this.$Socket);
+			SIOFU.listenOnSubmit(btn, itf);
+			SIOFU.addEventListener('start', function (event) {
+				event.file.meta = sentData;
+			});
+			btn.dispatchEvent(new MouseEvent('click'));
+		} else {
+			this.$Socket.emit('update', sentData);
+		}
 		this.$Socket = null;
 		this.$submit$.next();
 	}
@@ -114,6 +122,12 @@ export class NgAdminBarangFormComponent implements OnDestroy {
 		dialogRef.componentInstance.isClosed.subscribe((isClosed) => {
 			if (isClosed) { dialogRef.close() }
 		})
+	}
+	type_of() {
+		return this.action === 'Add' ? typeof this.itf.nativeElement.files[0] === 'undefined' : false;
+	}
+	exist() {
+		return typeof this.itf.nativeElement.files[0] ? true : false ;
 	}
 	simulate() {
 		document.getElementById('itf').dispatchEvent(new MouseEvent('click'))

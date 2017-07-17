@@ -9,8 +9,14 @@
 .full-width{
 	width: 100%;
 }
-
-label.file, button.file{
+.b-reset{
+	background-color: transparent;
+	border: none;
+}
+.b-reset:active{
+	border: none !important;
+}
+button.file{
 	background-color: #64DD17;
 	border: none;
 	border-bottom: 2px solid #651FFF;

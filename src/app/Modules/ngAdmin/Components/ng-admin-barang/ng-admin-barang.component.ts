@@ -2,7 +2,7 @@ import { AfterViewInit, Component, ElementRef, EventEmitter, OnInit, ViewChild }
 import { MdDialog, MdDialogRef, MdPaginator, MdSort } from '@angular/material';
 import { NgAdminBarangDataTableComponent } from '../ng-admin-barang-data-table/ng-admin-barang-data-table.component';
 import { NgAdminBarangFormComponent } from '../ng-admin-barang-form/ng-admin-barang-form.component';
-import { CssService } from '../../../../Services/css.service';
+import { CssService } from '../../../../Services/animate-css.service';
 import { Action } from '../../../../Types/actions';
 import { Category } from '../../Interfaces/category';
 import { Item } from '../../Interfaces/item';

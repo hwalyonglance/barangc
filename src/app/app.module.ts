@@ -5,6 +5,7 @@ import { A11yModule, BidiModule, CdkTableModule, ObserveContentModule, PlatformM
 // import { HttpModule, JsonpModule } from '@angular/http';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { FlexLayoutModule } from '../fx/flexbox/_module';
 
 // app:
@@ -12,7 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 // app-service:
 import { FormService } from './Services/form/form.service';
-import { CssService } from './Services/css.service';
+import { CssService } from './Services/animate-css.service';
 
 // app-pipe:
 import { ExponentialPipe } from './Pipes/exponential.pipe';

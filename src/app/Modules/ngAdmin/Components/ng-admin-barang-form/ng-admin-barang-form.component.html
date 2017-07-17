@@ -26,16 +26,17 @@
 						</md-hint>
 					</md-input-container>
 				</div>
-				<div fxFlex='100' fxFlex.gt-sm="30" fxLayout='column' style='font-size:.9em;'>
-					<button fxFlex='50' type='button' class='file' md-raised-button (click)='simulate()'>
-						upload proto
+				<div fxFlex='15' fxLayout='row' style='font-size:.9em;'>
+					<button type='button' fxFlex='50' class='b-reset pointer' (click)='simulate()' mdTooltip='Upload Image'>
+						<md-icon>file_upload</md-icon>
 						<input type="file" accept='image/*' fxHide id="itf" (change)='file()' #itf>
 					</button>
-					<button fxFlex='50' type='button' md-raised-button (click)='view()' class='file'>
-						View Proto
+					<button type='button' fxFlex='50' class='b-reset pointer' (click)='view()' mdTooltip='View Image'>
+						<md-icon>local_see</md-icon>
 					</button>
 				</div>
-				<div fxFlex='100' fxFlex.gt-sm="45">
+				<div fxFlex='2.5'></div>
+				<div fxFlex='50'>
 					<md-input-container class="full-width">
 						<input mdInput formControlName="harga" [type]="FORM.RULES.harga.type" (keypress)='onKeyPress($event)' [placeholder]="FORM.RULES.harga.label" [min]="FORM.RULES.harga.min" [max]="FORM.RULES.harga.max" [step]="FORM.RULES.harga.step" [required]="FORM.RULES.harga.required">
 						<md-error *ngIf="barangForm.get('harga').hasError('required')">{{ FORM.VALIDATION_MESSAGES.harga.required }}</md-error>
@@ -45,7 +46,8 @@
 						</md-hint>
 					</md-input-container>
 				</div>
-				<div fxFlex='100' fxFlex.gt-sm="25">
+				<div fxFlex='2.5'></div>
+				<div fxFlex='30'>
 					<md-input-container class="full-width pad-15">
 						<input mdInput formControlName="stok" [type]="FORM.RULES.stok.type" (keypress)='onKeyPress($event)' [placeholder]="FORM.RULES.stok.label" [min]="FORM.RULES.stok.min" [max]="FORM.RULES.stok.max" [step]="FORM.RULES.stok.step" [required]="FORM.RULES.stok.required">
 						<md-error *ngIf="barangForm.get('stok').hasError('required')">{{ FORM.VALIDATION_MESSAGES.stok.required }}</md-error>
@@ -66,10 +68,9 @@
 				</div>
 			</md-card-content>
 			<md-card-actions align="end" style="padding:15px;">
-				<button [disabled]='barangForm.get("Category").hasError("required") || barangForm.get("nama").hasError("required")' md-raised-button color="primary" type="submit">
+				<button [disabled]='barangForm.get("Category").hasError("required") || barangForm.get("nama").hasError("required") || type_of()' md-raised-button color="primary" type="submit">
 					{{ action }}
 				</button>
-				<button fxFlex fxHide id='btn-item'>SIOFU</button>
 			</md-card-actions>
 		</md-card>
 	</form>
