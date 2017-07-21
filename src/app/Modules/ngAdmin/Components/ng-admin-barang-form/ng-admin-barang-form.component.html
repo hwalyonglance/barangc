@@ -10,7 +10,7 @@
 				</div>
 				<div fxFlex='100' style='padding-top: 5px'>
 					<md-select class='full-width' formControlName='Category' [placeholder]="FORM.RULES.Category.label" [required]="FORM.RULES.Category.required" floatPlaceholder="floatPlaceholder">
-						<md-option *ngFor='let Category of $Categories' [value]='Category'>{{ Category.type }}</md-option>
+						<md-option *ngFor='let Category of $Categories' [value]='toString(Category)'>{{ Category.type }}</md-option>
 					</md-select>
 					<md-error class='small' *ngIf='barangForm.get("Category").hasError("required")'>{{ FORM.VALIDATION_MESSAGES.Category.required }}</md-error>
 				</div>

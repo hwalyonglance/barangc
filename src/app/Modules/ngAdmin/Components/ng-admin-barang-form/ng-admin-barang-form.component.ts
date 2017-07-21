@@ -48,7 +48,7 @@ export class NgAdminBarangFormComponent implements OnDestroy {
 				const foto = CONFIG.SocketIO.origin + '/uploads/items/' + this.$Item.image;
 				this.action = action;
 				this.barangForm.get('_id').setValue(this.$Item._id);
-				this.barangForm.get('Category').setValue(this.$Item.Category);
+				this.barangForm.get('Category').setValue(JSON.stringify(this.$Item.Category));
 				this.barangForm.get('nama').setValue(this.$Item.name);
 				this.barangForm.get('foto').setValue(foto);
 				this.foto = foto;
@@ -62,7 +62,7 @@ export class NgAdminBarangFormComponent implements OnDestroy {
 		this.$Socket = null;
 	}
 	onSubmit(barangForm): void {
-		const $Category: Category = barangForm.Category;
+		const $Category: Category = JSON.parse(barangForm.Category);
 		let type: Action;
 		const data: Item = {
 			Category: {
@@ -131,5 +131,8 @@ export class NgAdminBarangFormComponent implements OnDestroy {
 	}
 	simulate() {
 		document.getElementById('itf').dispatchEvent(new MouseEvent('click'))
+	}
+	toString(Category: Category) {
+		return JSON.stringify(Category);
 	}
 }
