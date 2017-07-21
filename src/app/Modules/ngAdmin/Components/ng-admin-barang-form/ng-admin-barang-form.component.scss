@@ -1,8 +1,17 @@
 #barang-form-container{
 	min-width: 400px;
-	width: 650px;
 	max-width: 960px;
 	max-height: 85vh;
+}
+@media (min-width: 721px){
+	#barang-form-container{
+		width: 650px;
+	}
+}
+@media (max-width: 720px){
+	#barang-form-container{
+		width: 450px;
+	}
 }
 .mat-card-content{
 	background-color: #E1F5FE;

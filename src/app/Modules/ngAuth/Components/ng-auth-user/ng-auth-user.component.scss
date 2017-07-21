@@ -13,6 +13,10 @@
 .mat-card {
 	background-color: #EEE;
 }
+.mat-card-footer,
+.mat-card-actions{
+	padding: 0 5% !important;
+}
 div{
 	margin:0;
 	padding:0;
