@@ -32,10 +32,10 @@
 						<input type="file" accept='image/*' fxHide id="itf" (change)='file()' #itf>
 					</button>
 					<button type='button' fxFlex='50' class='b-reset pointer' (click)='view()' mdTooltip='View Image'>
-						<md-icon>local_see</md-icon>
+						<md-icon>image</md-icon>
 					</button>
 				</div>
-				<div fxFlex='2.5'></div>
+				<div fxFlex='2'></div>
 				<div fxFlex='50'>
 					<md-input-container class="full-width">
 						<input mdInput formControlName="harga" [type]="FORM.RULES.harga.type" (keypress)='onKeyPress($event)' [placeholder]="FORM.RULES.harga.label" [min]="FORM.RULES.harga.min" [max]="FORM.RULES.harga.max" [step]="FORM.RULES.harga.step" [required]="FORM.RULES.harga.required">
@@ -46,7 +46,7 @@
 						</md-hint>
 					</md-input-container>
 				</div>
-				<div fxFlex='2.5'></div>
+				<div fxFlex='1'></div>
 				<div fxFlex='30'>
 					<md-input-container class="full-width pad-15">
 						<input mdInput formControlName="stok" [type]="FORM.RULES.stok.type" (keypress)='onKeyPress($event)' [placeholder]="FORM.RULES.stok.label" [min]="FORM.RULES.stok.min" [max]="FORM.RULES.stok.max" [step]="FORM.RULES.stok.step" [required]="FORM.RULES.stok.required">
@@ -57,6 +57,7 @@
 						</md-hint>
 					</md-input-container>
 				</div>
+				<div fxFlex='2'></div>
 				<div fxFlex='100'>
 					<md-input-container class="full-width">
 						<label>

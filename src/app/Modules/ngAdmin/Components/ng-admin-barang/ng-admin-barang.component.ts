@@ -41,6 +41,7 @@ export class NgAdminBarangComponent implements AfterViewInit, OnInit {
 		const dialogRef = this.__mdDialog$$.open(NgAdminBarangFormComponent);
 		this.$Categories$.subscribe(() => {
 			dialogRef.componentInstance.$Categories = this.$Categories;
+			alert('NgAdminBarangComponent.$Categories$ emitted');
 		});
 		dialogRef.componentInstance.$Categories = this.$Categories;
 		dialogRef.componentInstance.$Item = Item;

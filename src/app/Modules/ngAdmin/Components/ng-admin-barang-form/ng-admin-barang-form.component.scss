@@ -1,6 +1,7 @@
 #barang-form-container{
-	min-width: 270px;
-	max-width: 700px;
+	min-width: 400px;
+	width: 650px;
+	max-width: 960px;
 	max-height: 85vh;
 }
 .mat-card-content{
@@ -14,7 +15,7 @@
 	border: none;
 }
 .b-reset:active{
-	border: none !important;
+	border: 2px solid #2196F3 !important;
 }
 button.file{
 	background-color: #64DD17;

@@ -33,28 +33,28 @@ export class NgAdminBarangFormComponent implements OnDestroy {
 		private __formBuilder$$: FormBuilder,
 		public __mdDialog$$: MdDialog,
 	) {
-		// this.$Socket = io(this._config.SocketIO.origin + 'data/item');
-		const $this = this;
 		this.barangForm = this.__formBuilder$$.group(this.FORM.FORM_GROUP_OBJECT_PARAM);
 		this.barangForm.get('foto').setValue(_);
 		this.barangForm.get('harga').valueChanges.subscribe((val) => {
-			if (val < $this.FORM.RULES.harga.min) { $this.barangForm.get('harga').setValue($this.FORM.RULES.harga.min); }
-			if (val > $this.FORM.RULES.harga.max) { $this.barangForm.get('harga').setValue($this.FORM.RULES.harga.max); }
+			if (val < this.FORM.RULES.harga.min) { this.barangForm.get('harga').setValue(this.FORM.RULES.harga.min); }
+			if (val > this.FORM.RULES.harga.max) { this.barangForm.get('harga').setValue(this.FORM.RULES.harga.max); }
 		});
 		this.barangForm.get('stok').valueChanges.subscribe((val) => {
-			if (val < $this.FORM.RULES.stok.min) { $this.barangForm.get('stok').setValue($this.FORM.RULES.stok.min); }
-			if (val > $this.FORM.RULES.stok.max) { $this.barangForm.get('stok').setValue($this.FORM.RULES.stok.max); }
+			if (val < this.FORM.RULES.stok.min) { this.barangForm.get('stok').setValue(this.FORM.RULES.stok.min); }
+			if (val > this.FORM.RULES.stok.max) { this.barangForm.get('stok').setValue(this.FORM.RULES.stok.max); }
 		});
 		this.$action$.subscribe((action: Action) => {
 			if (action === 'Update') {
-				$this.action = action;
-				$this.barangForm.get('_id').setValue($this.$Item._id);
-				$this.barangForm.get('Category').setValue($this.$Item.Category);
-				$this.barangForm.get('nama').setValue($this.$Item.name);
-				$this.barangForm.get('foto').setValue($this.$Item.image);
-				$this.barangForm.get('harga').setValue($this.$Item.price);
-				$this.barangForm.get('stok').setValue($this.$Item.stock);
-				$this.barangForm.get('keterangan').setValue($this.$Item.desc);
+				const foto = CONFIG.SocketIO.origin + '/uploads/items/' + this.$Item.image;
+				this.action = action;
+				this.barangForm.get('_id').setValue(this.$Item._id);
+				this.barangForm.get('Category').setValue(this.$Item.Category);
+				this.barangForm.get('nama').setValue(this.$Item.name);
+				this.barangForm.get('foto').setValue(foto);
+				this.foto = foto;
+				this.barangForm.get('harga').setValue(this.$Item.price);
+				this.barangForm.get('stok').setValue(this.$Item.stock);
+				this.barangForm.get('keterangan').setValue(this.$Item.desc);
 			}
 		});
 	}
@@ -121,13 +121,13 @@ export class NgAdminBarangFormComponent implements OnDestroy {
 		dialogRef.componentInstance.imgp.nativeElement.src = this.foto;
 		dialogRef.componentInstance.isClosed.subscribe((isClosed) => {
 			if (isClosed) { dialogRef.close() }
-		})
+		});
 	}
 	type_of() {
 		return this.action === 'Add' ? typeof this.itf.nativeElement.files[0] === 'undefined' : false;
 	}
 	exist() {
-		return typeof this.itf.nativeElement.files[0] ? true : false ;
+		return typeof this.itf.nativeElement.files[0] === 'object' ? true : false ;
 	}
 	simulate() {
 		document.getElementById('itf').dispatchEvent(new MouseEvent('click'))

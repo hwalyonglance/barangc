@@ -23,15 +23,15 @@ export class NgAuthNgadminComponent implements OnInit {
 			password: authForm.password,
 			created_at: Date.now()
 		});
-		console.log(authForm.value);
 		this._router.navigate(['ngadmin', 'dashboard']);
 	}
 	onKeyPress($event: KeyboardEvent): void {
-		const number = ($event.keyCode >= 48) && ($event.keyCode <= 57);
-		const _ = ($event.keyCode === 95);
-		const alphabet = ($event.keyCode >= 97) && ($event.keyCode <= 122);
-		const ALPHABET = ($event.keyCode >= 65) && ($event.keyCode <= 90);
-		if ( !( number || _ || alphabet || ALPHABET) ) {
+		const number = ($event.charCode >= 48) && ($event.charCode <= 57);
+		const _ = ($event.charCode === 95);
+		const alphabet = ($event.charCode >= 97) && ($event.charCode <= 122);
+		const ALPHABET = ($event.charCode >= 65) && ($event.charCode <= 90);
+		const tab = $event.keyCode === 9;
+		if ( !( number || _ || alphabet || ALPHABET || tab) ) {
 			$event.preventDefault();
 		}
 	}
