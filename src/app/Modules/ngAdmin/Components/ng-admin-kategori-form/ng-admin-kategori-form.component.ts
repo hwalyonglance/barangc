@@ -7,6 +7,7 @@ import { MdDialog, MdDialogRef } from '@angular/material';
 import { Action } from '../../../../Types/actions';
 import { Category } from '../../Interfaces/category';
 
+import { SocketIOStatic, Server } from '../../../../Interfaces/socket.io';
 declare var io: SocketIOStatic;
 @Component({
 	selector: 'app-ng-admin-kategori-form',
@@ -19,7 +20,7 @@ export class NgAdminKategoriFormComponent implements OnInit, OnChanges, OnDestro
 	categoryForm: FormGroup;
 	action: Action = 'Add';
 	Category: Category | null;
-	$Socket: SocketIO.Server | null;
+	$Socket: Server | null;
 	constructor(
 		private __formBuilder$$: FormBuilder,
 		private __router$$: Router

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { A11yModule, BidiModule, CdkTableModule, ObserveContentModule, PlatformModule, PortalModule } from '@angular/cdk';
+import { FlexLayoutModule } from '../../../fx/flexbox/_module';
 
 import { NgAdminRoutingModule } from './ng-admin-routing.module';
 
@@ -32,7 +33,8 @@ import { NgAdminTestimoniDataTableComponent } from './Components/ng-admin-testim
 		MaterialModule,
 		FormsModule,
 		ReactiveFormsModule,
-		A11yModule, BidiModule, CdkTableModule, ObserveContentModule, PlatformModule, PortalModule
+		A11yModule, BidiModule, CdkTableModule, ObserveContentModule, PlatformModule, PortalModule,
+		FlexLayoutModule
 	],
 	exports: [],
 	declarations: [

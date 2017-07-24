@@ -10,6 +10,7 @@ import { ImgpComponent } from '../../../../Components/imgp/imgp.component';
 
 import { foto as _ } from './foto';
 
+import { SocketIOStatic, Server } from '../../../../Interfaces/socket.io';
 declare var io: SocketIOStatic;
 declare var SocketIOFileUpload: any;
 @Component({
@@ -28,7 +29,7 @@ export class NgAdminBarangFormComponent implements OnDestroy {
 	action: Action = 'Add';
 	$Categories: Category[] | null;
 	$Item: Item | null;
-	$Socket: SocketIO.Server;
+	$Socket: Server;
 	constructor(
 		private __formBuilder$$: FormBuilder,
 		public __mdDialog$$: MdDialog,

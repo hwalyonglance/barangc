@@ -14,6 +14,7 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/observable/fromEvent';
 
+import { SocketIOStatic, Server } from '../../../../Interfaces/socket.io';
 declare var io: SocketIOStatic;
 
 @Component({
@@ -29,13 +30,13 @@ export class NgAdminBarangDataTableComponent implements OnDestroy, OnInit {
 	$update$ = new EventEmitter<Item>();
 	$Items: Item[] | null;
 	CONFIG = CONFIG;
-	$Socket: SocketIO.Server;
+	$Socket: Server;
 	dataSource: ItemDataSource | null;
 	database = new ItemDatabase();
 	constructor(
 		public __mdDialog$$: MdDialog,
 	) {
-		this.$Socket = io(this.CONFIG.SocketIO.origin + '/data/item');
+		this.$Socket = io(CONFIG.SocketIO.origin + '/data/item');
 	}
 	ngOnDestroy() {
 		this.$Socket = null;
@@ -56,7 +57,7 @@ export class NgAdminBarangDataTableComponent implements OnDestroy, OnInit {
 		alert(_id);
 	}
 	wbr(str: string): string {
-		const val = str.split('');
+		const val = str.replace('<', '&lt;').split('');
 		let retVal = '';
 		for (let i = 0; i < val.length; i++) {
 			if (i % 5) {

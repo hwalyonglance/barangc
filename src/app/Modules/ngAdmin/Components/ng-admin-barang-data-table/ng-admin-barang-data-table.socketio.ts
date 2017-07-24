@@ -1,9 +1,10 @@
 import { CONFIG } from '../../../../../environments/config';
 import { ItemDatabase } from './barang.database';
 import { Item } from '../../Interfaces/item';
+import { SocketIOStatic, Server } from '../../../../Interfaces/socket.io';
 declare var io: SocketIOStatic;
 export function $Socket($this: ItemDatabase) {
-	const $Socket: SocketIO.Server = io(CONFIG.SocketIO.origin + '/data/item');
+	const $Socket: Server = io(CONFIG.SocketIO.origin + '/data/item');
 	$Socket.on('connect', () => {
 		$Socket.emit('gets', (Items: Item[]) => {
 			Items.map((_Item) => {

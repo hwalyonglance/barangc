@@ -14,6 +14,7 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/observable/fromEvent';
 
+import { SocketIOStatic, Server } from '../../../../Interfaces/socket.io';
 declare var io: SocketIOStatic;
 
 @Component({
@@ -25,7 +26,7 @@ export class NgAdminKategoriDataTableComponent implements OnDestroy, OnInit {
 	@ViewChild(MdPaginator) _paginator_: MdPaginator;
 	@ViewChild(MdSort) _sort_: MdSort;
 	@ViewChild('filter') filter: ElementRef;
-	$Socket: SocketIO.Server | null = io( CONFIG.SocketIO.origin + '/data/category');
+	$Socket: Server | null = io( CONFIG.SocketIO.origin + '/data/category');
 	$update$ = new EventEmitter<Category>();
 	$Categories: Category[] | null = [];
 	displayedColumns = ['type', '_id'];

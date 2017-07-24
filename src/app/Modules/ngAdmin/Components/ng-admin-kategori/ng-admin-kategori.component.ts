@@ -5,6 +5,7 @@ import { NgAdminKategoriFormComponent } from '../ng-admin-kategori-form/ng-admin
 import { Action } from '../../../../Types/actions';
 import { Category } from '../../Interfaces/category';
 
+import { SocketIOStatic, Server } from '../../../../Interfaces/socket.io';
 declare var io: SocketIOStatic;
 @Component({
 	selector: 'app-ng-admin-kategori',

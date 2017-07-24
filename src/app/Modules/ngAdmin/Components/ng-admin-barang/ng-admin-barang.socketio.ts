@@ -1,11 +1,11 @@
 import { NgAdminBarangComponent } from './ng-admin-barang.component';
 import { CONFIG } from '../../../../../environments/config';
 import { Category } from '../../Interfaces/category';
+import { SocketIOStatic, Server } from '../../../../Interfaces/socket.io';
 declare var io: SocketIOStatic;
 
-
 export function $Socket($this: NgAdminBarangComponent) {
-	const $Socket: SocketIO.Server = io(CONFIG.SocketIO.origin + '/data/category');
+	const $Socket: Server = io(CONFIG.SocketIO.origin + '/data/category');
 	$Socket.emit('gets', (Categories: Category[]) => {
 		$this.$Categories = Categories;
 		$this.$Categories$.emit();
