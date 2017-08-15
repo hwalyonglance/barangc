@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '@angular/material';
+import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { A11yModule, BidiModule, CdkTableModule, ObserveContentModule, PlatformModule, PortalModule } from '@angular/cdk';
 import { FlexLayoutModule } from '../../../fx/flexbox/_module';
@@ -11,9 +12,9 @@ import { NgadminChildrenGuard } from './Guards/ngadmin-children/ngadmin-children
 
 import { NgAdminComponent } from './ng-admin.component';
 import { NgAdminNavComponent } from './Components/ng-admin-nav/ng-admin-nav.component';
+import { NgAdminHomeComponent } from './Components/ng-admin-home/ng-admin-home.component';
 import { NgAdminContainerComponent } from './Components/ng-admin-container/ng-admin-container.component';
 import { NgAdminSidenavComponent } from './Components/ng-admin-sidenav/ng-admin-sidenav.component';
-import { NgAdminHomeComponent } from './Components/ng-admin-home/ng-admin-home.component';
 import { NgAdminKategoriComponent } from './Components/ng-admin-kategori/ng-admin-kategori.component';
 import { NgAdminKategoriFormComponent } from './Components/ng-admin-kategori-form/ng-admin-kategori-form.component';
 import { NgAdminKategoriDataTableComponent } from './Components/ng-admin-kategori-data-table/ng-admin-kategori-data-table.component';
@@ -25,6 +26,7 @@ import { NgAdminNgUserFormComponent } from './Components/ng-admin-ng-user-form/n
 import { NgAdminNgUserDataTableComponent } from './Components/ng-admin-ng-user-data-table/ng-admin-ng-user-data-table.component';
 import { NgAdminTestimoniComponent } from './Components/ng-admin-testimoni/ng-admin-testimoni.component';
 import { NgAdminTestimoniDataTableComponent } from './Components/ng-admin-testimoni-data-table/ng-admin-testimoni-data-table.component';
+import { RpComponent } from './Components/rp/rp.component';
 
 @NgModule({
 	imports: [
@@ -33,6 +35,7 @@ import { NgAdminTestimoniDataTableComponent } from './Components/ng-admin-testim
 		MaterialModule,
 		FormsModule,
 		ReactiveFormsModule,
+		RouterModule,
 		A11yModule, BidiModule, CdkTableModule, ObserveContentModule, PlatformModule, PortalModule,
 		FlexLayoutModule
 	],
@@ -40,9 +43,9 @@ import { NgAdminTestimoniDataTableComponent } from './Components/ng-admin-testim
 	declarations: [
 		NgAdminComponent,
 		NgAdminNavComponent,
+		NgAdminHomeComponent,
 		NgAdminContainerComponent,
 		NgAdminSidenavComponent,
-		NgAdminHomeComponent,
 		NgAdminKategoriComponent,
 		NgAdminKategoriFormComponent,
 		NgAdminKategoriDataTableComponent,
@@ -54,6 +57,7 @@ import { NgAdminTestimoniDataTableComponent } from './Components/ng-admin-testim
 		NgAdminNgUserDataTableComponent,
 		NgAdminTestimoniComponent,
 		NgAdminTestimoniDataTableComponent,
+		RpComponent,
 	],
 	providers: [
 		NgadminChildrenGuard

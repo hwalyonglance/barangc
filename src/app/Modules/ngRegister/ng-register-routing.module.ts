@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { NgUserComponent } from './Components/ng-user/ng-user.component';
 
 const routes: Routes = [
-	{ path: 'register', children: [
+	{ path: 'ngregister', children: [
 		{ path: 'nguser', component: NgUserComponent }
 	] }
 ];

@@ -1,12 +1,12 @@
 <div fxLayout="row">
 	<div fxFlex.xs="5" fxFlex.sm="15" fxFlex.md="25" fxFlex.lg="35"></div>
-	<form [formGroup]="authForm" (ngSubmit)="onSubmit(authForm.value)" fxFlex.xs="90" fxFlex.sm="70" fxFlex.md="50" fxFlex.lg="30" class="grey" novalidate>
-		<md-card>
+	<form [formGroup]="authForm" (ngSubmit)="onSubmit(authForm.value)" fxFlex.xs="90" fxFlex.sm="70" fxFlex.md="50" fxFlex.lg="30" novalidate>
+		<md-card class="bg-eee">
 			<md-card-title>NgAuth</md-card-title>
 			<md-card-subtitle>NgUser</md-card-subtitle>
 			<md-card-content fxLayout="column" class="fxContainer">
 				<div fxFlex>
-					<md-input-container class="full-width">
+					<md-input-container class="w100">
 						<input mdInput formControlName="username" type="text" placeholder="Username" [minlength]="_FORM_.RULES.username.minLength" [maxlength]="_FORM_.RULES.username.maxLength" (keypress)="onKeyPress($event)" (paste)="onPaste($event)" [required]="_FORM_.RULES.username.required">
 						<md-error *ngIf="authForm.get('username').hasError('required')">{{ _FORM_.VALIDATION_MESSAGES.username.required }}</md-error>
 						<md-error *ngIf="authForm.get('username').hasError('minlength')">{{ _FORM_.VALIDATION_MESSAGES.username.minLength }}</md-error>
@@ -19,7 +19,7 @@
 					</md-input-container>
 				</div>
 				<div fxFlex>
-					<md-input-container class="full-width">
+					<md-input-container class="w100">
 						<input mdInput formControlName="password" type="password" placeholder="Password" [minlength]="_FORM_.RULES.password.minLength" [maxlength]="_FORM_.RULES.password.maxLength" (keypress)="onKeyPress($event)" (paste)="onPaste($event)" [required]="_FORM_.RULES.password.required">
 						<md-error align="start" *ngIf="authForm.get('password').hasError('required')">{{ _FORM_.VALIDATION_MESSAGES.password.required }}</md-error>
 						<md-error align="start" *ngIf="authForm.get('password').hasError('minlength')">{{ _FORM_.VALIDATION_MESSAGES.password.minLength }}</md-error>
@@ -37,7 +37,7 @@
 				<button fxFlex='30' md-raised-button type='submit' color='primary' [disabled]='!authForm.valid || !robot.checked'>Submit</button>
 			</md-card-actions>
 			<md-card-footer>
-				Not have account? <a routerLink='/register/nguser'>register now.</a>
+				Not have account? <a routerLink='/ngregister/nguser'>register now.</a>
 			</md-card-footer>
 		</md-card>
 	</form>

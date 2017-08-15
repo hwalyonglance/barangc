@@ -5,14 +5,11 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --prod",
+    "postbuild": "ng-render",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "preserver": "ng build --prod && ngc",
-    "cng": "ngc",
-    "server": "ts-node src/server.ts",
-    "serve": "ts-node src/server.ts"
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
@@ -32,6 +29,7 @@
     "@angular/platform-webworker-dynamic": "^4.2.5",
     "@angular/router": "^4.2.4",
     "angular-in-memory-web-api": "^0.3.2",
+    "angular-ssr": "^0.10.38",
     "angular2-in-memory-web-api": "0.0.21",
     "animate.css": "^3.5.2",
     "classlist.js": "^1.1.20150312",
@@ -41,6 +39,8 @@
     "intl": "^1.2.5",
     "materialize-css": "^0.99.0",
     "moment": "^2.18.1",
+    "onsenui": "^2.5.1",
+    "primeng": "^4.1.2",
     "rxjs": "^5.4.2",
     "socket.io": "^2.0.3",
     "socketio-file-upload": "^0.6.0",

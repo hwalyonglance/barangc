@@ -1,3 +1,28 @@
-<p>
-  ng-user works!
-</p>
+<app-ng-register-nav></app-ng-register-nav>
+<div fxLayout="row">
+	<div fxFlex.xs="5" fxFlex.sm="15" fxFlex.md="25" fxFlex.lg="35"></div>
+	<form fxFlex.xs="90" fxFlex.sm="70" fxFlex.md="50" fxFlex.lg="30" novalidate>
+		<md-card class='bg-eee'>
+			<md-card-title>NgRegister</md-card-title>
+			<md-card-subtitle>NgUser</md-card-subtitle>
+			<md-card-content fxLayout="column">
+				<div fxFlex>
+					<md-input-container class='w100'>
+						<input type="text" mdInput placeholder='Username' minlength='8' maxlength='32' required='true'>
+					</md-input-container>
+				</div>
+				<div fxFlex>
+					<md-input-container class='w100'>
+						<input type="password" mdInput placeholder='Password' minlength='8' maxlength='32' required='true'>
+					</md-input-container>
+				</div>
+				<div fxFlex>
+					<md-input-container class='w100'>
+						<input type="password" mdInput placeholder='Password Match' minlength='8' maxlength='32' required='true'>
+					</md-input-container>
+				</div>
+			</md-card-content>
+		</md-card>
+	</form>
+	<div fxFlex.xs="5" fxFlex.sm="15" fxFlex.md="25" fxFlex.lg="35"></div>
+</div>

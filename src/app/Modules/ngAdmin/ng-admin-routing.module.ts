@@ -9,16 +9,19 @@ import { NgAdminNgUserComponent } from './Components/ng-admin-ng-user/ng-admin-n
 import { NgAdminKategoriComponent } from './Components/ng-admin-kategori/ng-admin-kategori.component';
 import { NgAdminBarangComponent } from './Components/ng-admin-barang/ng-admin-barang.component';
 import { NgAdminTestimoniComponent } from './Components/ng-admin-testimoni/ng-admin-testimoni.component';
+import { RpComponent } from './Components/rp/rp.component';
 
 const ROUTES: Routes = [
-	{ path: 'ngadmin', component: NgAdminComponent, canActivateChild: [NgadminChildrenGuard], children: [
+	{
+		path: 'ngadmin', component: NgAdminComponent, canActivateChild: [NgadminChildrenGuard], children: [
 		{ path: 'dashboard', component: NgAdminHomeComponent },
 		{ path: 'users', component: NgAdminNgUserComponent },
 		{ path: 'kategori', component: NgAdminKategoriComponent },
 		{ path: 'barang', component: NgAdminBarangComponent },
 		{ path: 'testimoni', component: NgAdminTestimoniComponent },
+		{ path: 'rp/:id', component: RpComponent, data: {haha: 'message'} },
 		{ path: '**', pathMatch: 'full', redirectTo: '/ngadmin/dashboard' }
-	]}
+	], data: {hihi: 'msg'}}
 ];
 
 @NgModule({

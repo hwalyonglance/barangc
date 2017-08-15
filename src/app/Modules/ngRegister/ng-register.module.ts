@@ -8,6 +8,7 @@ import { FlexLayoutModule } from '../../../fx/flexbox/_module';
 
 import { NgRegisterRoutingModule } from './ng-register-routing.module';
 import { NgUserComponent } from './Components/ng-user/ng-user.component';
+import { NgRegisterNavComponent } from './Components/ng-register-nav/ng-register-nav.component';
 
 @NgModule({
 	imports: [
@@ -20,7 +21,8 @@ import { NgUserComponent } from './Components/ng-user/ng-user.component';
 		FlexLayoutModule
 	],
 	declarations: [
-		NgUserComponent
+		NgUserComponent,
+		NgRegisterNavComponent,
 	],
 	exports: [
 		NgUserComponent

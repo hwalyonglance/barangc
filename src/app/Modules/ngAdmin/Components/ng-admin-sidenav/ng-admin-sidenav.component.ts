@@ -13,7 +13,8 @@ export class NgAdminSidenavComponent {
 		{ text: 'Kategori', route: 'kategori' },
 		{ text: 'Barang', route: 'barang' },
 		{ text: 'Transaksi', route: 'transaksi' },
-		{ text: 'Testimoni', route: 'testimoni' }
+		{ text: 'Testimoni', route: 'testimoni' },
+		{ text: 'rp', route: 'rp/iniId' }
 	];
 	constructor() {}
 }
