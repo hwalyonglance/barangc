@@ -2,7 +2,7 @@ import 'reflect-metadata';
 import 'zone.js/dist/zone-node';
 import { platformServer, renderModuleFactory } from '@angular/platform-server';
 import { enableProdMode } from '@angular/core';
-import { AppServerModuleNgFactory } from '../dist/ngfactory/src/app/app.server.module.ngfactory';
+import { AppServerModuleNgFactory } from '../aot/src/app/app.server.module.ngfactory';
 // import { AppModuleNgFactory } from './app/app.module.ngfactory';
 import * as express from 'express';
 import { readFileSync } from 'fs';
@@ -16,7 +16,7 @@ const app = express();
 
 const template = readFileSync(join(__dirname, '..', 'dist', 'index.html')).toString();
 
-app.engine('html', (_, options, callback) => {
+app.engine('html', (_: any, options: any, callback: any) => {
 	const opts = {document: template, url: options.req.url};
 
 	renderModuleFactory(AppServerModuleNgFactory, opts)
@@ -24,11 +24,11 @@ app.engine('html', (_, options, callback) => {
 });
 
 app.set('view engine', 'html');
-app.set('views', 'src');
+app.set('views', join(__dirname, '..', 'src'));
 
 app.get('*.*', express.static(join(__dirname, '..', 'dist')));
 
-app.get('*', (req, res) => {
+app.get('*', (req: any, res: any) => {
 	res.render('index', { req });
 });
 

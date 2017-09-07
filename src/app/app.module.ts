@@ -1,17 +1,24 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { MaterialModule } from '@angular/material';
-import { A11yModule, BidiModule, CdkTableModule, ObserveContentModule, PlatformModule, PortalModule } from '@angular/cdk';
+import { HttpClientModule } from '@angular/common/http';
 // import { HttpModule, JsonpModule } from '@angular/http';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { FlexLayoutModule } from '../fx/flexbox/_module';
+import { CdkTableModule } from '@angular/cdk/table';
+import { A11yModule } from '@angular/cdk/a11y';
+import { PlatformModule } from '@angular/cdk/platform';
+import { BidiModule } from '@angular/cdk/bidi';
+import { ObserversModule } from '@angular/cdk/observers';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 // app:
 import { AppRoutingModule } from './app-routing.module';
 
 // app-service:
+import { ApiService } from './api.service';
 import { FormService } from './Services/form/form.service';
 import { CssService } from './Services/animate-css.service';
 
@@ -42,19 +49,27 @@ import { WbrPipe } from './Pipes/wbr.pipe';
 	imports: [
 		AppRoutingModule,
 
+		A11yModule,
+		CdkTableModule,
+		ObserversModule,
+		PlatformModule,
+		BidiModule,
+
+
 		BrowserModule.withServerTransition({appId: 'barang#rusman'}),
 		BrowserAnimationsModule,
 		FormsModule,
+		HttpClientModule,
 		// HttpModule,
 		NoopAnimationsModule,
 		MaterialModule,
 		ReactiveFormsModule,
-		FlexLayoutModule,
-		A11yModule, BidiModule, CdkTableModule, ObserveContentModule, PlatformModule, PortalModule
+		FlexLayoutModule
 	],
 	providers: [
 		FormService,
 		CssService,
+		ApiService
 	],
 	bootstrap: [AppComponent],
 	entryComponents: [

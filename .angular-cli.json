@@ -21,7 +21,6 @@
 			"styles.scss"
 		],
 		"scripts": [
-			"../node_modules/hammerjs/hammer.min.js",
 			"../node_modules/socket.io-client/dist/socket.io.js",
 			"../node_modules/socketio-file-upload/client.min.js"
 		],
@@ -30,27 +29,19 @@
 			"dev": "environments/environment.ts",
 			"prod": "environments/environment.prod.ts"
 		}
+	},{
+		"name": "universal",
+		"platform": "server",
+		"root": "src",
+		"outDir": "dist-server",
+		"main": "server-m.ts",
+		"tsconfig": "tsconfig.server.json",
+		"environmentSource": "environment/environment.ts",
+		"environments": {
+			"dev": "environment.environment.ts",
+			"prod": "environment.environment.prod.ts"
+		}
 	}],
-	"e2e": {
-		"protractor": {
-			"config": "./protractor.conf.js"
-		}
-	},
-	"lint": [{
-			"project": "src/tsconfig.app.json"
-		},
-		{
-			"project": "src/tsconfig.spec.json"
-		},
-		{
-			"project": "e2e/tsconfig.e2e.json"
-		}
-	],
-	"test": {
-		"karma": {
-			"config": "./karma.conf.js"
-		}
-	},
 	"defaults": {
 		"styleExt": "scss",
 		"component": {

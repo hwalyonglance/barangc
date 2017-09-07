@@ -5,8 +5,8 @@
 		</md-input-container>
 	</div>
 	<md-table #table [dataSource]="dataSource" mdSort>
-		<md-header-row *cdkHeaderRowDef="displayedColumns"> asd </md-header-row>
-		<md-row *cdkRowDef="let Category; columns: displayedColumns;"></md-row>
+		<md-header-row *mdHeaderRowDef="displayedColumns"> asd </md-header-row>
+		<md-row *mdRowDef="let Category; columns: displayedColumns;"></md-row>
 		<!--- Note that these columns can be defined in any order.
 			The actual rendered columns are set as a property on the row definition" -->
 

@@ -5,8 +5,8 @@
 		</md-input-container>
 	</div>
 	<md-table #table [dataSource]='dataSource' mdSort>
-		<md-header-row *cdkHeaderRowDef='displayedColumns'></md-header-row>
-		<md-row *cdkRowDef='let Item, columns: displayedColumns'></md-row>
+		<md-header-row *mdHeaderRowDef='displayedColumns'></md-header-row>
+		<md-row *mdRowDef='let Item, columns: displayedColumns'></md-row>
 
 		<ng-container cdkColumnDef='Type'>
 			<md-header-cell *cdkHeaderCellDef class='w-120px' md-sort-header> Type </md-header-cell>

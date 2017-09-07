@@ -1,5 +1,5 @@
 import { MdPaginator, MdSort } from '@angular/material';
-import { DataSource } from '@angular/cdk';
+import { DataSource } from '@angular/cdk/table';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 // import 'rxjs/add/operator/startWith';
@@ -9,7 +9,7 @@ import 'rxjs/add/operator/map';
 import { ItemDatabase } from './barang.database';
 import { Item } from '../../Interfaces/item';
 
-export class ItemDataSource extends DataSource<any> {
+export class ItemDataSource extends DataSource<Item> {
 	_filterChange = new BehaviorSubject('');
 	get filter(): string {return this._filterChange.value}
 	set filter(filter: string) { this._filterChange.next(filter) }

@@ -2,8 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { A11yModule, BidiModule, CdkTableModule, ObserveContentModule, PlatformModule, PortalModule } from '@angular/cdk';
-import { FlexLayoutModule } from '../../../fx/flexbox/_module';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
+import { CdkTableModule } from '@angular/cdk/table';
+import { A11yModule } from '@angular/cdk/a11y';
+import { PlatformModule } from '@angular/cdk/platform';
+import { BidiModule } from '@angular/cdk/bidi';
+import { ObserversModule } from '@angular/cdk/observers';
 
 import { NgAuthRoutingModule } from './ng-auth-routing.module';
 
@@ -19,8 +24,13 @@ import { NgAuthUserComponent } from './Components/ng-auth-user/ng-auth-user.comp
 		MaterialModule,
 		FormsModule,
 		ReactiveFormsModule,
-		A11yModule, BidiModule, CdkTableModule, ObserveContentModule, PlatformModule, PortalModule,
-		FlexLayoutModule
+		FlexLayoutModule,
+
+		A11yModule,
+		CdkTableModule,
+		ObserversModule,
+		PlatformModule,
+		BidiModule
 	],
 	declarations: [
 		NgAuthComponent,

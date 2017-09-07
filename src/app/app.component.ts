@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ApiService } from './api.service';
 // declare var io: SocketIOStatic;
 
 @Component({
@@ -8,9 +9,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 	title = 'app';
+	data = '';
 	private _Socket: any;
-	constructor() {
-		// this._Socket = io();
-		// console.log(this._Socket);
+	constructor(protected apiService: ApiService) {}
+	ngOnInit() {
+		this.apiService.getData().subscribe((response) => {
+				this.data = response.data;
+		}, (error) => {
+			this.data = 'Error with HTTP request';
+		});
 	}
 }
