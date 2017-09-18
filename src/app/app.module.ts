@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { MaterialModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
+import { ServiceWorkerModule } from '@angular/service-worker';
+
 // import { HttpModule, JsonpModule } from '@angular/http';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -55,7 +57,7 @@ import { WbrPipe } from './Pipes/wbr.pipe';
 		PlatformModule,
 		BidiModule,
 
-
+		ServiceWorkerModule,
 		BrowserModule.withServerTransition({appId: 'barang#rusman'}),
 		BrowserAnimationsModule,
 		FormsModule,

@@ -1,34 +1,39 @@
-import {applicationBuilderFromModule} from 'angular-ssr';
-import {join} from 'path';
-import {AppModule} from './src/app/app.module';
-import express = require('express');
-import url = require('url');
+import 'zone.js/dist/zone-node';
+import 'reflect-metadata';
+import * as express from 'express';
+import * as fs from 'fs';
+import { platformServer, renderModuleFactory } from '@angular/platform-server';
+import { ngExpressEngine } from '@nguniversal/express-engine';
+// Import module map for lazy loading
+import { provideModuleMap } from '@nguniversal/module-map-ngfactory-loader';
+// Import the AOT compiled factory for your AppServerModule.
+// This import will change with the hash of your built server bundle.
+import { AppServerModuleNgFactory, LAZY_MODULE_MAP } from './dist-server/main.bundle';
 
-const dist = join(process.cwd(), 'dist');
+const app = express();
+const port = process.env.PORT || 8000;
+const baseUrl = `http://localhost:${port}`;
 
-const builder = applicationBuilderFromModule<AppModule>(AppModule, join(dist, 'index.html'));
+// Set the engine
+app.engine('html', ngExpressEngine({
+	bootstrap: AppServerModuleNgFactory,
+	providers: [
+	provideModuleMap(LAZY_MODULE_MAP)
+	]
+}));
 
-const application = builder.build();
+app.set('view engine', 'html');
 
-const http = express();
+app.set('views', './');
+app.use('/', express.static('./', {index: false}));
 
-http.get(/.*/, async (request, response) => {
-  try {
-    const snapshot = await application.renderUri(absoluteUri(req));
-
-    response.send(snapshot.renderedDocument);
-  }
-  catch (exception) {
-    response.send(builder.templateDocument()); // fall back on client document
-  }
+app.get('*', (req, res) => {
+	res.render('index', {
+		req,
+		res
+	});
 });
 
-http.listen(process.env.PORT);
-
-const absoluteUri = (request: express.Request): string => {
-  return url.format({
-    protocol: request.protocol,
-    host: request.get('host'),
-    pathname: request.originalUrl
-  });
-};
+app.listen(port, () => {
+	console.log(`Listening at ${baseUrl}`);
+});
